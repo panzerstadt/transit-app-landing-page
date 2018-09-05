@@ -15,6 +15,10 @@ let images = importAll(require.context("../assets", true, /.*\.jpeg$/));
 
 const p1Style = {
   root: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
     color: "white",
     paddingTop: 30,
     paddingBottom: 30,
@@ -24,13 +28,10 @@ const p1Style = {
     fontSize: 25
   },
   text: {
-    display: "inline-block",
     fontSize: 15,
-    width: 200,
-    margin: "0 auto"
+    width: 200
   },
   image: {
-    display: "inline-block",
     width: 150
   }
 };
@@ -48,6 +49,10 @@ const page_1 = (
 
 const p2Style = {
   root: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
     color: "white",
     paddingTop: 30,
     paddingBottom: 30,
@@ -57,14 +62,11 @@ const p2Style = {
     fontSize: 25
   },
   text: {
-    display: "inline-block",
     fontSize: 15,
-    width: 200,
-    margin: "0 auto"
+    width: 200
   },
   image: {
-    display: "inline-block",
-    width: 150
+    height: 400
   }
 };
 
@@ -75,11 +77,34 @@ const page_2 = (
       test text test text test text test text test text test text
     </p>
     <img style={p2Style.image} src={images["bg/man.jpeg"]} />
-    <h1>holy shit</h1>
   </div>
 );
 
-const all_pages = [page_1, page_2, page_1, page_2];
+const p3Style = {
+  root: {
+    // height: 500,
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "pink"
+  },
+  text: {
+    verticalAlign: "middle"
+  },
+  image: {
+    height: "100%",
+    padding: 100
+  }
+};
+
+const page_3 = (
+  <div style={p3Style.root}>
+    <img style={p3Style.image} src={images["bg/path.jpeg"]} />
+
+    <p style={p3Style.text}>test page 3</p>
+  </div>
+);
+
+const all_pages = [page_1, page_2, page_3, page_2];
 
 export default class Scroll extends Component {
   render() {
