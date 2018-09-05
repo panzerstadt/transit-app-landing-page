@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 158 25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #1c313a;
+      }
+
+      .cls-3 {
+        font-size: 10px;
+        font-family: Roboto-Light, Roboto;
+        font-weight: 300;
+      }
+    </style>
+  </defs>
+  <g id="Group_123" data-name="Group 123" transform="translate(-90 -301)">
+    <rect id="Rectangle_32" data-name="Rectangle 32" class="cls-1" width="158" height="25" rx="5" transform="translate(90 301)"/>
+    <g id="airport-departures" transform="matrix(-0.719, -0.695, 0.695, -0.719, 211.437, 219.093)">
+      <path id="Path_1" data-name="Path 1" class="cls-2" d="M16.826-140.984a.428.428,0,0,1-.227.33l-.017.008a8.207,8.207,0,0,1-1.518.476.55.55,0,0,1-.321-.057l-1.887-.669c-.368.189-1.764.907-3.409,1.746l3.888,2.048a.306.306,0,0,1,.178.276.306.306,0,0,1-.192.266l-1.31.6a.839.839,0,0,1-.464.051l-5.972-1.283c-1.229.617-2.243,1.117-2.666,1.3a2.775,2.775,0,0,1-1.122.206c-.716,0-1.592-.206-1.754-.509-.006-.012-.434-1.279,2.034-2.7l9.2-4.69a1.87,1.87,0,0,1,.442-.152,6.761,6.761,0,0,1,1.155-.082h.318v.013a.932.932,0,0,1,.482.134l3.01,2.294.007.009A.427.427,0,0,1,16.826-140.984Zm-3.642-2.579h0Z" transform="translate(0)"/>
+    </g>
+    <text id="Tokyo_-_Wed_August_02" data-name="Tokyo - Wed, August 02" class="cls-3" transform="translate(232 317)"><tspan x="-102.388" y="0">Tokyo - Wed, August 02</tspan></text>
+  </g>
+</svg>

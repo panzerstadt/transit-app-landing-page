@@ -8,6 +8,8 @@ import dude_1 from "../assets/avatar/2Asset 3.svg";
 import dude_2 from "../assets/avatar/2Asset 4.svg";
 import dude_3 from "../assets/avatar/2Asset 10.svg";
 
+import Planner from "./subcomponents/planner";
+
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => {
@@ -114,8 +116,9 @@ const p3Style = {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
-    backgroundColor: "white",
-    boxShadow: "0 0 50px #EAEFF2",
+    backgroundColor: "#2F4959",
+    color: "#fdfdfd",
+    boxShadow: "0 0 50px #C5D4DD",
     zIndex: 10
   },
   text: {
@@ -130,7 +133,8 @@ const p3Style = {
   textBox: {
     "@media (min-width: 768px)": {
       marginLeft: 200
-    }
+    },
+    padding: 60
   },
   image: {
     height: "100%",
@@ -141,6 +145,7 @@ const p3Style = {
 const page_3 = (
   <div style={p3Style.root}>
     <img style={p3Style.image} src={images["bg/path.jpeg"]} />
+    <Planner />
 
     <div style={p3Style.textBox}>
       <p style={p3Style.title}>How Does it Work?</p>
@@ -174,10 +179,12 @@ const p4Style = {
     height: 200
   },
   avatar_box: {
-    padding: 15
+    padding: 15,
+    paddingTop: 50
   },
   footer: {
     paddingTop: 30,
+    paddingBottom: 10,
     color: "grey",
     width: "100%",
     fontSize: 12,

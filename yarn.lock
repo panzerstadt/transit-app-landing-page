@@ -88,6 +88,10 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@tanem/svg-injector@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-1.2.1.tgz#3120e90246d0eb3c4fc6c61586a6f028a3c658ae"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -5522,7 +5526,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -5744,6 +5748,14 @@ react-spring@^5.6.12:
   resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-5.6.12.tgz#31873761f9d37fdbdb13fb87cfbe73e2be975798"
   dependencies:
     "@babel/runtime" "^7.0.0"
+
+react-svg@^6.0.6:
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-6.0.6.tgz#1dfd248c5dfe8da17e97610d57d8881cce5793e0"
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    "@tanem/svg-injector" "^1.2.1"
+    prop-types "^15.6.2"
 
 react@^16.4.2:
   version "16.4.2"
