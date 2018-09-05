@@ -23,6 +23,25 @@ const someStyle = {
   backgroundSize: "cover"
 };
 
+const p1Style = {
+  root: {
+    color: "red"
+  },
+  title: {
+    fontSize: 25
+  },
+  text: {
+    display: "inline-block",
+    fontSize: 15,
+    width: 200,
+    margin: "0 auto"
+  },
+  image: {
+    display: "inline-block",
+    width: 150
+  }
+};
+
 // Little helpers ...
 const url = (name, wrap = false) =>
   `${
@@ -55,6 +74,7 @@ export default class App extends React.Component {
           speed={-0.3}
           style={{ pointerEvents: "none" }}
         >
+<<<<<<< HEAD
         <div>
          <h1> This is a very long blurb</h1>
           
@@ -64,6 +84,16 @@ export default class App extends React.Component {
             src={images["phone.jpeg"]}
             style={{ width: "15%", marginLeft: "70%" }}
           />
+=======
+          <div style={p1Style.root}>
+            <h1>test title</h1>
+            <p style={p1Style.text}>
+              test text test text test text test text test text test text
+            </p>
+            <img style={p1Style.image} src={images["bg/man.jpeg"]} />
+            <p>{myprop}</p>
+            <h1>holy shit</h1>
+>>>>>>> master
           </div>
         </Parallax.Layer>
 
@@ -159,9 +189,13 @@ export default class App extends React.Component {
             alignItems: "center",
             justifyContent: "center"
           }}
+<<<<<<< HEAD
         >
           
         </Parallax.Layer>
+=======
+        />
+>>>>>>> master
 
         <Parallax.Layer
           offset={1}
@@ -172,9 +206,13 @@ export default class App extends React.Component {
             alignItems: "center",
             justifyContent: "center"
           }}
+<<<<<<< HEAD
         >
           
         </Parallax.Layer>
+=======
+        />
+>>>>>>> master
 
         <Parallax.Layer
           offset={2}
@@ -185,9 +223,13 @@ export default class App extends React.Component {
             justifyContent: "center"
           }}
           onClick={() => this.parallax.scrollTo(0)}
+<<<<<<< HEAD
         >
         
         </Parallax.Layer>
+=======
+        />
+>>>>>>> master
       </Parallax>
     );
   }
