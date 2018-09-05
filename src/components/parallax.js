@@ -74,26 +74,17 @@ export default class App extends React.Component {
           speed={-0.3}
           style={{ pointerEvents: "none" }}
         >
-<<<<<<< HEAD
-        <div>
-         <h1> This is a very long blurb</h1>
+
+        <div style={p1Style.root}>
+         <h1 style={p1Style.title}> This is a very long blurb</h1>
           
 
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+          <p style={p1Style.text}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
           <img
             src={images["phone.jpeg"]}
-            style={{ width: "15%", marginLeft: "70%" }}
+            style={p1Style.image}
           />
-=======
-          <div style={p1Style.root}>
-            <h1>test title</h1>
-            <p style={p1Style.text}>
-              test text test text test text test text test text test text
-            </p>
-            <img style={p1Style.image} src={images["bg/man.jpeg"]} />
-            <p>{myprop}</p>
-            <h1>holy shit</h1>
->>>>>>> master
+
           </div>
         </Parallax.Layer>
 
@@ -188,14 +179,7 @@ export default class App extends React.Component {
             display: "flex",
             alignItems: "center",
             justifyContent: "center"
-          }}
-<<<<<<< HEAD
-        >
-          
-        </Parallax.Layer>
-=======
-        />
->>>>>>> master
+          }}/>
 
         <Parallax.Layer
           offset={1}
@@ -206,13 +190,7 @@ export default class App extends React.Component {
             alignItems: "center",
             justifyContent: "center"
           }}
-<<<<<<< HEAD
-        >
-          
-        </Parallax.Layer>
-=======
         />
->>>>>>> master
 
         <Parallax.Layer
           offset={2}
@@ -223,13 +201,7 @@ export default class App extends React.Component {
             justifyContent: "center"
           }}
           onClick={() => this.parallax.scrollTo(0)}
-<<<<<<< HEAD
-        >
-        
-        </Parallax.Layer>
-=======
         />
->>>>>>> master
       </Parallax>
     );
   }
