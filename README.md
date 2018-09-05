@@ -1,3 +1,17 @@
+# Transit App
+
+## references
+https://medium.com/
+https://heartbeat.ua/process
+https://thisisyourboss.com/
+
+## ref secondary
+https://www.blueconnect.io/en/  - header
+https://www.anakin.co/  - magazine look
+https://appico.com/  - staggared gallery
+http://toyfight.co/work/  - rotating background
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
