@@ -23,6 +23,25 @@ const someStyle = {
   backgroundSize: "cover"
 };
 
+const p1Style = {
+  root: {
+    color: "red"
+  },
+  title: {
+    fontSize: 25
+  },
+  text: {
+    display: "inline-block",
+    fontSize: 15,
+    width: 200,
+    margin: "0 auto"
+  },
+  image: {
+    display: "inline-block",
+    width: 150
+  }
+};
+
 // Little helpers ...
 const url = (name, wrap = false) =>
   `${
@@ -38,7 +57,7 @@ export default class App extends React.Component {
     return (
       <Parallax ref={ref => (this.parallax = ref)} pages={3}>
         <Parallax.Layer
-          offset={0.4}
+          offset={1}
           speed={1}
           style={{ backgroundColor: "#805E73", height: "300px" }}
         />
@@ -51,16 +70,19 @@ export default class App extends React.Component {
         <Parallax.Layer offset={0} speed={0} factor={3} style={someStyle} />
 
         <Parallax.Layer
-          offset={1.3}
+          offset={0}
           speed={-0.3}
           style={{ pointerEvents: "none" }}
         >
-          <img
-            src={images["bg/man.jpeg"]}
-            style={{ width: "15%", marginLeft: "70%" }}
-          />
-          <p>{myprop}</p>
-          <h1>holy shit</h1>
+          <div style={p1Style.root}>
+            <h1>test title</h1>
+            <p style={p1Style.text}>
+              test text test text test text test text test text test text
+            </p>
+            <img style={p1Style.image} src={images["bg/man.jpeg"]} />
+            <p>{myprop}</p>
+            <h1>holy shit</h1>
+          </div>
         </Parallax.Layer>
 
         <Parallax.Layer offset={1} speed={0.8} style={{ opacity: 0.1 }}>
@@ -155,9 +177,7 @@ export default class App extends React.Component {
             alignItems: "center",
             justifyContent: "center"
           }}
-        >
-          <img src={url("server")} style={{ width: "20%" }} />
-        </Parallax.Layer>
+        />
 
         <Parallax.Layer
           offset={1}
@@ -168,9 +188,7 @@ export default class App extends React.Component {
             alignItems: "center",
             justifyContent: "center"
           }}
-        >
-          <img src={url("bash")} style={{ width: "40%" }} />
-        </Parallax.Layer>
+        />
 
         <Parallax.Layer
           offset={2}
@@ -181,9 +199,7 @@ export default class App extends React.Component {
             justifyContent: "center"
           }}
           onClick={() => this.parallax.scrollTo(0)}
-        >
-          <img src={url("clients-main")} style={{ width: "40%" }} />
-        </Parallax.Layer>
+        />
       </Parallax>
     );
   }
