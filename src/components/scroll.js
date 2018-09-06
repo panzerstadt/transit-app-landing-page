@@ -116,9 +116,11 @@ const p3Style = {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
-    backgroundColor: "#2F4959",
-    color: "#fdfdfd",
-    boxShadow: "0 0 50px #C5D4DD",
+    //backgroundColor: "#2F4959",
+    backgroundColor: "white",
+    //color: "#fdfdfd",
+    //boxShadow: "0 0 50px #C5D4DD",
+    boxShadow: "0 0 50px #EAEAEF",
     zIndex: 10
   },
   text: {
