@@ -131,8 +131,8 @@ const p3Style = {
     fontWeight: 100
   },
   textBox: {
-    "@media (min-width: 768px)": {
-      marginLeft: 200
+    "@media (min-width: 1100px)": {
+      marginLeft: 100
     },
     padding: 60
   },
@@ -145,7 +145,7 @@ const p3Style = {
 const page_3 = (
   <div style={p3Style.root}>
     <img style={p3Style.image} src={images["bg/path.jpeg"]} />
-    <Planner />
+    {/* <Planner /> */}
 
     <div style={p3Style.textBox}>
       <p style={p3Style.title}>How Does it Work?</p>
