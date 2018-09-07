@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+
+import logo from "./logo.svg";
+import "./App.css";
 
 import Parallax from "./components/parallax";
 import Scroll from "./components/scroll";
