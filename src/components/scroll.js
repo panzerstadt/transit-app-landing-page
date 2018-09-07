@@ -7,6 +7,7 @@ import ja_lorem_ipsum from "../assets/lorem_ipsum/lorem-ipsum-ja.txt";
 import dude_1 from "../assets/avatar/2Asset 3.svg";
 import dude_2 from "../assets/avatar/2Asset 4.svg";
 import dude_3 from "../assets/avatar/2Asset 10.svg";
+import dude_4 from "../assets/avatar/2Asset 1.svg";
 
 import Planner from "./subcomponents/planner";
 
@@ -147,7 +148,7 @@ const p3Style = {
 const page_3 = (
   <div style={p3Style.root}>
     <img style={p3Style.image} src={images["bg/path.jpeg"]} />
-    <Planner />
+    {/* <Planner /> */}
 
     <div style={p3Style.textBox}>
       <p style={p3Style.title}>How Does it Work?</p>
@@ -199,6 +200,11 @@ const avatar_data = [
     name: "Rahmat Hidayat",
     avatar: dude_3,
     text: readTextFile(en_lorem_ipsum)
+  },
+  {
+    name: "Kyo Hakamata",
+    avatar: dude_4,
+    text: readTextFile(ja_lorem_ipsum)
   },
   {
     name: "Piotr Kroujkov",
