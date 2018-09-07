@@ -21,9 +21,54 @@ export default class PlaceTab extends Component {
     }
 
     const placeTabComponent = data => {
+      // should this be responsive????
+      const lineOffsetMargin = 68;
+
       const tabStyle = {
+        title: {
+          position: "absolute",
+          margin: "0 auto",
+          marginTop: 10,
+          marginLeft: lineOffsetMargin,
+
+          fontSize: 25,
+          fontWeight: 100,
+          width: 200
+        },
+        block: {
+          marginLeft: 0
+        },
+        header: {
+          margin: "0 auto",
+          fontSize: 11,
+          fontWeight: 100,
+          paddingBottom: 10
+        },
+        body: {
+          margin: "0 auto",
+          fontSize: 23,
+          fontWeight: 100
+        },
+        subsubTab: {
+          position: "absolute",
+          display: "flex",
+
+          width: style.root.width - lineOffsetMargin,
+          textAlign: "left",
+          justifyContent: "space-between",
+          alignItems: "start",
+
+          marginTop: 270,
+          marginLeft: lineOffsetMargin
+        },
         image: {
-          width: 300
+          position: "absolute",
+          objectFit: "cover",
+          marginTop: 50,
+          marginLeft: lineOffsetMargin,
+          height: 200,
+          width: style.root.width - lineOffsetMargin
+          // maxWidth: 400
         }
       };
 
@@ -49,10 +94,18 @@ export default class PlaceTab extends Component {
 
       return (
         <div style={style.subTab}>
-          <div style={{ ...style.line, height: 130 }} />
-          <p>{data.title}</p>
-          <img style={tabStyle.image} src={data.image} alt={data.title} />
-          <div style={tabStyle.subsubTab}>{content}</div>
+          <div
+            style={{
+              display: "inline-flex",
+              flexDirection: "column",
+              flexWrap: "wrap"
+            }}
+          >
+            <div style={{ ...style.line, height: 380 }} />
+            <p style={tabStyle.title}>{data.title}</p>
+            <img style={tabStyle.image} src={data.image} alt={data.title} />
+            <div style={tabStyle.subsubTab}>{content}</div>
+          </div>
         </div>
       );
     };

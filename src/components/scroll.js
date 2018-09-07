@@ -116,9 +116,9 @@ const p3Style = {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
-    //backgroundColor: "#2F4959",
-    backgroundColor: "white",
-    //color: "#fdfdfd",
+    backgroundColor: "#2F4959",
+    //backgroundColor: "white",
+    color: "#fdfdfd",
     //boxShadow: "0 0 50px #C5D4DD",
     boxShadow: "0 0 50px #EAEAEF",
     zIndex: 10
@@ -147,7 +147,7 @@ const p3Style = {
 const page_3 = (
   <div style={p3Style.root}>
     <img style={p3Style.image} src={images["bg/path.jpeg"]} />
-    {/* <Planner /> */}
+    <Planner />
 
     <div style={p3Style.textBox}>
       <p style={p3Style.title}>How Does it Work?</p>

@@ -9,6 +9,9 @@ export default class FlyIn extends Component {
     const { arrival, terminal, gate, style, cIndex, cColor } = this.props;
 
     const flyInTabContent = (arrival, terminal, gate) => {
+      // should this be responsive????
+      const lineOffsetMargin = 68;
+
       const data = [
         {
           header: "Scheduled Arrival",
@@ -41,11 +44,11 @@ export default class FlyIn extends Component {
         },
         subsubTab: {
           display: "flex",
-          width: "100%",
+          width: style.root.width - lineOffsetMargin,
           textAlign: "left",
           justifyContent: "space-between",
           alignItems: "center",
-          marginLeft: 68,
+          marginLeft: lineOffsetMargin,
           paddingTop: 20,
           paddingBottom: 50
         }
