@@ -68,8 +68,12 @@ const p1Style = {
 const page_1 = (
   <div style={p1Style.root}>
     <div>
-      <h1>test title</h1>
-      <p style={p1Style.text}>{readTextFile(en_lorem_ipsum)}</p>
+    <h1>Time well spent,</h1>
+    <h1>for people well travelled.</h1>
+      
+      <p style={p1Style.text}>{"Let it take care of your transit planning. "}</p>
+      <p style={p1Style.text}>{" Know what to expect at the airport."}</p>
+      <p style={p1Style.text}>{"Travel like you’ve been there before. "}</p> 
     </div>
 
     <img style={p1Style.image} src={images["bg/man.jpeg"]} />
@@ -102,8 +106,11 @@ const p2Style = {
 const page_2 = (
   <div style={p2Style.root}>
     <div>
-      <h1>test title</h1>
-      <p style={p2Style.text}>{readTextFile(ja_lorem_ipsum)}</p>
+      <h1>InTransit</h1>
+      <p style={p2Style.text}>{"Transiting at an unfamiliar airport can be stressful. InTransit eliminates the unknown by building you a personalised schedule between your two flights."}</p>
+      <p style={p2Style.text}>{"No more rushing to boarding; no more wasted time."}</p>
+
+      
     </div>
 
     <img style={p2Style.image} src={images["bg/man.jpeg"]} />
@@ -152,7 +159,7 @@ const page_3 = (
 
     <div style={p3Style.textBox}>
       <p style={p3Style.title}>How Does it Work?</p>
-      <p style={p3Style.text}>{readTextFile(ja_lorem_ipsum)}</p>
+      <p style={p3Style.text}>{"From your arrival to your next departure, InTransit guides you step-by-step throughout the transit airport. Be prepared for security checks, save some time to shop for souvenirs and know when to board."}</p>
     </div>
   </div>
 );
