@@ -1,21 +1,30 @@
 import React, { Component } from "react";
 
 import flyInTab from "../../assets/planner/flight-icon.svg";
+import flyOutTab from "../../assets/planner/flight2-icon.svg";
 
 import CircleIndicator from "./CircleIndicator";
 
-export default class FlyIn extends Component {
+export default class FlyInOut extends Component {
   render() {
-    const { arrival, terminal, gate, style, cIndex, cColor } = this.props;
+    const {
+      arrival,
+      departure,
+      terminal,
+      gate,
+      style,
+      cIndex,
+      cColor
+    } = this.props;
 
-    const flyInTabContent = (arrival, terminal, gate) => {
+    const flyInOutTabContent = (arrival, terminal, gate) => {
       // should this be responsive????
       const lineOffsetMargin = 68;
 
       const data = [
         {
-          header: "Scheduled Arrival",
-          body: arrival
+          header: arrival ? "Scheduled Arrival" : "Scheduled Departure",
+          body: arrival ? arrival : departure
         },
         {
           header: "Terminal",
@@ -65,7 +74,7 @@ export default class FlyIn extends Component {
 
       return (
         <div style={style.subTab}>
-          <div style={{ ...style.line, height: 130 }} />
+          {arrival ? <div style={{ ...style.line, height: 130 }} /> : null}
           <div style={tabStyle.subsubTab}>{content}</div>
         </div>
       );
@@ -75,9 +84,13 @@ export default class FlyIn extends Component {
       <div>
         <div style={style.mainTab}>
           <CircleIndicator text={cIndex} color={cColor} />
-          <img style={style.whiteBox} src={flyInTab} alt="flyin" />
+          <img
+            style={style.whiteBox}
+            src={arrival ? flyInTab : flyOutTab}
+            alt="flyin"
+          />
         </div>
-        {flyInTabContent(arrival, terminal, gate)}
+        {flyInOutTabContent(arrival, terminal, gate)}
       </div>
     );
   }

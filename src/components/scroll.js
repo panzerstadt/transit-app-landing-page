@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Radium from "radium";
 
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+
 import en_lorem_ipsum from "../assets/lorem_ipsum/lorem-ipsum-en.txt";
 import ja_lorem_ipsum from "../assets/lorem_ipsum/lorem-ipsum-ja.txt";
 
@@ -8,6 +11,9 @@ import dude_1 from "../assets/avatar/2Asset 3.svg";
 import dude_2 from "../assets/avatar/2Asset 4.svg";
 import dude_3 from "../assets/avatar/2Asset 10.svg";
 import dude_4 from "../assets/avatar/2Asset 1.svg";
+
+import play_store from "../assets/icons/store-google.svg";
+import app_store from "../assets/icons/store-apple.svg";
 
 import Planner from "./subcomponents/planner";
 
@@ -51,28 +57,89 @@ const p1Style = {
     paddingTop: 30,
     paddingBottom: 30,
     boxShadow: "0 0 50px #EAEFF2",
-    zIndex: 10
+    zIndex: 10,
+    transition: "all 2000ms ease"
   },
   title: {
-    fontSize: 25
+    fontSize: 30,
+    fontWeight: 500
   },
   text: {
-    fontSize: 15,
-    width: 200
+    fontSize: 18,
+    fontWeight: 300,
+    lineHeight: "1.6em",
+    width: 320,
+    "@media (max-width: 350px)": {
+      fontSize: 14
+    }
   },
   image: {
-    width: 300
+    transition: "all 2000ms ease",
+    height: 400,
+    padding: "0 50px 30px 50px",
+    ":hover": {
+      filter: "drop-shadow(0 0 10px #8A8F9B)"
+    },
+    "@media (min-width: 1100px)": {
+      height: 600
+    }
+  },
+  button: {
+    width: 120,
+    margin: 10,
+    ios: {
+      borderColor: "#007AFF",
+      color: "#007AFF"
+    },
+    android: {
+      borderColor: "#A4C639",
+      color: "#A4C639"
+    }
+  },
+  divRight: {
+    "@media (min-width: 1100px)": {
+      marginLeft: 100
+    },
+    marginLeft: 0,
+    padding: "0 30px 0 30px"
   }
 };
 
 const page_1 = (
   <div style={p1Style.root}>
     <div>
-      <h1>test title</h1>
-      <p style={p1Style.text}>{readTextFile(en_lorem_ipsum)}</p>
+      <Typography style={p1Style.title} variant="headline" component="h2">
+        Time well spent, <br />
+        for people well travelled.
+      </Typography>
+      <p style={p1Style.text}>
+        Let it take care of your transit planning. <br />
+        Know what to expect at the airport. <br />
+        Travel like you’ve been there before.
+      </p>
     </div>
 
-    <img style={p1Style.image} src={images["bg/man.jpeg"]} />
+    <div style={p1Style.divRight}>
+      <img style={p1Style.image} src={images["phone/phone.jpeg"]} />
+      <div>
+        <Button
+          style={{ ...p1Style.button, ...p1Style.button.ios }}
+          variant="outlined"
+          color="primary"
+        >
+          iOS {"\u00A0"}
+          <img style={{ height: 15 }} src={app_store} alt="icon" />
+        </Button>
+        <Button
+          style={{ ...p1Style.button, ...p1Style.button.android }}
+          variant="outlined"
+          color="primary"
+        >
+          Android {"\u00A0"}
+          <img style={{ height: 15 }} src={play_store} alt="icon" />
+        </Button>
+      </div>
+    </div>
   </div>
 );
 
@@ -88,11 +155,19 @@ const p2Style = {
     backgroundColor: "#FCFEFF"
   },
   title: {
-    fontSize: 25
+    fontSize: 40,
+    fontWeight: 700
   },
   text: {
-    fontSize: 15,
-    width: 200
+    fontSize: 18,
+    fontWeight: 300,
+    width: 500,
+    lineHeight: "1.8em",
+    textShadow: "0 0 3px #DBDBDB",
+    "@media (max-width: 500px)": {
+      fontSize: 14,
+      width: 360
+    }
   },
   image: {
     width: 300
@@ -102,11 +177,18 @@ const p2Style = {
 const page_2 = (
   <div style={p2Style.root}>
     <div>
-      <h1>test title</h1>
-      <p style={p2Style.text}>{readTextFile(ja_lorem_ipsum)}</p>
+      <Typography style={p2Style.title} variant="headline" component="h2">
+        InTransit
+      </Typography>
+      <p style={p2Style.text}>
+        Transiting at an unfamiliar airport can be stressful. <br />
+        InTransit eliminates the unknown by building you a <br />
+        <strong>personalised schedule between your two flights.</strong> <br />
+        No more rushing to board; no more wasted time.
+      </p>
     </div>
 
-    <img style={p2Style.image} src={images["bg/man.jpeg"]} />
+    {/* <img style={p2Style.image} src={images["bg/man.jpeg"]} /> */}
   </div>
 );
 
@@ -127,7 +209,8 @@ const p3Style = {
   text: {
     fontSize: 12,
     fontWeight: 100,
-    width: 300
+    width: 300,
+    lineHeight: "1.5em"
   },
   title: {
     fontSize: 30,
@@ -147,12 +230,16 @@ const p3Style = {
 
 const page_3 = (
   <div style={p3Style.root}>
-    <img style={p3Style.image} src={images["bg/path.jpeg"]} />
-    {/* <Planner /> */}
+    {/* <img style={p3Style.image} src={images["bg/path.jpeg"]} /> */}
+    <Planner />
 
     <div style={p3Style.textBox}>
       <p style={p3Style.title}>How Does it Work?</p>
-      <p style={p3Style.text}>{readTextFile(ja_lorem_ipsum)}</p>
+      <p style={p3Style.text}>
+        From your arrival to your next departure, InTransit guides you
+        step-by-step throughout the transit airport. Be prepared for security
+        checks, save some time to shop for souvenirs and know when to board.
+      </p>
     </div>
   </div>
 );

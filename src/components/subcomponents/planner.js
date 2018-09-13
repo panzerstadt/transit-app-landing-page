@@ -3,15 +3,12 @@ import Radium from "radium";
 import ReactSVG from "react-svg";
 
 import flyOutTab from "../../assets/planner/flight2-icon.svg";
-import checkInTab from "../../assets/planner/checkin-icon.svg";
-import boardingTab from "../../assets/planner/boarding-icon.svg";
-import foodTab from "../../assets/planner/food-icon.svg";
-import shopTab from "../../assets/planner/shop-icon.svg";
 
 import CircleIndicator from "./CircleIndicator";
 
-import FlyInTab from "./FlyInTab";
+import FlyInOutTab from "./FlyInOutTab";
 import PlaceTab from "./PlaceTab";
+import ChartTab from "./ChartTab";
 
 function importAll(r) {
   let images = {};
@@ -115,17 +112,95 @@ const CircleComponent = (text, clr, style) => {
 const placeData = {
   sushi: {
     type: "food",
-    title: "Ariso Sushi",
+    label: "Ariso Sushi",
     image: images["sushi.jpg"],
     price: "2",
     time: "09:30AM - 10:30AM"
   },
   ana: {
     type: "shop",
-    title: "Ana Festa",
+    label: "Ana Festa",
     image: images["ana.jpg"],
     price: "1",
     time: "10:45AM - 11:15AM"
+  }
+};
+
+const chartData = {
+  checkIn: {
+    type: "check-in",
+    label: "Ana Airline",
+    chartData: [
+      {
+        time: 11,
+        amount: 2
+      },
+      {
+        time: 12,
+        amount: 5
+      },
+      {
+        time: 13,
+        amount: 9
+      },
+      {
+        time: 14,
+        amount: 6
+      },
+      {
+        time: 15,
+        amount: 2
+      },
+      {
+        time: 16,
+        amount: 1
+      }
+    ],
+    chartLabel: "Queue times"
+  },
+  boarding: {
+    type: "boarding",
+    tabData: [
+      {
+        header: "Gate Open",
+        body: "12:30PM"
+      },
+      {
+        header: "Terminal",
+        body: "2"
+      },
+      {
+        header: "Gate",
+        body: "40B"
+      }
+    ],
+    chartData: [
+      {
+        time: 11,
+        amount: 9
+      },
+      {
+        time: 12,
+        amount: 7
+      },
+      {
+        time: 13,
+        amount: 5
+      },
+      {
+        time: 14,
+        amount: 3
+      },
+      {
+        time: 15,
+        amount: 7
+      },
+      {
+        time: 16,
+        amount: 4
+      }
+    ],
+    chartLabel: "Queue times"
   }
 };
 
@@ -137,7 +212,7 @@ class Planner extends Component {
     */
     return (
       <div style={styles.root}>
-        <FlyInTab
+        <FlyInOutTab
           style={styles}
           arrival="09:00AM"
           terminal="2"
@@ -160,26 +235,28 @@ class Planner extends Component {
           data={placeData.ana}
         />
 
-        <div style={styles.mainTab}>
-          {CircleComponent("4", "#ad003e", styles)}
-          <img style={styles.whiteBox} src={checkInTab} alt="flyin" />
-        </div>
+        <ChartTab
+          style={styles}
+          cIndex="4"
+          cColor="#ad003e"
+          data={chartData.checkIn}
+        />
 
-        <div style={styles.line} />
+        <ChartTab
+          style={styles}
+          cIndex="5"
+          cColor="#E20034"
+          data={chartData.boarding}
+        />
 
-        <div style={styles.mainTab}>
-          {CircleComponent("5", "#DB0033", styles)}
-          <img style={styles.whiteBox} src={boardingTab} alt="flyin" />
-        </div>
-
-        <div style={styles.line} />
-
-        <div style={styles.mainTab}>
-          {CircleComponent("6", "#ff003d", styles)}
-          <img style={styles.whiteBox} src={flyOutTab} alt="flyin" />
-        </div>
-
-        <div style={styles.line} />
+        <FlyInOutTab
+          style={styles}
+          departure="01:00PM"
+          terminal="5"
+          gate="120F"
+          cIndex="6"
+          cColor="#ff003d"
+        />
       </div>
     );
   }

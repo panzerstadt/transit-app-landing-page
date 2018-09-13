@@ -25,7 +25,7 @@ export default class PlaceTab extends Component {
       const lineOffsetMargin = 68;
 
       const tabStyle = {
-        title: {
+        label: {
           position: "absolute",
           margin: "0 auto",
           marginTop: 10,
@@ -102,8 +102,8 @@ export default class PlaceTab extends Component {
             }}
           >
             <div style={{ ...style.line, height: 380 }} />
-            <p style={tabStyle.title}>{data.title}</p>
-            <img style={tabStyle.image} src={data.image} alt={data.title} />
+            <p style={tabStyle.label}>{data.label}</p>
+            <img style={tabStyle.image} src={data.image} alt={data.label} />
             <div style={tabStyle.subsubTab}>{content}</div>
           </div>
         </div>
