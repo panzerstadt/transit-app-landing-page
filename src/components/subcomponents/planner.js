@@ -34,6 +34,7 @@ const styles = {
   root: {
     width: 350,
     padding: 30,
+    margin: "50px 0 50px 0",
     //backgroundColor: "#00000010"
     border: "1px solid lightgrey"
   },
@@ -59,7 +60,7 @@ const styles = {
     marginTop: -10,
     left: 22,
     height: 100,
-    width: 1,
+    width: 2,
     backgroundColor: "#6d6d6d",
     zIndex: -1
   },
@@ -130,6 +131,10 @@ const placeData = {
 
 class Planner extends Component {
   render() {
+    /* takes inputs:
+    list of objects indicating whether to use FlyInTab or PlaceTab or CheckInTab
+
+    */
     return (
       <div style={styles.root}>
         <FlyInTab
