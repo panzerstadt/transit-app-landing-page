@@ -1,21 +1,26 @@
 import React, { Component } from "react";
+import Radium from "radium";
+
+import Hoverable from "./HoverableComponent";
 
 import flyInTab from "../../assets/planner/flight-icon.svg";
 import flyOutTab from "../../assets/planner/flight2-icon.svg";
 
 import CircleIndicator from "./CircleIndicator";
 
-export default class FlyInOut extends Component {
+class FlyInOut extends Component {
   render() {
-    const {
-      arrival,
-      departure,
-      terminal,
-      gate,
-      style,
-      cIndex,
-      cColor
-    } = this.props;
+    const { data, style, cIndex, cColor, onHoverData, isHovered } = this.props;
+    const { arrival, departure, terminal, gate } = data;
+
+    // optional interactivity on hover
+    console.log("is hovered", isHovered);
+    console.log(onHoverData);
+    if (isHovered) {
+      //do something
+      console.log("hover state");
+      // change the arrival timing animation together with flight numbers
+    }
 
     const flyInOutTabContent = (arrival, terminal, gate) => {
       // should this be responsive????
@@ -38,7 +43,10 @@ export default class FlyInOut extends Component {
 
       const tabStyle = {
         block: {
-          marginLeft: 0
+          marginLeft: 0,
+          ":hover": {
+            backgroundColor: "red"
+          }
         },
         header: {
           margin: "0 auto",
@@ -63,9 +71,9 @@ export default class FlyInOut extends Component {
         }
       };
 
-      const content = data.map(d => {
+      const content = data.map((d, i) => {
         return (
-          <div style={tabStyle.block}>
+          <div key={i} style={tabStyle.block}>
             <p style={tabStyle.header}>{d.header}</p>
             <p style={tabStyle.body}>{d.body}</p>
           </div>
@@ -81,7 +89,7 @@ export default class FlyInOut extends Component {
     };
 
     return (
-      <div>
+      <div id={`tab-${cIndex}`}>
         <div style={style.mainTab}>
           <CircleIndicator text={cIndex} color={cColor} />
           <img
@@ -95,3 +103,5 @@ export default class FlyInOut extends Component {
     );
   }
 }
+
+export default Hoverable(Radium(FlyInOut));

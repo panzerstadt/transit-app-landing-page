@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import Radium from "radium";
 import ReactSVG from "react-svg";
 
-import flyOutTab from "../../assets/planner/flight2-icon.svg";
-
 import CircleIndicator from "./CircleIndicator";
 
 import FlyInOutTab from "./FlyInOutTab";
 import PlaceTab from "./PlaceTab";
 import ChartTab from "./ChartTab";
+
+import Hoverable from "./HoverableComponent";
 
 function importAll(r) {
   let images = {};
@@ -25,15 +25,16 @@ let images = importAll(
   require.context("../../assets/planner/", true, /.*\.jpg$/)
 );
 
-console.log(images);
-
 const styles = {
   root: {
     width: 350,
-    padding: 30,
+    padding: 40,
     margin: "50px 0 50px 0",
-    //backgroundColor: "#00000010"
-    border: "1px solid lightgrey"
+    backgroundColor: "white",
+    boxShadow: "0 0 20px #DCE9F2",
+    color: "#2F4959",
+    textShadow: "0 0 1px #DBDBDB"
+    //border: "1px solid lightgrey"
   },
   flex: {
     position: "relative"
@@ -54,12 +55,12 @@ const styles = {
   },
   line: {
     position: "relative",
-    marginTop: -10,
+    marginTop: -4,
     left: 22,
     height: 100,
-    width: 2,
+    width: 2.2, // i dunno wth tab 1 loses .02 or thickness, so 2.2 is a workaround
     backgroundColor: "#6d6d6d",
-    zIndex: -1
+    zIndex: 0
   },
   text: {
     "@media (min-width: 768px)": {
@@ -67,6 +68,7 @@ const styles = {
     }
   },
   circle: {
+    zindex: 1,
     width: 45,
     paddingRight: 20,
     text: {
@@ -80,33 +82,9 @@ const styles = {
     }
   },
   whiteBox: {
-    height: 30
+    height: 30,
+    filter: "drop-shadow(0 0 2px #dbdbdb)"
   }
-};
-
-const CircleComponent = (text, clr, style) => {
-  let circ = (
-    <div style={style.circle}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.663 36">
-        <ellipse
-          id="Ellipse_3"
-          data-name="Ellipse 3"
-          fill={clr}
-          cx="18.831"
-          cy="18"
-          rx="18.831"
-          ry="18"
-        />
-      </svg>
-    </div>
-  );
-
-  return (
-    <div>
-      <p style={style.circle.text}>{text}</p>
-      {circ}
-    </div>
-  );
 };
 
 const placeData = {
@@ -204,21 +182,36 @@ const chartData = {
   }
 };
 
+const flightData = {
+  flyIn: {
+    arrival: "09:00AM",
+    terminal: "2",
+    gate: "40B"
+  },
+  flyOut: {
+    departure: "01:00PM",
+    terminal: "5",
+    gate: "120F"
+  }
+};
+
 class Planner extends Component {
   render() {
     /* takes inputs:
     list of objects indicating whether to use FlyInTab or PlaceTab or CheckInTab
 
     */
+
+    // todo: given a list of inputs, generate all the appropriate components, and set keys dynamically
+
     return (
       <div style={styles.root}>
         <FlyInOutTab
           style={styles}
-          arrival="09:00AM"
-          terminal="2"
-          gate="40B"
           cIndex="1"
           cColor="#6d6d6d"
+          data={flightData.flyIn}
+          onHoverData={{ arrival: "10:00AM" }}
         />
 
         <PlaceTab
@@ -226,6 +219,7 @@ class Planner extends Component {
           cIndex="2"
           cColor="#6d6d6d"
           data={placeData.sushi}
+          onHoverData={{ map: "map url here" }}
         />
 
         <PlaceTab
@@ -233,6 +227,7 @@ class Planner extends Component {
           cIndex="3"
           cColor="#6d6d6d"
           data={placeData.ana}
+          onHoverData={{ map: "map url here" }}
         />
 
         <ChartTab
@@ -240,6 +235,7 @@ class Planner extends Component {
           cIndex="4"
           cColor="#ad003e"
           data={chartData.checkIn}
+          onHoverData={{ map: "map url here" }}
         />
 
         <ChartTab
@@ -251,11 +247,10 @@ class Planner extends Component {
 
         <FlyInOutTab
           style={styles}
-          departure="01:00PM"
-          terminal="5"
-          gate="120F"
           cIndex="6"
           cColor="#ff003d"
+          data={flightData.flyOut}
+          onHoverData={{ departure: "03:00AM" }}
         />
       </div>
     );

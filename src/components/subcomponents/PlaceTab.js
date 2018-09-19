@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Radium from "radium";
+
+import Hoverable from "./HoverableComponent";
 
 import foodTab from "../../assets/planner/food-icon.svg";
 import shopTab from "../../assets/planner/shop-icon.svg";
@@ -7,7 +10,7 @@ import CircleIndicator from "./CircleIndicator";
 
 const style = {};
 
-export default class PlaceTab extends Component {
+class PlaceTab extends Component {
   render() {
     const { data, cIndex, cColor, style } = this.props;
 
@@ -83,9 +86,9 @@ export default class PlaceTab extends Component {
         }
       ];
 
-      const content = content_data.map(d => {
+      const content = content_data.map((d, i) => {
         return (
-          <div style={tabStyle.block}>
+          <div key={i} style={tabStyle.block}>
             <p style={tabStyle.header}>{d.header}</p>
             <p style={tabStyle.body}>{d.body}</p>
           </div>
@@ -93,7 +96,14 @@ export default class PlaceTab extends Component {
       });
 
       return (
-        <div style={style.subTab}>
+        <div
+          style={{
+            ...style.subTab,
+            ":hover": {
+              backgroundColor: "red"
+            }
+          }}
+        >
           <div
             style={{
               display: "inline-flex",
@@ -111,7 +121,7 @@ export default class PlaceTab extends Component {
     };
 
     return (
-      <div>
+      <div id={`tab-${cIndex}`}>
         <div style={style.mainTab}>
           <CircleIndicator text={cIndex} color={cColor} />
           <img style={style.whiteBox} src={dataType} alt="flyin" />
@@ -121,3 +131,4 @@ export default class PlaceTab extends Component {
     );
   }
 }
+export default Hoverable(Radium(PlaceTab));
