@@ -10,15 +10,24 @@ import CircleIndicator from "./CircleIndicator";
 
 class FlyInOut extends Component {
   render() {
-    const { data, style, cIndex, cColor, onHoverData, isHovered } = this.props;
+    const {
+      data,
+      style,
+      cIndex,
+      cColor,
+      onHoverData,
+      isHovered,
+      focused
+    } = this.props;
     const { arrival, departure, terminal, gate } = data;
 
     // optional interactivity on hover
-    console.log("is hovered", isHovered);
-    console.log(onHoverData);
+    // console.log("is hovered", isHovered);
+    // console.log("is focused", focused);
+    // console.log(onHoverData);
     if (isHovered) {
       //do something
-      console.log("hover state");
+      console.log("hover state", isHovered, focused);
       // change the arrival timing animation together with flight numbers
     }
 
@@ -26,10 +35,24 @@ class FlyInOut extends Component {
       // should this be responsive????
       const lineOffsetMargin = 68;
 
+      let viewTiming = () => {
+        if (arrival) {
+          if (isHovered) {
+            return onHoverData.arrival;
+          }
+          return arrival;
+        } else {
+          if (isHovered) {
+            return onHoverData.departure;
+          }
+          return departure;
+        }
+      };
+
       const data = [
         {
           header: arrival ? "Scheduled Arrival" : "Scheduled Departure",
-          body: arrival ? arrival : departure
+          body: viewTiming()
         },
         {
           header: "Terminal",

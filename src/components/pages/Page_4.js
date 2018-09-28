@@ -16,7 +16,7 @@ function readTextFile(file) {
   rawFile.open("GET", file, false);
   rawFile.onload = function() {
     if (rawFile.readyState === 4) {
-      if (rawFile.status === 200 || rawFile.status == 0) {
+      if (rawFile.status === 200 || rawFile.status === 0) {
         var allText = rawFile.responseText;
         outFile = allText;
       }
@@ -52,8 +52,7 @@ const p4Style = {
     height: 200
   },
   avatar_box: {
-    padding: 15,
-    paddingTop: 50
+    padding: "15px 50px 50px 50px"
   },
   footer: {
     paddingTop: 30,

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 
-import Parallax from "./components/parallax";
+// import Parallax from "./components/parallax";
 import Scroll from "./components/scroll";
-import Header from "./components/header";
+// import Header from "./components/header";
 
 class App extends Component {
   render() {

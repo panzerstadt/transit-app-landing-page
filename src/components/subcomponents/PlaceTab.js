@@ -8,11 +8,9 @@ import shopTab from "../../assets/planner/shop-icon.svg";
 
 import CircleIndicator from "./CircleIndicator";
 
-const style = {};
-
 class PlaceTab extends Component {
   render() {
-    const { data, cIndex, cColor, style } = this.props;
+    const { data, cIndex, cColor, style, focused, onHoverData } = this.props;
 
     let dataType;
     if (data.type === "food") {
@@ -30,9 +28,10 @@ class PlaceTab extends Component {
       const tabStyle = {
         label: {
           position: "absolute",
-          margin: "0 auto",
           marginTop: 10,
           marginLeft: lineOffsetMargin,
+          marginRight: 0,
+          marginBottom: 0,
 
           fontSize: 25,
           fontWeight: 100,
@@ -78,7 +77,7 @@ class PlaceTab extends Component {
       const content_data = [
         {
           header: "Price",
-          body: "￥".repeat(parseInt(data.price))
+          body: "￥".repeat(parseInt(data.price, 10))
         },
         {
           header: "Time",

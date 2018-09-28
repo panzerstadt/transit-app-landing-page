@@ -10,11 +10,9 @@ import boardingTab from "../../assets/planner/boarding-icon.svg";
 
 import CircleIndicator from "./CircleIndicator";
 
-const style = {};
-
 class ChartTab extends Component {
   render() {
-    const { data, cIndex, cColor, style } = this.props;
+    const { data, cIndex, cColor, style, focused, onHoverData } = this.props;
     const time = moment().format("HH");
 
     // should this be responsive????
@@ -22,9 +20,10 @@ class ChartTab extends Component {
     const tabStyle = {
       label: {
         position: "absolute",
-        margin: "0 auto",
         marginTop: 10,
         marginLeft: lineOffsetMargin,
+        marginRight: 0,
+        marginBottom: 0,
 
         fontSize: 25,
         fontWeight: 100,

@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import Radium from "radium";
-import ReactSVG from "react-svg";
-
-import CircleIndicator from "./CircleIndicator";
+//import ReactSVG from "react-svg";
 
 import FlyInOutTab from "./FlyInOutTab";
 import PlaceTab from "./PlaceTab";
 import ChartTab from "./ChartTab";
-
-import Hoverable from "./HoverableComponent";
 
 function importAll(r) {
   let images = {};
@@ -25,6 +21,11 @@ let images = importAll(
   require.context("../../assets/planner/", true, /.*\.jpg$/)
 );
 
+let sY = 0;
+let tabOffsetY = [];
+let buffer = 300;
+
+// all variables
 const styles = {
   root: {
     width: 350,
@@ -195,8 +196,111 @@ const flightData = {
   }
 };
 
+const onHoverData = {
+  arrival: "10:00AM",
+  departure: "03:00AM"
+};
+
 class Planner extends Component {
+  constructor() {
+    super();
+    this.state = {
+      focused: 0
+    };
+    this.refLocation = [1, 2, 3, 4, 5, 6].map(() => {
+      return React.createRef();
+    });
+  }
+
+  componentDidMount() {
+    // listen to scroll
+    window.addEventListener("scroll", this.handleScroll);
+    // set the locations of all reference tabs
+    tabOffsetY = this.refLocation.map(r => {
+      return r.current.offsetTop;
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = () => {
+    sY = window.scrollY + buffer;
+
+    // if scroll pixels match object pixels, do something
+    // define a buffer number of pixels to calculate distance from top of scroll
+
+    // or a smarter one where you measure distance to an invisible line in the middle
+    // the closet number gets focused, the rest get faded
+    // also all the side logic happens here (text, map)
+
+    // sorry man i'll refactor this in the future... >_<
+    if (sY < tabOffsetY[0]) {
+      if (this.state.focused !== 0) {
+        this.setState({ focused: 0 });
+        this.onFocusChange();
+      }
+      //console.log("first tab hasn't disappeared above yet", sY, tabOffsetY[0]);
+    } else if (tabOffsetY[5] < sY) {
+      if (this.state.focused !== 6) {
+        this.setState({ focused: 6 });
+        this.onFocusChange();
+      }
+
+      //console.log("cutting 6th tab!");
+    } else if (tabOffsetY[4] < sY && sY < tabOffsetY[5]) {
+      if (this.state.focused !== 5) {
+        this.setState({ focused: 5 });
+        this.onFocusChange();
+      }
+
+      //console.log("cutting 5th tab!");
+    } else if (tabOffsetY[3] < sY && sY < tabOffsetY[4]) {
+      if (this.state.focused !== 4) {
+        this.setState({ focused: 4 });
+        this.onFocusChange();
+      }
+
+      //console.log("cutting 4th tab!");
+    } else if (tabOffsetY[2] < sY && sY < tabOffsetY[3]) {
+      if (this.state.focused !== 3) {
+        this.setState({ focused: 3 });
+        this.onFocusChange();
+      }
+
+      console.log("cutting 3rd tab!");
+    } else if (tabOffsetY[1] < sY && sY < tabOffsetY[2]) {
+      if (this.state.focused !== 2) {
+        this.setState({ focused: 2 });
+        this.onFocusChange();
+      }
+
+      //console.log("cutting 2nd tab!");
+    } else if (tabOffsetY[0] < sY && sY < tabOffsetY[1]) {
+      if (this.state.focused !== 1) {
+        this.setState({ focused: 1 });
+        this.onFocusChange();
+      }
+
+      //console.log("cutting 1st tab!");
+    }
+
+    // // this is the current scroll position
+    // console.log(sY);
+    // // this is the current ref per tab
+    // console.log(tabOffsetY);
+  };
+
+  onFocusChange() {
+    let val = this.state.focused;
+    this.props.onFocusChange(val);
+  }
+
   render() {
+    const { style } = this.props;
+    // look for focused element here
+
     /* takes inputs:
     list of objects indicating whether to use FlyInTab or PlaceTab or CheckInTab
 
@@ -205,52 +309,64 @@ class Planner extends Component {
     // todo: given a list of inputs, generate all the appropriate components, and set keys dynamically
 
     return (
-      <div style={styles.root}>
+      <div style={{ ...styles.root, ...style }} id="whereisit">
+        <div ref={this.refLocation[0]} />
         <FlyInOutTab
           style={styles}
           cIndex="1"
           cColor="#6d6d6d"
           data={flightData.flyIn}
-          onHoverData={{ arrival: "10:00AM" }}
+          onHoverData={onHoverData}
+          focused={this.state.focused === 1}
         />
 
+        <div ref={this.refLocation[1]} />
         <PlaceTab
           style={styles}
           cIndex="2"
           cColor="#6d6d6d"
           data={placeData.sushi}
           onHoverData={{ map: "map url here" }}
+          focused={this.state.focused === 2}
         />
 
+        <div ref={this.refLocation[2]} />
         <PlaceTab
           style={styles}
           cIndex="3"
           cColor="#6d6d6d"
           data={placeData.ana}
           onHoverData={{ map: "map url here" }}
+          focused={this.state.focused === 3}
         />
 
+        <div ref={this.refLocation[3]} />
         <ChartTab
           style={styles}
           cIndex="4"
           cColor="#ad003e"
           data={chartData.checkIn}
           onHoverData={{ map: "map url here" }}
+          focused={this.state.focused === 4}
         />
 
+        <div ref={this.refLocation[4]} />
         <ChartTab
           style={styles}
           cIndex="5"
           cColor="#E20034"
           data={chartData.boarding}
+          focused={this.state.focused === 5}
         />
 
+        <div ref={this.refLocation[5]} />
         <FlyInOutTab
           style={styles}
           cIndex="6"
           cColor="#ff003d"
           data={flightData.flyOut}
-          onHoverData={{ departure: "03:00AM" }}
+          onHoverData={onHoverData}
+          focused={this.state.focused === 6}
         />
       </div>
     );

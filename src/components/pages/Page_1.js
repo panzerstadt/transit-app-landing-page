@@ -92,7 +92,11 @@ const page_1 = (
     </div>
 
     <div style={p1Style.divRight}>
-      <img style={p1Style.image} src={images["phone/phone.jpeg"]} />
+      <img
+        style={p1Style.image}
+        src={images["phone/phone.jpeg"]}
+        alt="iphone"
+      />
       <div>
         <Button
           style={{ ...p1Style.button, ...p1Style.button.ios }}
