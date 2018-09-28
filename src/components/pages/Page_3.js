@@ -85,8 +85,9 @@ const p3Style = {
     "@media (min-width: 1100px)": {
       right: 0,
       marginRight: 300
-    }
-    //padding: 60
+    },
+    padding: 10,
+    backgroundColor: "#ffffffcc"
   },
   textBoxIE11: {
     position: "absolute",
