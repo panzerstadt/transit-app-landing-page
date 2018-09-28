@@ -8,6 +8,8 @@ import flyOutTab from "../../assets/planner/flight2-icon.svg";
 
 import CircleIndicator from "./CircleIndicator";
 
+// settings
+const tabHeight = 110;
 class FlyInOut extends Component {
   render() {
     const {
@@ -90,7 +92,7 @@ class FlyInOut extends Component {
           alignItems: "center",
           marginLeft: lineOffsetMargin,
           paddingTop: 20,
-          paddingBottom: 50
+          paddingBottom: 30
         }
       };
 
@@ -105,7 +107,17 @@ class FlyInOut extends Component {
 
       return (
         <div style={style.subTab}>
-          {arrival ? <div style={{ ...style.line, height: 130 }} /> : null}
+          {arrival ? (
+            <div style={{ ...style.line, height: tabHeight }} />
+          ) : (
+            <div
+              style={{
+                ...style.line,
+                height: tabHeight,
+                backgroundColor: "transparent"
+              }}
+            />
+          )}
           <div style={tabStyle.subsubTab}>{content}</div>
         </div>
       );

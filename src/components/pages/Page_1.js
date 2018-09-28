@@ -26,39 +26,41 @@ const p1Style = {
     alignItems: "center",
     flexWrap: "wrap",
     height: "100vh",
-    paddingTop: 30,
-    paddingBottom: 30,
+    width: "100%",
+    margin: "0 auto",
+    // paddingTop: 30,
+    // paddingBottom: 30,
     boxShadow: "0 0 50px #EAEFF2",
     zIndex: 10,
     transition: "all 2000ms ease"
   },
   title: {
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: 500
   },
   text: {
     fontSize: 18,
-    fontWeight: 300,
+    fontWeight: 320,
     lineHeight: "1.6em",
-    width: 320,
+    width: "100%",
     "@media (max-width: 350px)": {
       fontSize: 14
     }
   },
   image: {
     transition: "all 2000ms ease",
-    height: 400,
+    height: "40vh",
     padding: "0 50px 30px 50px",
     ":hover": {
       filter: "drop-shadow(0 0 10px #8A8F9B)"
     },
     "@media (min-width: 1100px)": {
-      height: 600
+      height: "70vh"
     }
   },
   button: {
     width: 120,
-    margin: 10,
+    margin: 5,
     ios: {
       borderColor: "#007AFF",
       color: "#007AFF"
@@ -66,6 +68,10 @@ const p1Style = {
     android: {
       borderColor: "#A4C639",
       color: "#A4C639"
+    },
+    disabled: {
+      borderColor: "lightgrey",
+      color: "lightgrey"
     }
   },
   divRight: {
@@ -107,7 +113,7 @@ const page_1 = (
           <img style={{ height: 15 }} src={app_store} alt="icon" />
         </Button>
         <Button
-          //style={{ ...p1Style.button, ...p1Style.button.android }}
+          style={{ ...p1Style.button, ...p1Style.button.disabled }}
           variant="outlined"
           disabled
           color="default"

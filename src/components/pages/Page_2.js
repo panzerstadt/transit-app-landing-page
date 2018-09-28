@@ -10,10 +10,14 @@ const p2Style = {
     alignItems: "center",
     flexWrap: "wrap",
     height: "100vh",
+    margin: "0 auto",
     paddingTop: 30,
     paddingBottom: 30,
     backgroundColor: "#FCFEFF",
-    zIndex: 0
+    zIndex: 0,
+    "@media (max-width: 500px)": {
+      width: "100%"
+    }
   },
   title: {
     fontSize: 40,
@@ -26,8 +30,8 @@ const p2Style = {
     lineHeight: "1.8em",
     textShadow: "0 0 3px #DBDBDB",
     "@media (max-width: 500px)": {
-      fontSize: 14,
-      width: 360
+      fontSize: 13,
+      width: 320
     }
   },
   image: {

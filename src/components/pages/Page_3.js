@@ -8,6 +8,10 @@ import Planner from "../subcomponents/planner";
 
 // settings
 let textBoxWidth = 300;
+// variables
+let sY = 0;
+let refOffsetY = [];
+let windowHeight = window.innerHeight;
 
 function importAll(r) {
   let images = {};
@@ -31,9 +35,20 @@ const landingAnimation = {
 };
 
 const animStyle = {
-  width: "100%",
-  "@media (min-width: 1100px)": {
-    paddingRight: 530
+  top: {
+    width: "100%",
+    paddingTop: 300,
+    "@media (min-width: 1100px)": {
+      paddingRight: 600
+    }
+  },
+  bottom: {
+    width: "100%",
+    paddingTop: 400,
+    paddingBottom: 300,
+    "@media (min-width: 1100px)": {
+      paddingRight: 600
+    }
   }
 };
 
@@ -44,6 +59,7 @@ const p3Style = {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
+    margin: "0 auto",
     //backgroundColor: "#2F4959",
     //backgroundColor: "white",
     color: "#2F4959",
@@ -55,29 +71,39 @@ const p3Style = {
     fontSize: 12,
     fontWeight: 100,
     width: textBoxWidth,
-    lineHeight: "1.5em"
+    lineHeight: 1.5
   },
   title: {
     fontSize: 30,
-    fontWeight: 100
+    fontWeight: 100,
+    width: textBoxWidth
   },
   textBox: {
     position: "fixed",
-    right: `calc(50% - ${textBoxWidth / 2})`,
     top: "40%",
+    margin: "0 auto",
+    "@media (min-width: 1100px)": {
+      right: 0,
+      marginRight: 300
+    }
+    //padding: 60
+  },
+  textBoxIE11: {
+    position: "absolute",
     margin: "0 auto",
     "@media (min-width: 1100px)": {
       right: 0,
       marginRight: 200
     }
-    //padding: 60
   },
   image: {
-    height: "100%",
-    padding: 100
+    width: 300
+    //padding: 100
   },
   planner: {
-    marginRight: 300
+    "@media (min-width: 1100px)": {
+      marginRight: 600
+    }
   }
 };
 
@@ -117,9 +143,38 @@ class Page extends Component {
   constructor() {
     super();
     this.state = {
-      focusItem: 0
+      focusItem: 0,
+      showText: false
     };
     this.onFocusChange = this.onFocusChange.bind(this);
+    this.handlePageScroll = this.handlePageScroll.bind(this);
+    this.refLocation = [1, 2].map(() => {
+      return React.createRef();
+    });
+  }
+
+  // this scroll listener is only for page wide animations
+  // the scroll listener for planner tab positions are in planner
+  componentDidMount() {
+    // listen to scroll
+    window.addEventListener("scroll", this.handlePageScroll);
+    refOffsetY = this.refLocation.map(r => {
+      return r.current.offsetTop;
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handlePageScroll);
+  }
+
+  handlePageScroll() {
+    sY = window.scrollY;
+    //console.log(sY, refOffsetY, " window height ", windowHeight);
+    if (refOffsetY[0] <= sY && sY <= refOffsetY[1] - windowHeight) {
+      if (!this.state.showText) this.setState({ showText: true });
+    } else {
+      if (this.state.showText) this.setState({ showText: false });
+    }
   }
 
   onFocusChange(v) {
@@ -128,22 +183,22 @@ class Page extends Component {
   }
 
   render() {
-    const parse_breakpoint = text => {
-      const processed_content = text.split("\n").map(d => {
-        return d;
-      });
+    // const parse_breakpoint = text => {
+    //   const processed_content = text.split("\n").map(d => {
+    //     return d;
+    //   });
 
-      let html_content = { __html: processed_content.join("<br/>") };
+    //   let html_content = { __html: processed_content.join("<br/>") };
 
-      return <div dangerouslySetInnerHTML={html_content} />;
-    };
+    //   return <span dangerouslySetInnerHTML={html_content} />;
+    // };
 
     // text logic here
     let page_3_text = {};
     p3FocusText.map(v => {
       let text_out = (
         <div style={p3Style.textBox}>
-          <p style={p3Style.title}>{parse_breakpoint(v.title)}</p>
+          <p style={p3Style.title}>{v.title}</p>
           <p style={p3Style.text}>{v.text}</p>
         </div>
       );
@@ -151,29 +206,66 @@ class Page extends Component {
       if (typeof v.focusItem === "number") {
         page_3_text[v.focusItem] = text_out;
       } else {
-        Object.values(v.focusItem).forEach(w => {
+        // todo: do not use object values, because it doesn't exist in internet explorer
+        let list_of_values = Object.keys(v.focusItem).map(e => {
+          return v.focusItem[e];
+        });
+        list_of_values.forEach(w => {
           page_3_text[w] = text_out;
         });
       }
     });
 
-    console.log(page_3_text);
+    let isIE = /*@cc_on!@*/ false || !!document.documentMode;
+    //console.log("ie? ", isIE);
+
+    const compatible_planner = () => {
+      if (isIE) {
+        // insert conditional IE code here
+        console.log("you are running internet explorer 11 and below.");
+        return (
+          <img
+            style={{ ...p3Style.image, ...p3Style.planner }}
+            src={images["bg/path.jpeg"]}
+          />
+        );
+      } else {
+        return (
+          <Planner onFocusChange={this.onFocusChange} style={p3Style.planner} />
+        );
+      }
+    };
+
+    const compatible_p3_text = () => {
+      if (isIE) {
+        // insert conditional IE code here
+        let v = p3FocusText[0];
+        return (
+          <div style={p3Style.textBoxIE11}>
+            <p style={p3Style.title}>{v.title}</p>
+            <p style={p3Style.text}>{v.text}</p>
+          </div>
+        );
+      } else {
+        return page_3_text[this.state.focusItem];
+      }
+    };
 
     // build output format here
     const page_3 = (
       <div style={p3Style.root}>
-        <div style={animStyle}>
+        <div ref={this.refLocation[0]} />
+        <div style={animStyle.top}>
           <Lottie options={landingAnimation} height={300} width={300} />
         </div>
 
-        {/* <img style={p3Style.image} src={images["bg/path.jpeg"]} /> */}
-        <Planner onFocusChange={this.onFocusChange} style={p3Style.planner} />
+        {compatible_planner()}
+        {this.state.showText ? compatible_p3_text() : null}
 
-        {page_3_text[this.state.focusItem]}
-
-        <div style={animStyle}>
+        <div style={animStyle.bottom}>
           <Lottie options={landingAnimation} height={300} width={300} />
         </div>
+        <div ref={this.refLocation[1]} />
       </div>
     );
 

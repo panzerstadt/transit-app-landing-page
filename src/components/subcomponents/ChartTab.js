@@ -10,6 +10,8 @@ import boardingTab from "../../assets/planner/boarding-icon.svg";
 
 import CircleIndicator from "./CircleIndicator";
 
+// settings
+let tabHeight = 280;
 class ChartTab extends Component {
   render() {
     const { data, cIndex, cColor, style, focused, onHoverData } = this.props;
@@ -59,7 +61,7 @@ class ChartTab extends Component {
         position: "absolute",
         objectFit: "cover",
         marginTop: 60,
-        marginLeft: lineOffsetMargin - 40,
+        marginLeft: lineOffsetMargin - 20,
         height: 200,
         width: style.root.width - lineOffsetMargin
         // maxWidth: 400
@@ -114,7 +116,7 @@ class ChartTab extends Component {
               flexWrap: "wrap"
             }}
           >
-            <div style={{ ...style.line, height: 300 }} />
+            <div style={{ ...style.line, height: tabHeight }} />
             {topComponent()}
             <div style={chartStyle}>
               <VictoryChart theme={VictoryTheme.material} height={250}>

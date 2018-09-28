@@ -1,3 +1,4 @@
+import "babel-polyfill"; //to make react work with ie11 (mostly)
 import React from "react";
 import ReactDOM from "react-dom";
 import { StyleRoot } from "radium";

@@ -8,6 +8,9 @@ import shopTab from "../../assets/planner/shop-icon.svg";
 
 import CircleIndicator from "./CircleIndicator";
 
+// settings
+const tabHeight = 360;
+
 class PlaceTab extends Component {
   render() {
     const { data, cIndex, cColor, style, focused, onHoverData } = this.props;
@@ -48,7 +51,7 @@ class PlaceTab extends Component {
         },
         body: {
           margin: "0 auto",
-          fontSize: 23,
+          fontSize: 18,
           fontWeight: 100
         },
         subsubTab: {
@@ -110,7 +113,7 @@ class PlaceTab extends Component {
               flexWrap: "wrap"
             }}
           >
-            <div style={{ ...style.line, height: 380 }} />
+            <div style={{ ...style.line, height: tabHeight }} />
             <p style={tabStyle.label}>{data.label}</p>
             <img style={tabStyle.image} src={data.image} alt={data.label} />
             <div style={tabStyle.subsubTab}>{content}</div>

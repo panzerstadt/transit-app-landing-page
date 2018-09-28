@@ -22,17 +22,27 @@ let images = importAll(
 );
 
 let sY = 0;
-let tabOffsetY = [];
+let refOffsetY = [];
 let buffer = 300;
 
 // all variables
 const styles = {
   root: {
-    width: 350,
-    padding: 40,
+    width: 290,
+    // only for iphone 5
+    padding: "30px 20px 30px 10px",
+    "@media (min-width: 340px)": {
+      // for the rest of the devices
+      width: 300
+      //padding: 30
+    },
+    boxShadow: "0 0 20px white",
+    "@media (min-width: 420px)": {
+      boxShadow: "0 0 20px #DCE9F2",
+      padding: 30
+    },
     margin: "50px 0 50px 0",
     backgroundColor: "white",
-    boxShadow: "0 0 20px #DCE9F2",
     color: "#2F4959",
     textShadow: "0 0 1px #DBDBDB"
     //border: "1px solid lightgrey"
@@ -51,7 +61,7 @@ const styles = {
     display: "flex",
     width: "100%",
     textAlign: "left",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center"
   },
   line: {
@@ -216,7 +226,7 @@ class Planner extends Component {
     // listen to scroll
     window.addEventListener("scroll", this.handleScroll);
     // set the locations of all reference tabs
-    tabOffsetY = this.refLocation.map(r => {
+    refOffsetY = this.refLocation.map(r => {
       return r.current.offsetTop;
     });
   }
@@ -236,48 +246,48 @@ class Planner extends Component {
     // also all the side logic happens here (text, map)
 
     // sorry man i'll refactor this in the future... >_<
-    if (sY < tabOffsetY[0]) {
+    if (sY < refOffsetY[0]) {
       if (this.state.focused !== 0) {
         this.setState({ focused: 0 });
         this.onFocusChange();
       }
-      //console.log("first tab hasn't disappeared above yet", sY, tabOffsetY[0]);
-    } else if (tabOffsetY[5] < sY) {
+      //console.log("first tab hasn't disappeared above yet", sY, refOffsetY[0]);
+    } else if (refOffsetY[5] < sY) {
       if (this.state.focused !== 6) {
         this.setState({ focused: 6 });
         this.onFocusChange();
       }
 
       //console.log("cutting 6th tab!");
-    } else if (tabOffsetY[4] < sY && sY < tabOffsetY[5]) {
+    } else if (refOffsetY[4] < sY && sY < refOffsetY[5]) {
       if (this.state.focused !== 5) {
         this.setState({ focused: 5 });
         this.onFocusChange();
       }
 
       //console.log("cutting 5th tab!");
-    } else if (tabOffsetY[3] < sY && sY < tabOffsetY[4]) {
+    } else if (refOffsetY[3] < sY && sY < refOffsetY[4]) {
       if (this.state.focused !== 4) {
         this.setState({ focused: 4 });
         this.onFocusChange();
       }
 
       //console.log("cutting 4th tab!");
-    } else if (tabOffsetY[2] < sY && sY < tabOffsetY[3]) {
+    } else if (refOffsetY[2] < sY && sY < refOffsetY[3]) {
       if (this.state.focused !== 3) {
         this.setState({ focused: 3 });
         this.onFocusChange();
       }
 
       console.log("cutting 3rd tab!");
-    } else if (tabOffsetY[1] < sY && sY < tabOffsetY[2]) {
+    } else if (refOffsetY[1] < sY && sY < refOffsetY[2]) {
       if (this.state.focused !== 2) {
         this.setState({ focused: 2 });
         this.onFocusChange();
       }
 
       //console.log("cutting 2nd tab!");
-    } else if (tabOffsetY[0] < sY && sY < tabOffsetY[1]) {
+    } else if (refOffsetY[0] < sY && sY < refOffsetY[1]) {
       if (this.state.focused !== 1) {
         this.setState({ focused: 1 });
         this.onFocusChange();
@@ -289,7 +299,7 @@ class Planner extends Component {
     // // this is the current scroll position
     // console.log(sY);
     // // this is the current ref per tab
-    // console.log(tabOffsetY);
+    // console.log(refOffsetY);
   };
 
   onFocusChange() {
@@ -299,6 +309,7 @@ class Planner extends Component {
 
   render() {
     const { style } = this.props;
+    //console.log(refOffsetY);
     // look for focused element here
 
     /* takes inputs:

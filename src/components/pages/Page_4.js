@@ -34,13 +34,14 @@ const p4Style = {
     alignItems: "center",
     flexWrap: "wrap",
     height: "100vh",
+    margin: "0 auto",
     backgroundColor: "#FDFDFD",
     color: "#1E1B0E",
     zIndex: 0
   },
   text: {
     fontSize: 15,
-    width: 300,
+    width: 280,
     fontWeight: 100,
     textShadow: "0 2px 3px #EDEEEF"
   },
@@ -52,7 +53,10 @@ const p4Style = {
     height: 200
   },
   avatar_box: {
-    padding: "15px 50px 50px 50px"
+    padding: 0,
+    "@media (min-width: 1100px)": {
+      padding: "15px 50px 50px 50px"
+    }
   },
   footer: {
     paddingTop: 30,
