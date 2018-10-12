@@ -23,7 +23,7 @@ let images = importAll(
 
 let sY = 0;
 let refOffsetY = [];
-let buffer = 300;
+let buffer = 400;
 
 // all variables
 const styles = {
@@ -36,15 +36,15 @@ const styles = {
       width: 300
       //padding: 30
     },
-    boxShadow: "0 0 20px white",
+    //boxShadow: "0 0 20px white",
     "@media (min-width: 420px)": {
-      boxShadow: "0 0 20px #DCE9F2",
+      //boxShadow: "0 0 20px #DCE9F2",
       padding: 30
     },
     margin: "50px 0 50px 0",
-    backgroundColor: "white",
-    color: "#2F4959",
-    textShadow: "0 0 1px #DBDBDB"
+    //backgroundColor: "white",
+    color: "#2F4959"
+    //textShadow: "0 0 1px #DBDBDB"
     //border: "1px solid lightgrey"
   },
   flex: {
@@ -62,7 +62,7 @@ const styles = {
     width: "100%",
     textAlign: "left",
     justifyContent: "flex-start",
-    alignItems: "center"
+    alignItems: "flex-start"
   },
   line: {
     position: "relative",
@@ -217,7 +217,7 @@ class Planner extends Component {
     this.state = {
       focused: 0
     };
-    this.refLocation = [1, 2, 3, 4, 5, 6].map(() => {
+    this.refLocation = [1, 2, 3, 4, 5, 6, 7].map(() => {
       return React.createRef();
     });
   }
@@ -229,6 +229,7 @@ class Planner extends Component {
     refOffsetY = this.refLocation.map(r => {
       return r.current.offsetTop;
     });
+    this.onFirstMount(refOffsetY);
   }
 
   componentWillUnmount() {
@@ -252,13 +253,18 @@ class Planner extends Component {
         this.onFocusChange();
       }
       //console.log("first tab hasn't disappeared above yet", sY, refOffsetY[0]);
-    } else if (refOffsetY[5] < sY) {
-      if (this.state.focused !== 6) {
-        this.setState({ focused: 6 });
+    } else if (refOffsetY[6] < sY) {
+      if (this.state.focused !== 7) {
+        this.setState({ focused: 7 });
         this.onFocusChange();
       }
 
       //console.log("cutting 6th tab!");
+    } else if (refOffsetY[5] < sY && sY < refOffsetY[6]) {
+      if (this.state.focused !== 6) {
+        this.setState({ focused: 6 });
+        this.onFocusChange();
+      }
     } else if (refOffsetY[4] < sY && sY < refOffsetY[5]) {
       if (this.state.focused !== 5) {
         this.setState({ focused: 5 });
@@ -303,8 +309,12 @@ class Planner extends Component {
   };
 
   onFocusChange() {
-    let val = this.state.focused;
-    this.props.onFocusChange(val);
+    let focusVal = this.state.focused;
+    this.props.onFocusChange(focusVal);
+  }
+
+  onFirstMount(v) {
+    this.props.onFirstMount(v);
   }
 
   render() {
@@ -379,6 +389,7 @@ class Planner extends Component {
           onHoverData={onHoverData}
           focused={this.state.focused === 6}
         />
+        <div ref={this.refLocation[6]} />
       </div>
     );
   }

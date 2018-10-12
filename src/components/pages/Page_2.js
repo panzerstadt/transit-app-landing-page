@@ -20,8 +20,15 @@ const p2Style = {
     }
   },
   title: {
-    fontSize: 40,
-    fontWeight: 700
+    padding: 20,
+    fontSize: 50,
+    fontWeight: 700,
+    titleText: {
+      fontFamily: "'Josefin Slab', serif", //josefin, kameron, spectral, cormorant, fanwood
+      //color: "#2F4959",
+      padding: "10px 15px 5px 15px",
+      border: "3px solid #2F4959"
+    }
   },
   text: {
     fontSize: 18,
@@ -43,7 +50,7 @@ const page_2 = (
   <div style={p2Style.root}>
     <div>
       <Typography style={p2Style.title} variant="headline" component="h2">
-        InTransit
+        <span style={p2Style.title.titleText}>InTransit</span>
       </Typography>
       <p style={p2Style.text}>
         Transiting at an unfamiliar airport can be stressful. <br />

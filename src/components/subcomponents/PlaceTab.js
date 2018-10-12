@@ -67,6 +67,7 @@ class PlaceTab extends Component {
           marginLeft: lineOffsetMargin
         },
         image: {
+          transition: "all 1000ms ease 300ms",
           position: "absolute",
           objectFit: "cover",
           marginTop: 50,
@@ -74,6 +75,25 @@ class PlaceTab extends Component {
           height: 200,
           width: style.root.width - lineOffsetMargin
           // maxWidth: 400
+        }
+      };
+
+      const focusAnimationStyle = {
+        img: {
+          inFocus: {
+            boxShadow: "0 5px 40px #698299"
+          },
+          outFocus: {
+            boxShadow: "0 0 0 transparent"
+          }
+        }
+      };
+
+      const focusAnimation = tag => {
+        if (focused) {
+          return focusAnimationStyle[tag].inFocus;
+        } else {
+          return focusAnimationStyle[tag].outFocus;
         }
       };
 
@@ -115,7 +135,11 @@ class PlaceTab extends Component {
           >
             <div style={{ ...style.line, height: tabHeight }} />
             <p style={tabStyle.label}>{data.label}</p>
-            <img style={tabStyle.image} src={data.image} alt={data.label} />
+            <img
+              style={{ ...tabStyle.image, ...focusAnimation("img") }}
+              src={data.image}
+              alt={data.label}
+            />
             <div style={tabStyle.subsubTab}>{content}</div>
           </div>
         </div>

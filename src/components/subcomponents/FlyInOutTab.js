@@ -9,7 +9,7 @@ import flyOutTab from "../../assets/planner/flight2-icon.svg";
 import CircleIndicator from "./CircleIndicator";
 
 // settings
-const tabHeight = 110;
+const tabHeight = 150;
 class FlyInOut extends Component {
   render() {
     const {

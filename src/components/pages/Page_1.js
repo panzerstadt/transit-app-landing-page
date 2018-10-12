@@ -25,13 +25,13 @@ const p1Style = {
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
-    height: "100vh",
+    height: window.innerHeight,
     width: "100%",
     margin: "0 auto",
     // paddingTop: 30,
     // paddingBottom: 30,
     boxShadow: "0 0 50px #EAEFF2",
-    zIndex: 10,
+    zIndex: 100,
     transition: "all 2000ms ease"
   },
   title: {
@@ -61,6 +61,7 @@ const p1Style = {
   button: {
     width: 120,
     margin: 5,
+    borderRadius: 999,
     ios: {
       borderColor: "#007AFF",
       color: "#007AFF"
