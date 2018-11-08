@@ -7,10 +7,10 @@ import Page3 from "./pages/Page_3";
 import Page4 from "./pages/Page_4";
 
 let all_pages = [
-  <Page1 key={0} />,
-  <Page2 key={1} />,
-  <Page3 key={2} />,
-  <Page4 key={3} />
+  <Page1 key={"page-1"} />,
+  <Page2 key={"page-2"} />,
+  <Page3 key={"page-3"} />,
+  <Page4 key={"page-4"} />
 ];
 
 const scrollComponentStyle = {

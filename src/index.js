@@ -1,3 +1,4 @@
+import "react-app-polyfill/ie11"; // For IE 11 support
 import "babel-polyfill"; //to make react work with ie11 (mostly)
 import React from "react";
 import ReactDOM from "react-dom";

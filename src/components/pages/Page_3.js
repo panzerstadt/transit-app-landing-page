@@ -2,17 +2,28 @@ import React, { Component } from "react";
 import Radium from "radium";
 import Lottie from "react-lottie";
 import Button from "@material-ui/core/Button";
+import ButtonBase from "@material-ui/core/ButtonBase";
 
-import app_store from "../../assets/icons/store-apple.svg";
+import app_store, {
+  ReactComponent as AppStoreLogo
+} from "../../assets/icons/store-apple.svg";
 import airportCanvas from "../../assets/page-3/airport-canvas-4.svg";
-import airplaneAnimationData from "../../assets/animation/flight_icon_interaction.json";
+import airplaneLandingData from "../../assets/animation/landing-simple.json";
+import airplaneTakeoffData from "../../assets/animation/takeoff-simple.json";
+import placePin, {
+  ReactComponent as ReactPlacePin
+} from "../../assets/page-3/pin.svg";
 
 import Planner from "../subcomponents/planner";
 
+// original silhouette canvas size
+// viewBox="0 0 5618 883"
+
 // settings
 let textBoxWidth = 300;
-let aitportSilhouetteHeight = 550;
-let airportSilhouetteHorizontalRange = 1200; // ~ half the width of svg
+let airportSilhouetteHeight = 430; // mental map: scale based on vertical unit
+let airportSilhouetteLeftPos = -850; // mental map: initial position (for screen widths >= 1800, this is capped at -1000)
+let airportSilhouetteHorizontalRange = 400; // mental map: moves sideways faster
 let airportSilhouetteVerticalRange = 380; // == height of svg
 
 // variables
@@ -20,6 +31,16 @@ let sY = 0;
 let refOffsetY = [];
 let windowHeight = window.innerHeight;
 
+/**
+ *
+ *
+ * @param {*} v
+ * @param {*} vmin
+ * @param {*} vmax
+ * @param {*} tmin
+ * @param {*} tmax
+ * @returns
+ */
 function normalize(v, vmin, vmax, tmin, tmax) {
   var nv = Math.max(Math.min(v, vmax), vmin);
   var dv = vmax - vmin;
@@ -29,6 +50,12 @@ function normalize(v, vmin, vmax, tmin, tmax) {
   return tv;
 }
 
+/**
+ *
+ *
+ * @param {*} r
+ * @returns
+ */
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => {
@@ -40,6 +67,13 @@ function importAll(r) {
 }
 
 // functinos
+/**
+ *
+ *
+ * @param {*} fromLocationXY
+ * @param {*} toLocationXY
+ * @returns
+ */
 const locationIndicator = (fromLocationXY, toLocationXY) => {
   // will be based on style
 
@@ -87,96 +121,139 @@ const locationIndicator = (fromLocationXY, toLocationXY) => {
   );
 };
 
-const pinIndicator = LocationXY => {
+/**
+ *
+ *
+ * @param {*} LocationXY
+ * @param {*} img_src
+ * @param {*} color
+ * @param {*} style
+ * @returns
+ */
+const pinIndicator = (LocationXY, img_src, color, style) => {
+  const pinSize = 100;
+  if (!style) {
+    style = {
+      opacity: 0,
+      bottom: 50
+    };
+  }
   // place a pin at this place
   // probably using material ui icon
   const indicatorStyle = {
-    height: 300,
-    width: 300,
-    transition: "all 300ms ease",
-    position: "fixed",
-    //top: fromLocationXY[1],
-    left: LocationXY[0],
-    bottom: LocationXY[1],
+    div: {
+      height: 150,
+      width: 150,
+      transition: "bottom 800ms ease, left 300ms ease",
+      opacity: 1,
+      position: "fixed",
+      //top: fromLocationXY[1],
+      left: LocationXY[0],
+      bottom: LocationXY[1] + style.bottom,
 
-    borderStyle: "dashed",
-    borderWidth: 2,
-    borderColor: "#D8497E",
+      // for debug purposes
+      // borderStyle: "dashed",
+      // borderWidth: 2,
+      // borderColor: "#D8497E",
 
-    zIndex: 1000
-  };
-
-  // map indicator logic here
-  const airportSilhouettePin = color => {
-    if (!color) {
-      color = "red";
+      zIndex: 1000
+    },
+    pinLoc: {
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      fill: color
+    },
+    imgLoc: {
+      position: "absolute",
+      bottom: 15,
+      left: 10,
+      height: pinSize - 20,
+      width: pinSize - 20,
+      borderRadius: 999,
+      overflow: "hidden"
+    },
+    img: {
+      height: pinSize - 20
     }
-    let pinBase = (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 85.26 94.73"
-        fill={color}
-      >
-        <title>pin</title>
-        <g id="Layer_2" data-name="Layer 2">
-          <g id="Layer_1-2" data-name="Layer 1">
-            <path d="M42.63,0A42.61,42.61,0,0,0,31.69,83.79L42.63,94.73,53.57,83.79A42.61,42.61,0,0,0,42.63,0Z" />
-          </g>
-        </g>
-      </svg>
-    );
-
-    let pinOut = pinBase;
-
-    return pinOut;
   };
 
   return (
-    <div className="pin-indicator" style={indicatorStyle}>
-      {airportSilhouettePin}
+    <div className="pin-indicator" style={indicatorStyle.div}>
+      <ReactPlacePin
+        style={indicatorStyle.pinLoc}
+        height={pinSize}
+        width={pinSize}
+      />
+      <div style={indicatorStyle.imgLoc}>
+        <img style={indicatorStyle.img} src={img_src} alt="img" />
+      </div>
     </div>
   );
 };
 
 // prepare bg images
-let images = importAll(require.context("../../assets", true, /.*\.jpeg$/));
+let images = importAll(require.context("../../assets", true, /.*\.jpg$/));
+
+const placeData = {
+  sushi: {
+    type: "food",
+    label: "Ariso Sushi",
+    image: images["planner/sushi.jpg"],
+    price: "2",
+    time: "09:30AM - 10:30AM"
+  },
+  ana: {
+    type: "shop",
+    label: "Ana Festa",
+    image: images["planner/ana.jpg"],
+    price: "1",
+    time: "10:45AM - 11:15AM"
+  }
+};
 
 const landingAnimation = {
   loop: true,
   autoplay: true,
-  animationData: airplaneAnimationData,
+  animationData: airplaneLandingData,
   rendererSettings: {
     preserveAspectRatio: "xMidYMid slice"
   }
 };
 
-const animStyle = {
-  top: {
-    width: "100%",
-    paddingTop: 300,
-    "@media (min-width: 1100px)": {
-      paddingRight: 600
-    }
-  },
-  bottom: {
-    width: "100%",
-    paddingTop: 200,
-    paddingBottom: 400,
-    "@media (min-width: 1100px)": {
-      paddingRight: 600
-    }
+const takeoffAnimation = {
+  loop: true,
+  autoplay: true,
+  animationData: airplaneTakeoffData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice"
   }
 };
+
+const breatheKeyFrames = Radium.keyframes(
+  {
+    "0%, 100%": {
+      boxShadow: "0 0 5px #CEE5F233"
+    },
+    "50%": {
+      boxShadow: "0 0 100px #CEE5F299"
+    }
+  },
+  "breathe"
+);
 
 const p3Style = {
   root: {
     // height: 500,
+    overflow: "hidden",
+    width: "100%", //width of sky background
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
     margin: "0 auto",
-    background: "linear-gradient(#FFFFFF,#CEE5F2, #2978A0 )",
+    background: "linear-gradient(#FFFFFF,#cdebf2, #B9CBE4, #004D7A )",
     //backgroundColor: "#2F4959",
     //backgroundColor: "white",
     color: "#2F4959",
@@ -186,23 +263,24 @@ const p3Style = {
   },
   button: {
     backgroundColor: "#ffffffcc",
-    width: 250,
+    width: 180,
     margin: 5,
     borderRadius: 999,
-    boxShadow: "0 0 20px #CEE5F255",
-    ios: {
-      //borderColor: "#007AFF",
-      borderColor: "transparent",
-      color: "#007AFF",
-      fontSize: 20
+    height: 40,
+    animation: "x 8s ease infinite",
+    animationName: breatheKeyFrames,
+    transition: "all 500ms ease",
+    zIndex: 999,
+
+    borderColor: "transparent",
+    color: "#007AFF",
+    fontSize: 16,
+
+    ":hover": {
+      backgroundColor: "#FCFCFC"
     },
-    android: {
-      borderColor: "#A4C639",
-      color: "#A4C639"
-    },
-    disabled: {
-      borderColor: "lightgrey",
-      color: "lightgrey"
+    logo: {
+      fill: "#007AFF"
     }
   },
   airportSilhouette: {
@@ -213,14 +291,14 @@ const p3Style = {
       position: "fixed",
       zIndex: 1,
       bottom: 0,
-      left: -1800,
+      left: -airportSilhouetteHorizontalRange,
       overflowX: "visible",
-      height: "50vh",
+      height: "28vh",
       width: "100vw"
     },
     silhouette: {
       position: "absolute",
-      height: aitportSilhouetteHeight,
+      height: airportSilhouetteHeight,
       bottom: 0,
       left: 0
       //overflowX: "hidden"
@@ -229,13 +307,13 @@ const p3Style = {
   text: {
     transition: "all 300ms ease",
     fontSize: 12,
-    fontWeight: 100,
+    fontWeight: 300,
     width: textBoxWidth,
     lineHeight: 1.5
   },
   title: {
     fontSize: 30,
-    fontWeight: 100,
+    fontWeight: 300,
     width: textBoxWidth,
     transition: "color 500ms ease, font-size 300ms ease"
   },
@@ -244,12 +322,13 @@ const p3Style = {
     zIndex: 2,
     opacity: 1,
     position: "fixed",
-    top: "68%",
+    bottom: 20,
+    height: 180,
     margin: "0 auto",
-    "@media (min-width: 1100px)": {
-      right: 0,
-      marginRight: 300
-    },
+    // "@media (min-width: 1100px)": {
+    //   right: 0,
+    //   marginRight: 300
+    // },
     padding: 3
     //backgroundColor: "#ffffffcc"
   },
@@ -262,22 +341,22 @@ const p3Style = {
     }
   },
   bottomText: {
-    fontSize: 40,
-    fontFamily: '"Cormorant", sans-serif',
-    fontWeight: 100,
+    fontSize: 30,
+    fontWeight: 300,
+    letterSpacing: "0.3em",
     color: "#ffffff",
     width: "100%",
     textShadow: "0 0 5px #CEE5F255",
-    paddingBottom: 30
+    paddingBottom: 100
   },
   image: {
     width: 300
     //padding: 100
   },
   planner: {
-    "@media (min-width: 1100px)": {
-      marginRight: 600
-    }
+    // "@media (min-width: 1100px)": {
+    //   marginRight: 600
+    // }
   }
 };
 
@@ -345,12 +424,21 @@ class Page extends Component {
       showSilhouette: false,
       silhouetteHPos: 0,
       silhouetteVPos: 0,
-      silhouetteRange: -1800,
-      tabLocations: {}
+      silhouetteRange: -airportSilhouetteHorizontalRange,
+      tabLocations: {},
+      windowSize: {
+        height: 0,
+        width: 0
+      },
+      starField: null
     };
     this.onFocusChange = this.onFocusChange.bind(this);
     this.onFirstMount = this.onFirstMount.bind(this);
     this.handlePageScroll = this.handlePageScroll.bind(this);
+    this.handleWindowResize = this.handleWindowResize.bind(this);
+    this.handleAssetShow = this.handleAssetShow.bind(this);
+    this.handleAirportSilhouette = this.handleAirportSilhouette.bind(this);
+    this.generateStarFieldPos = this.generateStarFieldPos.bind(this);
     this.refLocation = [1, 2].map(() => {
       return React.createRef();
     });
@@ -361,80 +449,141 @@ class Page extends Component {
   componentDidMount() {
     // listen to scroll (when scroll happens, call handlePageScroll)
     window.addEventListener("scroll", this.handlePageScroll);
+    window.addEventListener("resize", this.handleWindowResize);
+    // get position of all reference points
     refOffsetY = this.refLocation.map(r => {
       return r.current.offsetTop;
     });
+    this.handleWindowResize();
+    this.generateStarFieldPos(500, 1080, 1920);
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handlePageScroll);
+    window.addEventListener("resize", this.handleWindowResize);
+  }
+
+  generateStarFieldPos(num, height, width) {
+    const output = Array(num)
+      .fill()
+      .map(() => {
+        const randHeight = Math.random() * height;
+        const randWidth = Math.random() * width;
+        let randFill = parseInt(Math.random() * 50 + 50)
+          .toString()
+          .padStart(2, "0");
+        return {
+          h: randHeight,
+          w: randWidth,
+          f: `#ffffff${randFill}`
+        };
+      });
+
+    this.setState({ starField: output });
+  }
+
+  handleAssetShow() {
+    sY = window.scrollY;
+    let overscrollBuffer = 300;
+    // showText
+    if (
+      refOffsetY[0] - windowHeight / 3 <= sY &&
+      sY <= refOffsetY[1] - windowHeight + overscrollBuffer
+    ) {
+      if (!this.state.showText) this.setState({ showText: true });
+    } else {
+      if (this.state.showText) this.setState({ showText: false });
+    }
+
+    //showSilhouette
+    if (
+      refOffsetY[0] - windowHeight * 1.2 <= sY &&
+      sY <= refOffsetY[1] - windowHeight + overscrollBuffer
+    ) {
+      if (!this.state.showSilhouette) this.setState({ showSilhouette: true });
+    } else {
+      if (this.state.showSilhouette) this.setState({ showSilhouette: false });
+    }
+  }
+
+  handleAirportSilhouette() {
+    // every frame takes into account updated window size
+
+    sY = window.scrollY;
+    // extra movement based on window width
+    let widthCalc = this.state.windowSize.width / 2;
+
+    // left position
+    let pos = normalize(
+      sY,
+      refOffsetY[0],
+      refOffsetY[1],
+      0,
+      -airportSilhouetteHorizontalRange
+    );
+
+    if (this.state.windowSize.width >= 1800) {
+      const minPos = -1000;
+      console.log(Math.min(airportSilhouetteLeftPos, minPos));
+      pos = pos + widthCalc + Math.min(airportSilhouetteLeftPos, minPos);
+    } else {
+      pos = pos + widthCalc + airportSilhouetteLeftPos;
+    }
+
+    // down position
+    const startDist = windowHeight * 2;
+    let vPos = 0;
+    if (refOffsetY[1] - sY <= startDist) {
+      //
+      const pageBottomRefLine = refOffsetY[1] - windowHeight;
+      vPos = normalize(
+        sY,
+        pageBottomRefLine - airportSilhouetteVerticalRange,
+        pageBottomRefLine,
+        0,
+        -airportSilhouetteVerticalRange
+      );
+    }
+
+    if (refOffsetY[0] - windowHeight <= sY && sY <= refOffsetY[1]) {
+      // cap it to prevent overshoot
+      this.setState({
+        silhouetteHPos: pos,
+        silhouetteVPos: vPos
+      });
+    } else {
+      console.log("not moving airport silhouette");
+    }
   }
 
   handlePageScroll() {
-    sY = window.scrollY;
-    let overscrollBuffer = 300;
-
-    //console.log(sY, refOffsetY, " window height ", windowHeight);
-    let handleShow = () => {
-      // showText
-      if (
-        refOffsetY[0] - windowHeight / 3 <= sY &&
-        sY <= refOffsetY[1] - windowHeight + overscrollBuffer
-      ) {
-        if (!this.state.showText) this.setState({ showText: true });
-      } else {
-        if (this.state.showText) this.setState({ showText: false });
-      }
-
-      //showSilhouette
-      if (
-        refOffsetY[0] - windowHeight <= sY &&
-        sY <= refOffsetY[1] - windowHeight + overscrollBuffer
-      ) {
-        if (!this.state.showSilhouette) this.setState({ showSilhouette: true });
-      } else {
-        if (this.state.showSilhouette) this.setState({ showSilhouette: false });
-      }
+    let handleAll = () => {
+      this.handleAssetShow();
+      this.handleAirportSilhouette();
     };
 
-    let handleSilhouette = () => {
-      // left position
-      let pos = normalize(
-        sY,
-        refOffsetY[0],
-        refOffsetY[1],
-        0,
-        -airportSilhouetteHorizontalRange
-      );
-      // down position
-      const startDist = windowHeight * 2;
-      let vPos = 0;
-      if (refOffsetY[1] - sY <= startDist) {
-        //
-        const pageBottomRefLine = refOffsetY[1] - windowHeight;
-        vPos = normalize(
-          sY,
-          pageBottomRefLine - airportSilhouetteVerticalRange,
-          pageBottomRefLine,
-          0,
-          -airportSilhouetteVerticalRange
-        );
-      }
+    // prevent scroll lag by calling setstate only after the frame
+    // has been rendered
+    window.requestAnimationFrame(handleAll);
+  }
 
-      if (refOffsetY[0] - windowHeight <= sY && sY <= refOffsetY[1]) {
-        // cap it to prevent overshoot
-        this.setState({
-          silhouetteHPos: Math.max(pos, -airportSilhouetteHorizontalRange),
-          silhouetteVPos: vPos
-        });
-      } else {
-        console.log("not moving canvas");
-      }
+  handleWindowResize() {
+    // get new window width
+    let handleSilhouettePos = () => {
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+
+      this.setState({
+        windowSize: {
+          height: height,
+          width: width
+        }
+      });
     };
 
     let handleAll = () => {
-      handleShow();
-      handleSilhouette();
+      handleSilhouettePos();
+      this.handleAirportSilhouette();
     };
 
     // prevent scroll lag by calling setstate only after the frame
@@ -461,6 +610,24 @@ class Page extends Component {
 
     //   return <span dangerouslySetInnerHTML={html_content} />;
     // };
+
+    const animStyle = {
+      flyIn: {
+        position: "absolute",
+        zIndex: 50
+
+        // "@media (min-width: 1100px)": {
+        //   paddingRight: 600
+        // }
+      },
+      flyOut: {
+        position: "absolute",
+        zIndex: 50
+        // "@media (min-width: 1100px)": {
+        //   paddingRight: 600
+        // }
+      }
+    };
 
     // text logic here
     let page_3_text = {};
@@ -528,32 +695,120 @@ class Page extends Component {
 
     // this animation is for place tabs only (2 and 3)
     const indicatorAnimation = () => {
-      if (this.state.focusItem === 2 || this.state.focusItem === 3) {
+      const line = (offset = 200, img, xPos, yPos, color) => {
         //do something
-        const buffer = 400; // has to match buffer in planner
         const imgLocOffset = 200;
-        // get offsets for tab locations (index 0 is tab 1, 1 is tab 2)
-        const tabLoc = this.state.tabLocations;
+        // tab 2 ref position
+        const tab2PosY = tabLoc[1]; // vertical
+        const tab2PosX = 1100; // horizontal in relation to airport silhouette
+        // array of x, y
+        let scrollYWithBuffer = tab2PosY - window.scrollY + imgLocOffset;
+        let scrollXWithBuffer = tab2PosX + this.state.silhouetteHPos;
+        const fromLocation = [410, scrollYWithBuffer];
+        const toLocation = [scrollXWithBuffer, 280];
 
-        const tab2 = () => {
-          // tab 2 ref position
-          const tab2Pos = tabLoc[1];
-          // array of x, y
-          let scrollYWithBuffer = tab2Pos - window.scrollY + imgLocOffset;
-          let scrollXWithBuffer = 760 + this.state.silhouetteHPos;
-          const fromLocation = [410, scrollYWithBuffer];
-          const toLocation = [scrollXWithBuffer, 280];
+        //return pinIndicator(toLocation, img, color);
+        return locationIndicator(fromLocation, toLocation);
+      };
 
-          console.log(window.scrollY);
-          return pinIndicator(toLocation);
-          //return locationIndicator(fromLocation, toLocation);
+      const tab = (img, xPos, yPos, color, style) => {
+        // tab 2 ref position
+        let scrollXWithBuffer = xPos + this.state.silhouetteHPos;
+        const toLocation = [scrollXWithBuffer, yPos];
+
+        return pinIndicator(toLocation, img, color, style);
+      };
+
+      // get offsets for tab locations (index 0 is tab 1, 1 is tab 2)
+      // oh shit this is a bit confusing, but its for vertical (y)
+      const tabLoc = this.state.tabLocations;
+
+      let tab2Style =
+        this.state.focusItem === 2 || this.state.focusItem === 3
+          ? { opacity: 1, bottom: 0 }
+          : { opacity: 1, bottom: 1500 };
+
+      let tab3Style =
+        this.state.focusItem === 3
+          ? { opacity: 1, bottom: -5 }
+          : { opacity: 1, bottom: 1500 };
+
+      let output = [
+        tab(placeData.sushi.image, 860, 220, "#FED766", tab2Style),
+        tab(placeData.ana.image, 970, 220, "#2AB7CA", tab3Style)
+      ];
+
+      return output;
+    };
+
+    const airplaneAnimation = animType => {
+      //background-color: #4158D0;
+      // background-image: linear-gradient(315deg, #4158D0 0%, #C850C0 30%, #FFCC70 66%, #ffffff 100%);
+
+      const originalViewBox = {
+        width: 5618,
+        height: 883
+      };
+
+      const scaleMultiplier = airportSilhouetteHeight / originalViewBox.height;
+
+      if (animType === "landing") {
+        const flyInAnimationViewBox = {
+          width: 2095,
+          height: 448
         };
 
-        return tab2();
-      } else if (this.state.focusItem === 3) {
-        // do something else
-        return null;
+        const animHeight = flyInAnimationViewBox.height * scaleMultiplier;
+        const animWidth = flyInAnimationViewBox.width * scaleMultiplier;
+
+        const flyDiv = (
+          <div
+            className="landing-animation"
+            style={{
+              ...animStyle.flyIn,
+
+              left: -210,
+              bottom: 203
+            }}
+          >
+            <Lottie
+              options={landingAnimation}
+              height={animHeight}
+              width={animWidth}
+            />
+          </div>
+        );
+        return flyDiv;
+      } else if (animType === "takeoff") {
+        const flyOutAnimationViewBox = {
+          width: 2560,
+          height: 671
+        };
+
+        const animHeight = flyOutAnimationViewBox.height * scaleMultiplier;
+        const animWidth = flyOutAnimationViewBox.width * scaleMultiplier;
+
+        const flyDiv = (
+          <div
+            className="takeoff-animation"
+            style={{
+              ...animStyle.flyOut,
+
+              left: 1030,
+              bottom: 203
+            }}
+          >
+            <Lottie
+              options={takeoffAnimation}
+              height={animHeight}
+              width={animWidth}
+            />
+          </div>
+        );
+        return flyDiv;
       }
+
+      return null;
     };
 
     // TODO: wipe down to dark blue, add side scrolling stars
@@ -574,7 +829,89 @@ class Page extends Component {
           src={airportCanvas}
           alt="canvas"
         />
+        {airplaneAnimation("landing")}
+        {airplaneAnimation("takeoff")}
         {/* {indicatorAnimation()} */}
+      </div>
+    );
+
+    const starField = () => {
+      const starFieldStyle = {
+        root: {
+          position: "relative",
+          left: "-50%",
+          textAlign: "left",
+          zIndex: -1
+        },
+        field: {
+          position: "absolute",
+          height: 1080,
+          width: 1920,
+          bottom: 0
+          //backgroundColor: "#00000033"
+        }
+      };
+
+      const star = (
+        <circle
+          cx="50"
+          cy="50"
+          r="40"
+          stroke="black"
+          strokeWidth="3"
+          fill="red"
+        />
+      );
+
+      let stars = null;
+      if (this.state.starField) {
+        stars = this.state.starField.map(v => {
+          let randFill = parseInt(Math.random() * 50 + 50)
+            .toString()
+            .padStart(2, "0");
+
+          return (
+            <rect
+              x={v.w}
+              y={v.h}
+              width="2"
+              height="2"
+              fill={`#ffffff${randFill}`}
+            />
+          );
+        });
+      }
+
+      return (
+        <div style={starFieldStyle.root}>
+          <div id="star-field" style={starFieldStyle.field}>
+            <svg
+              height={starFieldStyle.field.height}
+              width={starFieldStyle.field.width}
+            >
+              {stars}
+            </svg>
+          </div>
+        </div>
+      );
+    };
+
+    const call_to_action_div = (
+      <div
+        style={{
+          position: "relative",
+          bottom: "20vh"
+        }}
+      >
+        <p style={p3Style.bottomText}>
+          Excited yet?
+          <br />
+          give it a go!
+        </p>
+        <button style={p3Style.button}>
+          IOS {"\u00A0"}
+          <AppStoreLogo height={15} width={15} style={p3Style.button.logo} />
+        </button>
       </div>
     );
 
@@ -582,34 +919,17 @@ class Page extends Component {
     const page_3 = (
       <div style={p3Style.root}>
         <div ref={this.refLocation[0]} />
-        <div style={animStyle.top}>
-          <Lottie options={landingAnimation} height={300} width={300} />
-        </div>
 
+        <div style={{ height: 500 }} />
         {compatible_planner()}
         {compatible_p3_text()}
         {airport_div}
         {indicatorAnimation()}
 
-        <div style={animStyle.bottom}>
-          <Lottie options={landingAnimation} height={300} width={300} />
-        </div>
-        <div
-          style={{
-            position: "relative",
-            bottom: "30vh"
-          }}
-        >
-          <p style={p3Style.bottomText}>Ready to try it out ?</p>
-          <Button
-            style={{ ...p3Style.button, ...p3Style.button.ios }}
-            variant="outlined"
-            color="primary"
-          >
-            iOS {"\u00A0"}
-            <img style={{ height: 15 }} src={app_store} alt="icon" />
-          </Button>
-        </div>
+        <div style={{ height: 500 }} />
+
+        {call_to_action_div}
+        {starField(10)}
         <div ref={this.refLocation[1]} />
       </div>
     );
