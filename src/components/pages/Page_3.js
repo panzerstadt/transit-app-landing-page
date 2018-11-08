@@ -213,7 +213,7 @@ const placeData = {
 };
 
 const landingAnimation = {
-  loop: true,
+  loop: false,
   autoplay: true,
   animationData: airplaneLandingData,
   rendererSettings: {
@@ -222,7 +222,7 @@ const landingAnimation = {
 };
 
 const takeoffAnimation = {
-  loop: true,
+  loop: false,
   autoplay: true,
   animationData: airplaneTakeoffData,
   rendererSettings: {
@@ -244,7 +244,6 @@ const breatheKeyFrames = Radium.keyframes(
 
 const p3Style = {
   root: {
-    // height: 500,
     overflow: "hidden",
     width: "100%", //width of sky background
     display: "flex",
@@ -254,11 +253,7 @@ const p3Style = {
     flexWrap: "wrap",
     margin: "0 auto",
     background: "linear-gradient(#FFFFFF,#cdebf2, #B9CBE4, #004D7A )",
-    //backgroundColor: "#2F4959",
-    //backgroundColor: "white",
     color: "#2F4959",
-    //boxShadow: "0 0 50px #C5D4DD",
-    //boxShadow: "0 0 50px #EAEAEF",
     zIndex: 10
   },
   button: {
@@ -430,7 +425,8 @@ class Page extends Component {
         height: 0,
         width: 0
       },
-      starField: null
+      starField: null,
+      isStopped: true
     };
     this.onFocusChange = this.onFocusChange.bind(this);
     this.onFirstMount = this.onFirstMount.bind(this);
@@ -695,21 +691,21 @@ class Page extends Component {
 
     // this animation is for place tabs only (2 and 3)
     const indicatorAnimation = () => {
-      const line = (offset = 200, img, xPos, yPos, color) => {
-        //do something
-        const imgLocOffset = 200;
-        // tab 2 ref position
-        const tab2PosY = tabLoc[1]; // vertical
-        const tab2PosX = 1100; // horizontal in relation to airport silhouette
-        // array of x, y
-        let scrollYWithBuffer = tab2PosY - window.scrollY + imgLocOffset;
-        let scrollXWithBuffer = tab2PosX + this.state.silhouetteHPos;
-        const fromLocation = [410, scrollYWithBuffer];
-        const toLocation = [scrollXWithBuffer, 280];
+      // const line = (offset = 200, img, xPos, yPos, color) => {
+      //   //do something
+      //   const imgLocOffset = 200;
+      //   // tab 2 ref position
+      //   const tab2PosY = tabLoc[1]; // vertical
+      //   const tab2PosX = 1100; // horizontal in relation to airport silhouette
+      //   // array of x, y
+      //   let scrollYWithBuffer = tab2PosY - window.scrollY + imgLocOffset;
+      //   let scrollXWithBuffer = tab2PosX + this.state.silhouetteHPos;
+      //   const fromLocation = [410, scrollYWithBuffer];
+      //   const toLocation = [scrollXWithBuffer, 280];
 
-        //return pinIndicator(toLocation, img, color);
-        return locationIndicator(fromLocation, toLocation);
-      };
+      //   //return pinIndicator(toLocation, img, color);
+      //   return locationIndicator(fromLocation, toLocation);
+      // };
 
       const tab = (img, xPos, yPos, color, style) => {
         // tab 2 ref position
@@ -741,7 +737,7 @@ class Page extends Component {
       return output;
     };
 
-    const airplaneAnimation = animType => {
+    const airplaneAnimation = (animType, isStopped) => {
       //background-color: #4158D0;
       // background-image: linear-gradient(315deg, #4158D0 0%, #C850C0 30%, #FFCC70 66%, #ffffff 100%);
 
@@ -775,6 +771,7 @@ class Page extends Component {
               options={landingAnimation}
               height={animHeight}
               width={animWidth}
+              isStopped={isStopped}
             />
           </div>
         );
@@ -794,7 +791,7 @@ class Page extends Component {
             style={{
               ...animStyle.flyOut,
 
-              left: 1030,
+              left: 1035,
               bottom: 203
             }}
           >
@@ -802,6 +799,7 @@ class Page extends Component {
               options={takeoffAnimation}
               height={animHeight}
               width={animWidth}
+              isStopped={isStopped}
             />
           </div>
         );
@@ -829,8 +827,13 @@ class Page extends Component {
           src={airportCanvas}
           alt="canvas"
         />
-        {airplaneAnimation("landing")}
-        {airplaneAnimation("takeoff")}
+        {airplaneAnimation("landing", this.state.focusItem >= 1 ? false : true)}
+        {this.state.focusItem <= 7
+          ? airplaneAnimation(
+              "takeoff",
+              this.state.focusItem >= 6 ? false : true
+            )
+          : null}
         {/* {indicatorAnimation()} */}
       </div>
     );
