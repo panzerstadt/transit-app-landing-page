@@ -140,12 +140,14 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
     div: {
       height: 150,
       width: 150,
-      transition: "bottom 800ms ease, left 300ms ease",
+      //transition: "bottom 800ms ease, left 300ms ease, opacity 300ms linear",
+      transition: "left 300ms ease, opacity 150ms linear",
       opacity: style.opacity,
       position: "fixed",
       //top: fromLocationXY[1],
       left: LocationXY[0],
-      bottom: LocationXY[1] + style.bottom,
+      //bottom: LocationXY[1] + style.bottom,
+      bottom: LocationXY[1],
 
       // for debug purposes
       // borderStyle: "dashed",
@@ -177,7 +179,7 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
   return (
     <div
       className="pin-indicator"
-      key={`pin-at-${LocationXY[0]}-${LocationXY[1]}`}
+      //key={`pin-at-${LocationXY[0]}-${LocationXY[1]}`}
       style={indicatorStyle.div}
     >
       <ReactPlacePin
@@ -696,15 +698,21 @@ class Page extends Component {
       // oh shit this is a bit confusing, but its for vertical (y)
       //const tabLoc = this.state.tabLocations;
 
+      // let tab2Style =
+      //   this.state.focusItem === 2 || this.state.focusItem === 3
+      //     ? { opacity: 1, bottom: 0 }
+      //     : { opacity: 1, bottom: 1500 };
       let tab2Style =
         this.state.focusItem === 2 || this.state.focusItem === 3
-          ? { opacity: 1, bottom: 0 }
-          : { opacity: 0, bottom: 1500 };
+          ? { opacity: 1 }
+          : { opacity: 0 };
 
+      // let tab3Style =
+      //   this.state.focusItem === 3
+      //     ? { opacity: 1, bottom: 0 }
+      //     : { opacity: 1, bottom: 1500 };
       let tab3Style =
-        this.state.focusItem === 3
-          ? { opacity: 1, bottom: -5 }
-          : { opacity: 0, bottom: 1500 };
+        this.state.focusItem === 3 ? { opacity: 1 } : { opacity: 0 };
 
       let output = [
         tab(placeData.sushi.image, 860, 220, "#FED766", tab2Style),
