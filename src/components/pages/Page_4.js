@@ -5,10 +5,19 @@ import Button from "@material-ui/core/Button";
 import en_lorem_ipsum from "../../assets/lorem_ipsum/lorem-ipsum-en.txt";
 import ja_lorem_ipsum from "../../assets/lorem_ipsum/lorem-ipsum-ja.txt";
 
-import dude_1 from "../../assets/avatar/2Asset 3.svg";
-import dude_2 from "../../assets/avatar/2Asset 4.svg";
-import dude_3 from "../../assets/avatar/2Asset 10.svg";
-import dude_4 from "../../assets/avatar/2Asset 1.svg";
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => {
+    images[item.replace("./", "")] = r(item);
+    return null;
+  });
+  //console.log(images);
+  return images;
+}
+// prepare bg images
+let images = importAll(
+  require.context("../../assets/avatar", true, /.*\.png$/)
+);
 
 function readTextFile(file) {
   // https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
@@ -53,7 +62,7 @@ const p4Style = {
     bar: {
       borderRadius: 999,
       border: "none",
-      width: 250,
+      width: 100,
       minHeight: 6,
       padding: 0,
       margin: 0,
@@ -93,22 +102,22 @@ const p4Style = {
 const avatar_data = [
   {
     name: "Rahmat Hidayat",
-    avatar: dude_3,
+    avatar: images["rahmat.png"],
     text: readTextFile(en_lorem_ipsum)
   },
   {
     name: "Kyo Hakamata",
-    avatar: dude_4,
+    avatar: images["kyo.png"],
     text: readTextFile(ja_lorem_ipsum)
   },
   {
     name: "Piotr Kroujkov",
-    avatar: dude_1,
+    avatar: images["piotr.png"],
     text: readTextFile(en_lorem_ipsum)
   },
   {
     name: "Tang Li Qun",
-    avatar: dude_2,
+    avatar: images["tang.png"],
     text: readTextFile(en_lorem_ipsum)
   }
 ];
@@ -138,7 +147,7 @@ class Page extends Component {
   });
 
   scrollSlowly(direction) {
-    let sY = window.scrollY;
+    //let sY = window.scrollY;
     let targetY = refOffsetY[0];
 
     if (direction === "down") {
@@ -171,6 +180,8 @@ class Page extends Component {
     refOffsetY = this.refLocation.map(r => {
       if (r.current) {
         return r.current.offsetTop;
+      } else {
+        return null;
       }
     });
   }

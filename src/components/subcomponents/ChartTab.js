@@ -17,6 +17,9 @@ class ChartTab extends Component {
     const { data, cIndex, cColor, style, focused, onHoverData } = this.props;
     const time = moment().format("HH");
 
+    console.debug(focused);
+    console.debug(onHoverData);
+
     // should this be responsive????
     const lineOffsetMargin = 68;
     const tabStyle = {

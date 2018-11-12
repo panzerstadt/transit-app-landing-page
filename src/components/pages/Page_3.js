@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import Radium from "radium";
 import Lottie from "react-lottie";
-import Button from "@material-ui/core/Button";
-import ButtonBase from "@material-ui/core/ButtonBase";
+// import Button from "@material-ui/core/Button";
+// import ButtonBase from "@material-ui/core/ButtonBase";
 
-import app_store, {
-  ReactComponent as AppStoreLogo
-} from "../../assets/icons/store-apple.svg";
+import { ReactComponent as AppStoreLogo } from "../../assets/icons/store-apple.svg";
 import airportCanvas from "../../assets/page-3/airport-canvas-4.svg";
 import airplaneLandingData from "../../assets/animation/landing-simple.json";
 import airplaneTakeoffData from "../../assets/animation/takeoff-simple.json";
-import placePin, {
-  ReactComponent as ReactPlacePin
-} from "../../assets/page-3/pin.svg";
+import { ReactComponent as ReactPlacePin } from "../../assets/page-3/pin.svg";
 
 import Planner from "../subcomponents/planner";
 
@@ -74,52 +70,52 @@ function importAll(r) {
  * @param {*} toLocationXY
  * @returns
  */
-const locationIndicator = (fromLocationXY, toLocationXY) => {
-  // will be based on style
+// const locationIndicator = (fromLocationXY, toLocationXY) => {
+//   // will be based on style
 
-  //TODO: make this responsive
-  const indicatorStyleHorizontal = {
-    transition: "all 300ms ease",
-    position: "fixed",
-    top: fromLocationXY[1],
-    left: fromLocationXY[0],
-    width: toLocationXY[0],
-    bottom: toLocationXY[1],
-    height: 1,
+//   //TODO: make this responsive
+//   const indicatorStyleHorizontal = {
+//     transition: "all 300ms ease",
+//     position: "fixed",
+//     top: fromLocationXY[1],
+//     left: fromLocationXY[0],
+//     width: toLocationXY[0],
+//     bottom: toLocationXY[1],
+//     height: 1,
 
-    borderStyle: "dashed none none none",
-    borderWidth: 2,
-    borderColor: "#D8497E",
+//     borderStyle: "dashed none none none",
+//     borderWidth: 2,
+//     borderColor: "#D8497E",
 
-    zIndex: -5
-  };
+//     zIndex: -5
+//   };
 
-  const indicatorStyleVertical = {
-    transition: "all 300ms ease",
-    position: "fixed",
-    top: fromLocationXY[1],
-    left: toLocationXY[0] + fromLocationXY[0],
-    width: 1,
-    bottom: toLocationXY[1],
+//   const indicatorStyleVertical = {
+//     transition: "all 300ms ease",
+//     position: "fixed",
+//     top: fromLocationXY[1],
+//     left: toLocationXY[0] + fromLocationXY[0],
+//     width: 1,
+//     bottom: toLocationXY[1],
 
-    borderStyle: "none dashed none none",
-    borderWidth: 2,
-    borderColor: "#D8497E",
+//     borderStyle: "none dashed none none",
+//     borderWidth: 2,
+//     borderColor: "#D8497E",
 
-    zIndex: -5
-  };
+//     zIndex: -5
+//   };
 
-  // both locations are pixels in X and Y
-  // and we use it to build
+//   // both locations are pixels in X and Y
+//   // and we use it to build
 
-  // build <div> with backgroundcolor
-  return (
-    <div>
-      <div style={indicatorStyleVertical} />
-      <div style={indicatorStyleHorizontal} />
-    </div>
-  );
-};
+//   // build <div> with backgroundcolor
+//   return (
+//     <div>
+//       <div style={indicatorStyleVertical} />
+//       <div style={indicatorStyleHorizontal} />
+//     </div>
+//   );
+// };
 
 /**
  *
@@ -179,7 +175,11 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
   };
 
   return (
-    <div className="pin-indicator" style={indicatorStyle.div}>
+    <div
+      className="pin-indicator"
+      key={`pin-at-${LocationXY[0]}-${LocationXY[1]}`}
+      style={indicatorStyle.div}
+    >
       <ReactPlacePin
         style={indicatorStyle.pinLoc}
         height={pinSize}
@@ -597,16 +597,6 @@ class Page extends Component {
   }
 
   render() {
-    // const parse_breakpoint = text => {
-    //   const processed_content = text.split("\n").map(d => {
-    //     return d;
-    //   });
-
-    //   let html_content = { __html: processed_content.join("<br/>") };
-
-    //   return <span dangerouslySetInnerHTML={html_content} />;
-    // };
-
     const animStyle = {
       flyIn: {
         position: "absolute",
@@ -639,6 +629,7 @@ class Page extends Component {
 
       if (typeof v.focusItem === "number") {
         page_3_text[v.focusItem] = text_out;
+        return null;
       } else {
         // todo: do not use object values, because it doesn't exist in internet explorer
         let list_of_values = Object.keys(v.focusItem).map(e => {
@@ -647,6 +638,7 @@ class Page extends Component {
         list_of_values.forEach(w => {
           page_3_text[w] = text_out;
         });
+        return null;
       }
     });
 
@@ -661,6 +653,7 @@ class Page extends Component {
           <img
             style={{ ...p3Style.image, ...p3Style.planner }}
             src={images["bg/path.jpeg"]}
+            alt={"static planner"}
           />
         );
       } else {
@@ -717,7 +710,7 @@ class Page extends Component {
 
       // get offsets for tab locations (index 0 is tab 1, 1 is tab 2)
       // oh shit this is a bit confusing, but its for vertical (y)
-      const tabLoc = this.state.tabLocations;
+      //const tabLoc = this.state.tabLocations;
 
       let tab2Style =
         this.state.focusItem === 2 || this.state.focusItem === 3
@@ -855,26 +848,27 @@ class Page extends Component {
         }
       };
 
-      const star = (
-        <circle
-          cx="50"
-          cy="50"
-          r="40"
-          stroke="black"
-          strokeWidth="3"
-          fill="red"
-        />
-      );
+      // const star = (
+      //   <circle
+      //     cx="50"
+      //     cy="50"
+      //     r="40"
+      //     stroke="black"
+      //     strokeWidth="3"
+      //     fill="red"
+      //   />
+      // );
 
       let stars = null;
       if (this.state.starField) {
-        stars = this.state.starField.map(v => {
+        stars = this.state.starField.map((v, i) => {
           let randFill = parseInt(Math.random() * 50 + 50)
             .toString()
             .padStart(2, "0");
 
           return (
             <rect
+              key={i}
               x={v.w}
               y={v.h}
               width="2"

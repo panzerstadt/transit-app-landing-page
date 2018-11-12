@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LoginPage from "./components/Login";
 
 // import logo from "./logo.svg";
 import "./App.css";
@@ -7,12 +8,33 @@ import "./App.css";
 import Scroll from "./components/scroll";
 // import Header from "./components/header";
 
+// simple password protection here
+
 class App extends Component {
+  state = {
+    isLoggedIn: false
+  };
+  handleAuthentication = this.handleAuthentication.bind(this);
+
+  handleAuthentication(e) {
+    // call Handle Submit here?
+    if (e === true) {
+      console.debug("authenticated");
+      this.setState({ isLoggedIn: true });
+    } else {
+      console.error("authentication failed");
+    }
+  }
+
   render() {
     return (
       <div className="App">
         {/* <Header /> */}
-        <Scroll />
+        {this.state.isLoggedIn ? (
+          <Scroll />
+        ) : (
+          <LoginPage isAuthenticated={this.handleAuthentication} />
+        )}
       </div>
     );
   }

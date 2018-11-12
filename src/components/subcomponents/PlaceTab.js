@@ -15,6 +15,9 @@ class PlaceTab extends Component {
   render() {
     const { data, cIndex, cColor, style, focused, onHoverData } = this.props;
 
+    console.debug("hover data for place tab");
+    console.debug(onHoverData);
+
     let dataType;
     if (data.type === "food") {
       dataType = foodTab;
