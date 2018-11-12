@@ -9,7 +9,7 @@ import Scroll from "./components/scroll";
 // import Header from "./components/header";
 
 // debug turns off authentication
-const debug = true;
+const debug = false;
 
 class App extends Component {
   state = {
