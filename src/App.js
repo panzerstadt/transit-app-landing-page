@@ -8,7 +8,8 @@ import "./App.css";
 import Scroll from "./components/scroll";
 // import Header from "./components/header";
 
-// simple password protection here
+// debug turns off authentication
+const debug = true;
 
 class App extends Component {
   state = {
@@ -23,6 +24,12 @@ class App extends Component {
       this.setState({ isLoggedIn: true });
     } else {
       console.error("authentication failed");
+    }
+  }
+
+  componentDidMount() {
+    if (debug) {
+      this.setState({ isLoggedIn: true });
     }
   }
 

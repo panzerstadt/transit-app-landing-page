@@ -137,6 +137,9 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
   // place a pin at this place
   // probably using material ui icon
   const indicatorStyle = {
+    animationControl: {
+      transition: "all 1000ms ease"
+    },
     div: {
       height: 150,
       width: 150,
@@ -178,14 +181,16 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
     <div
       className="pin-indicator"
       key={`pin-at-${LocationXY[0]}-${LocationXY[1]}`}
-      style={indicatorStyle.div}
+      style={{ ...indicatorStyle.div, ...indicatorStyle.animationControl }}
     >
       <ReactPlacePin
-        style={indicatorStyle.pinLoc}
+        style={{ ...indicatorStyle.pinLoc, ...indicatorStyle.animationControl }}
         height={pinSize}
         width={pinSize}
       />
-      <div style={indicatorStyle.imgLoc}>
+      <div
+        style={{ ...indicatorStyle.imgLoc, ...indicatorStyle.animationControl }}
+      >
         <img style={indicatorStyle.img} src={img_src} alt="img" />
       </div>
     </div>
@@ -684,22 +689,6 @@ class Page extends Component {
 
     // this animation is for place tabs only (2 and 3)
     const indicatorAnimation = () => {
-      // const line = (offset = 200, img, xPos, yPos, color) => {
-      //   //do something
-      //   const imgLocOffset = 200;
-      //   // tab 2 ref position
-      //   const tab2PosY = tabLoc[1]; // vertical
-      //   const tab2PosX = 1100; // horizontal in relation to airport silhouette
-      //   // array of x, y
-      //   let scrollYWithBuffer = tab2PosY - window.scrollY + imgLocOffset;
-      //   let scrollXWithBuffer = tab2PosX + this.state.silhouetteHPos;
-      //   const fromLocation = [410, scrollYWithBuffer];
-      //   const toLocation = [scrollXWithBuffer, 280];
-
-      //   //return pinIndicator(toLocation, img, color);
-      //   return locationIndicator(fromLocation, toLocation);
-      // };
-
       const tab = (img, xPos, yPos, color, style) => {
         // tab 2 ref position
         let scrollXWithBuffer = xPos + this.state.silhouetteHPos;
@@ -715,12 +704,12 @@ class Page extends Component {
       let tab2Style =
         this.state.focusItem === 2 || this.state.focusItem === 3
           ? { opacity: 1, bottom: 0 }
-          : { opacity: 1, bottom: 1500 };
+          : { opacity: 0, bottom: 1500 };
 
       let tab3Style =
         this.state.focusItem === 3
           ? { opacity: 1, bottom: -5 }
-          : { opacity: 1, bottom: 1500 };
+          : { opacity: 0, bottom: 1500 };
 
       let output = [
         tab(placeData.sushi.image, 860, 220, "#FED766", tab2Style),
@@ -847,17 +836,6 @@ class Page extends Component {
           //backgroundColor: "#00000033"
         }
       };
-
-      // const star = (
-      //   <circle
-      //     cx="50"
-      //     cy="50"
-      //     r="40"
-      //     stroke="black"
-      //     strokeWidth="3"
-      //     fill="red"
-      //   />
-      // );
 
       let stars = null;
       if (this.state.starField) {
