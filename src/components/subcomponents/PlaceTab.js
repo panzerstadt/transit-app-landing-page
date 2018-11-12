@@ -125,7 +125,7 @@ class PlaceTab extends Component {
           style={{
             ...style.subTab,
             ":hover": {
-              backgroundColor: "red"
+              //backgroundColor: "red"
             }
           }}
         >

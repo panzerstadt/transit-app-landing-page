@@ -70,7 +70,7 @@ class FlyInOut extends Component {
         block: {
           marginLeft: 0,
           ":hover": {
-            backgroundColor: "red"
+            //backgroundColor: "red"
           }
         },
         header: {

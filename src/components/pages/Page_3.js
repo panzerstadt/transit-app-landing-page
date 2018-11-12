@@ -137,14 +137,11 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
   // place a pin at this place
   // probably using material ui icon
   const indicatorStyle = {
-    animationControl: {
-      transition: "all 1000ms ease"
-    },
     div: {
       height: 150,
       width: 150,
       transition: "bottom 800ms ease, left 300ms ease",
-      opacity: 1,
+      opacity: style.opacity,
       position: "fixed",
       //top: fromLocationXY[1],
       left: LocationXY[0],
@@ -181,16 +178,14 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
     <div
       className="pin-indicator"
       key={`pin-at-${LocationXY[0]}-${LocationXY[1]}`}
-      style={{ ...indicatorStyle.div, ...indicatorStyle.animationControl }}
+      style={indicatorStyle.div}
     >
       <ReactPlacePin
-        style={{ ...indicatorStyle.pinLoc, ...indicatorStyle.animationControl }}
+        style={indicatorStyle.pinLoc}
         height={pinSize}
         width={pinSize}
       />
-      <div
-        style={{ ...indicatorStyle.imgLoc, ...indicatorStyle.animationControl }}
-      >
+      <div style={indicatorStyle.imgLoc}>
         <img style={indicatorStyle.img} src={img_src} alt="img" />
       </div>
     </div>
@@ -634,7 +629,7 @@ class Page extends Component {
 
       if (typeof v.focusItem === "number") {
         page_3_text[v.focusItem] = text_out;
-        return null;
+        //return null;
       } else {
         // todo: do not use object values, because it doesn't exist in internet explorer
         let list_of_values = Object.keys(v.focusItem).map(e => {
@@ -643,7 +638,7 @@ class Page extends Component {
         list_of_values.forEach(w => {
           page_3_text[w] = text_out;
         });
-        return null;
+        //return null;
       }
     });
 
