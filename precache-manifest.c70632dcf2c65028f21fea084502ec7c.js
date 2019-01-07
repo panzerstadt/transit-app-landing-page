@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/transit-app-landing-page/static/media/flight2-icon.66427b39.svg"
   },
   {
-    "revision": "15c3eb9e4c4ffa36ab7f",
+    "revision": "94b14e9d511e2f168b3d",
     "url": "/transit-app-landing-page/static/css/main.21105ca8.chunk.css"
   },
   {
@@ -52,8 +52,8 @@ self.__precacheManifest = [
     "url": "/transit-app-landing-page/static/media/flight-icon.838725c1.svg"
   },
   {
-    "revision": "15c3eb9e4c4ffa36ab7f",
-    "url": "/transit-app-landing-page/static/js/main.15c3eb9e.chunk.js"
+    "revision": "94b14e9d511e2f168b3d",
+    "url": "/transit-app-landing-page/static/js/main.94b14e9d.chunk.js"
   },
   {
     "revision": "c811d2b747769ec8488b2d614183e981",
@@ -104,7 +104,7 @@ self.__precacheManifest = [
     "url": "/transit-app-landing-page/static/media/pin.96b52284.svg"
   },
   {
-    "revision": "567c687278208c06abb34fcf51a989da",
+    "revision": "189e062ca887af798353da6223dd08b7",
     "url": "/transit-app-landing-page/index.html"
   }
 ];
