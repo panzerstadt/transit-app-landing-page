@@ -140,12 +140,14 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
     div: {
       height: 150,
       width: 150,
-      transition: "bottom 800ms ease, left 300ms ease",
-      opacity: 1,
+      //transition: "bottom 800ms ease, left 300ms ease, opacity 300ms linear",
+      transition: "left 300ms ease, opacity 150ms linear",
+      opacity: style.opacity,
       position: "fixed",
       //top: fromLocationXY[1],
       left: LocationXY[0],
-      bottom: LocationXY[1] + style.bottom,
+      //bottom: LocationXY[1] + style.bottom,
+      bottom: LocationXY[1],
 
       // for debug purposes
       // borderStyle: "dashed",
@@ -177,7 +179,7 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
   return (
     <div
       className="pin-indicator"
-      key={`pin-at-${LocationXY[0]}-${LocationXY[1]}`}
+      //key={`pin-at-${LocationXY[0]}-${LocationXY[1]}`}
       style={indicatorStyle.div}
     >
       <ReactPlacePin
@@ -629,7 +631,7 @@ class Page extends Component {
 
       if (typeof v.focusItem === "number") {
         page_3_text[v.focusItem] = text_out;
-        return null;
+        //return null;
       } else {
         // todo: do not use object values, because it doesn't exist in internet explorer
         let list_of_values = Object.keys(v.focusItem).map(e => {
@@ -638,7 +640,7 @@ class Page extends Component {
         list_of_values.forEach(w => {
           page_3_text[w] = text_out;
         });
-        return null;
+        //return null;
       }
     });
 
@@ -684,22 +686,6 @@ class Page extends Component {
 
     // this animation is for place tabs only (2 and 3)
     const indicatorAnimation = () => {
-      // const line = (offset = 200, img, xPos, yPos, color) => {
-      //   //do something
-      //   const imgLocOffset = 200;
-      //   // tab 2 ref position
-      //   const tab2PosY = tabLoc[1]; // vertical
-      //   const tab2PosX = 1100; // horizontal in relation to airport silhouette
-      //   // array of x, y
-      //   let scrollYWithBuffer = tab2PosY - window.scrollY + imgLocOffset;
-      //   let scrollXWithBuffer = tab2PosX + this.state.silhouetteHPos;
-      //   const fromLocation = [410, scrollYWithBuffer];
-      //   const toLocation = [scrollXWithBuffer, 280];
-
-      //   //return pinIndicator(toLocation, img, color);
-      //   return locationIndicator(fromLocation, toLocation);
-      // };
-
       const tab = (img, xPos, yPos, color, style) => {
         // tab 2 ref position
         let scrollXWithBuffer = xPos + this.state.silhouetteHPos;
@@ -712,15 +698,21 @@ class Page extends Component {
       // oh shit this is a bit confusing, but its for vertical (y)
       //const tabLoc = this.state.tabLocations;
 
+      // let tab2Style =
+      //   this.state.focusItem === 2 || this.state.focusItem === 3
+      //     ? { opacity: 1, bottom: 0 }
+      //     : { opacity: 1, bottom: 1500 };
       let tab2Style =
         this.state.focusItem === 2 || this.state.focusItem === 3
-          ? { opacity: 1, bottom: 0 }
-          : { opacity: 1, bottom: 1500 };
+          ? { opacity: 1 }
+          : { opacity: 0 };
 
+      // let tab3Style =
+      //   this.state.focusItem === 3
+      //     ? { opacity: 1, bottom: 0 }
+      //     : { opacity: 1, bottom: 1500 };
       let tab3Style =
-        this.state.focusItem === 3
-          ? { opacity: 1, bottom: -5 }
-          : { opacity: 1, bottom: 1500 };
+        this.state.focusItem === 3 ? { opacity: 1 } : { opacity: 0 };
 
       let output = [
         tab(placeData.sushi.image, 860, 220, "#FED766", tab2Style),
@@ -847,17 +839,6 @@ class Page extends Component {
           //backgroundColor: "#00000033"
         }
       };
-
-      // const star = (
-      //   <circle
-      //     cx="50"
-      //     cy="50"
-      //     r="40"
-      //     stroke="black"
-      //     strokeWidth="3"
-      //     fill="red"
-      //   />
-      // );
 
       let stars = null;
       if (this.state.starField) {

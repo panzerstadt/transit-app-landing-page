@@ -74,6 +74,10 @@ export default class LoginPage extends Component {
           {
             username: "admin",
             password: "admin1928"
+          },
+          {
+            username: "DANTOKYO",
+            password: "DanTokyo12345"
           }
         ]
       };
