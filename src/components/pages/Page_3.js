@@ -495,7 +495,7 @@ class Page extends Component {
 
     //showSilhouette
     if (
-      refOffsetY[0] - windowHeight * 1.2 <= sY &&
+      refOffsetY[0] - windowHeight * 1.0 <= sY &&
       sY <= refOffsetY[1] - windowHeight + overscrollBuffer
     ) {
       if (!this.state.showSilhouette) this.setState({ showSilhouette: true });
@@ -631,7 +631,7 @@ class Page extends Component {
 
       if (typeof v.focusItem === "number") {
         page_3_text[v.focusItem] = text_out;
-        //return null;
+        return null;
       } else {
         // todo: do not use object values, because it doesn't exist in internet explorer
         let list_of_values = Object.keys(v.focusItem).map(e => {
@@ -640,7 +640,7 @@ class Page extends Component {
         list_of_values.forEach(w => {
           page_3_text[w] = text_out;
         });
-        //return null;
+        return null;
       }
     });
 
@@ -843,9 +843,9 @@ class Page extends Component {
       let stars = null;
       if (this.state.starField) {
         stars = this.state.starField.map((v, i) => {
-          let randFill = parseInt(Math.random() * 50 + 50)
-            .toString()
-            .padStart(2, "0");
+          // let randFill = parseInt(Math.random() * 50 + 50)
+          //   .toString()
+          //   .padStart(2, "0");
 
           return (
             <rect
@@ -854,7 +854,8 @@ class Page extends Component {
               y={v.h}
               width="2"
               height="2"
-              fill={`#ffffff${randFill}`}
+              fill={v.f}
+              //fill={`#ffffff${randFill}`}
             />
           );
         });

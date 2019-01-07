@@ -1,28 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 25">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #fff;
-      }
-
-      .cls-2, .cls-3 {
-        fill: #1c313a;
-        font-size: 10px;
-      }
-
-      .cls-2 {
-        font-family: Roboto-Light, Roboto;
-        font-weight: 300;
-      }
-
-      .cls-3 {
-        font-family: FontAwesome5ProLight, "Font Awesome 5 Pro";
-      }
-    </style>
-  </defs>
-  <g id="Group_125" data-name="Group 125" transform="translate(-91 -808)">
-    <rect id="Rectangle_97" data-name="Rectangle 97" class="cls-1" width="101" height="25" rx="5" transform="translate(91 808)"/>
-    <text id="Shop_Family" data-name="Shop, Family" class="cls-2" transform="translate(124 824)"><tspan x="0" y="0">Shop, Family</tspan></text>
-    <text id="shopping-basket" class="cls-3" transform="translate(103.5 824)"><tspan x="0" y="0">shopping-basket</tspan></text>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 101 25" style="enable-background:new 0 0 101 25;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#1C313A;}
+	.st2{font-family:'Roboto-Light';}
+	.st3{font-size:10px;}
+	.st4{enable-background:new    ;}
+</style>
+<g id="Group_125" transform="translate(-91 -808)">
+	<path id="Rectangle_97" class="st0" d="M96,808h91c2.8,0,5,2.2,5,5v15c0,2.8-2.2,5-5,5H96c-2.8,0-5-2.2-5-5v-15
+		C91,810.2,93.2,808,96,808z"/>
+	<text transform="matrix(1 0 0 1 124 824)" class="st1 st2 st3">Shop, Family</text>
+	<g class="st4">
+		<path class="st1" d="M114.5,819c0.1,0,0.1,0,0.2,0.1s0.1,0.1,0.1,0.2v0.2c0,0.1,0,0.1-0.1,0.2s-0.1,0.1-0.2,0.1h-0.3l-0.6,4.2
+			c0,0.2-0.1,0.4-0.3,0.6s-0.4,0.2-0.6,0.2h-7.1c-0.2,0-0.4-0.1-0.6-0.2s-0.3-0.3-0.3-0.6l-0.6-4.2h-0.3c-0.1,0-0.1,0-0.2-0.1
+			s-0.1-0.1-0.1-0.2v-0.2c0-0.1,0-0.1,0.1-0.2s0.1-0.1,0.2-0.1h1.5l2.7-3c0.1-0.1,0.1-0.1,0.2-0.1s0.2,0,0.2,0.1s0.1,0.1,0.1,0.2
+			s0,0.2-0.1,0.2l-2.3,2.6h6.1l-2.3-2.6c-0.1-0.1-0.1-0.1-0.1-0.2s0-0.2,0.1-0.2s0.1-0.1,0.2-0.1s0.2,0,0.2,0.1l2.7,3H114.5z
+			 M113,823.7l0.6-4.1h-8.9l0.6,4.1c0,0.1,0,0.1,0.1,0.2s0.1,0.1,0.2,0.1h7.1c0.1,0,0.1,0,0.2-0.1S113,823.8,113,823.7z
+			 M107.2,820.7c0-0.1,0-0.2-0.1-0.2s-0.1-0.1-0.2-0.1s-0.2,0-0.2,0.1s-0.1,0.1-0.1,0.2v2.2c0,0.1,0,0.2,0.1,0.2s0.1,0.1,0.2,0.1
+			s0.2,0,0.2-0.1s0.1-0.1,0.1-0.2V820.7z M109.4,820.7c0-0.1,0-0.2-0.1-0.2s-0.1-0.1-0.2-0.1s-0.2,0-0.2,0.1s-0.1,0.1-0.1,0.2v2.2
+			c0,0.1,0,0.2,0.1,0.2s0.1,0.1,0.2,0.1s0.2,0,0.2-0.1s0.1-0.1,0.1-0.2V820.7z M111.6,820.7c0-0.1,0-0.2-0.1-0.2s-0.1-0.1-0.2-0.1
+			s-0.2,0-0.2,0.1s-0.1,0.1-0.1,0.2v2.2c0,0.1,0,0.2,0.1,0.2s0.1,0.1,0.2,0.1s0.2,0,0.2-0.1s0.1-0.1,0.1-0.2V820.7z"/>
+	</g>
+</g>
 </svg>

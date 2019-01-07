@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Radium from "radium";
-import Button from "@material-ui/core/Button";
+//import Button from "@material-ui/core/Button";
 
 import en_lorem_ipsum from "../../assets/lorem_ipsum/lorem-ipsum-en.txt";
 import ja_lorem_ipsum from "../../assets/lorem_ipsum/lorem-ipsum-ja.txt";
@@ -42,7 +42,7 @@ const p4Style = {
     // height: 500,
     display: "flex",
     justifyContent: "space-evenly",
-    alignItems: "center",
+    alignItems: "flex-start",
     flexWrap: "wrap",
     height: "100vh",
     margin: "0 auto",
@@ -84,18 +84,24 @@ const p4Style = {
     height: 200
   },
   avatar_box: {
-    padding: 0,
+    padding: "15px 0 0 0",
     "@media (min-width: 1100px)": {
       padding: "15px 50px 50px 50px"
     }
   },
   footer: {
     paddingTop: 30,
-    paddingBottom: 10,
+    paddingBottom: 50,
     color: "grey",
     width: "100%",
     fontSize: 12,
     fontWeight: 100
+  },
+  header: {
+    width: "100%",
+    fontWeight: 100,
+    textShadow: "0 2px 3px #EDEEEF",
+    paddingBottom: 50
   }
 };
 
@@ -190,13 +196,14 @@ class Page extends Component {
     const page_4_full = (
       <div
         style={{
-          ...p4Style.root,
-          display: this.state.showPage4 ? "flex" : "none"
+          ...p4Style.root
+          // display: this.state.showPage4 ? "flex" : "none"
         }}
       >
+        <h2 style={p4Style.header}>Team Members</h2>
         {avatars(avatar_data)}
         <p style={p4Style.footer}>
-          © 2018 some company. <br />
+          © 2018 InTransit. <br />
           <br />
           terms and conditions
         </p>
@@ -205,7 +212,7 @@ class Page extends Component {
 
     const page_4 = (
       <div ref={this.refLocation[0]}>
-        <div className="about-btn" style={p4Style.button.root}>
+        {/* <div className="about-btn" style={p4Style.button.root}>
           <Button
             children={""}
             style={p4Style.button.bar}
@@ -213,7 +220,7 @@ class Page extends Component {
             color="primary"
             onClick={this.handleClick}
           />
-        </div>
+        </div> */}
         {page_4_full}
       </div>
     );
