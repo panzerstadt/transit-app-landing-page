@@ -6,13 +6,24 @@ import "./App.css";
 
 // import Parallax from "./components/parallax";
 import Scroll from "./components/scroll";
+import firebase from 'firebase';
+var config = {
+  apiKey: "AIzaSyBr0sQMjen3zRkUG4slJUh301VH0aDkTRY",
+  authDomain: "intransit-54f16.firebaseapp.com",
+  databaseURL: "https://intransit-54f16.firebaseio.com",
+  projectId: "intransit-54f16",
+  storageBucket: "intransit-54f16.appspot.com",
+  messagingSenderId: "486632746677"
+};
+firebase.initializeApp(config);
+
 // import Header from "./components/header";
 
 // simple password protection here
 
 class App extends Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: true
   };
   handleAuthentication = this.handleAuthentication.bind(this);
 
