@@ -104,7 +104,7 @@ self.__precacheManifest = [
     "url": "/transit-app-landing-page/static/media/pin.96b52284.svg"
   },
   {
-    "revision": "189e062ca887af798353da6223dd08b7",
+    "revision": "5c9d3481b901443aa8a321b0d43b618e",
     "url": "/transit-app-landing-page/index.html"
   }
 ];

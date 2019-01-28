@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/transit-app-landing-page/precache-manifest.c70632dcf2c65028f21fea084502ec7c.js"
+  "/transit-app-landing-page/precache-manifest.3c3c1761fbcd8423dd3c4fc77bbe7636.js"
 );
 
 workbox.clientsClaim();
