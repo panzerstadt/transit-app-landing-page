@@ -12,7 +12,7 @@ L.Icon.Default.mergeOptions({
 });
 
 const PinIcon = new L.Icon({
-  iconUrl: require(`../../../assets/icons/planner/place.svg`),
+  iconUrl: require(`../../../assets/icons/planner/place-red.svg`),
 
   iconSize: [30, 30],
   iconAnchor: [15, 30],

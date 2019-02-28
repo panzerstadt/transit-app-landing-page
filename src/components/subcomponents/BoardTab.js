@@ -21,7 +21,16 @@ const WalkTab = ({ cIndex, airport, time, status }) => {
         justifyContent: "flex-start"
       }}
     >
-      <h1 style={{ color: "#F50945", margin: 0, fontSize: 40 }}>Board</h1>
+      <h1
+        style={{
+          color: "#F50945",
+          margin: 0,
+          fontSize: 40,
+          textShadow: "1px 2px 15px rgba(0, 0, 0, 0.162)"
+        }}
+      >
+        Board
+      </h1>
 
       <div
         style={{
