@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Radium from "radium";
 //import Button from "@material-ui/core/Button";
 
-import en_lorem_ipsum from "../../assets/lorem_ipsum/lorem-ipsum-en.txt";
-import ja_lorem_ipsum from "../../assets/lorem_ipsum/lorem-ipsum-ja.txt";
-
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => {
@@ -100,7 +97,7 @@ const p4Style = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "15px 0 0 0",
+    padding: "15px 10px 0 ",
     "@media (min-width: 1100px)": {
       padding: "15px 50px 50px 50px"
     }
@@ -141,7 +138,8 @@ const avatar_data = [
   {
     name: "Kyo Hakamata",
     avatar: images["kyo.png"],
-    text: readTextFile(ja_lorem_ipsum)
+    text:
+      "An Art Director pursuing to be a bridge between data and UX. Kyo has worked on variety of mediums, anything in the name of graphic design. He has won couple of international awards: Webby, W3, and such. Now he’s focusing on data-driven design to elevate user experiences."
   },
   {
     name: "Piotr Kroujkov",
@@ -237,9 +235,9 @@ class Page extends Component {
         <p style={p4Style.footer}>
           © 2018 InTransit. <br />
           <br />
-          <a style={p4Style.tnc} href="#top">
+          {/* <a style={p4Style.tnc} href="#top">
             Terms and Conditions
-          </a>
+          </a> */}
         </p>
       </div>
     );

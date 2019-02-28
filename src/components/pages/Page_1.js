@@ -62,7 +62,7 @@ const p1Style = {
   button: {
     width: 120,
     margin: 5,
-    borderRadius: 6,
+    borderRadius: 8,
     ios: {
       backgroundColor: "#007AFF",
       borderColor: "rgb(21, 134, 255)",

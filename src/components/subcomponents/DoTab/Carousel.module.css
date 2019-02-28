@@ -1,0 +1,83 @@
+.uiCenter {
+  text-align: center;
+}
+
+.carouselContainer {
+  position: relative;
+  height: 120px;
+  max-width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.carouselTrack {
+  display: flex;
+  height: 100%;
+}
+
+.carouselCard {
+  flex: 0 0 300px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  -webkit-tap-highlight-color: transparent;
+  overflow: visible;
+}
+
+.carouselCardInner {
+  flex-direction: column;
+
+  /* width: 290px;
+  height: 290px; */
+  border-radius: 5px;
+  overflow: visible;
+}
+
+.carouselTitle {
+  margin-top: 20px;
+  font-size: 1.5em;
+}
+
+.carouselText {
+  padding: 1em;
+  font-size: 14px;
+  white-space: pre-wrap;
+  text-align: left;
+  font-family: sans-serif;
+}
+
+.carouselPaginationWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.carouselPagination {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  width: 180px;
+  padding: 0;
+}
+
+.carouselPagination li {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(50, 50, 50, 0.5);
+}
+
+.carouselPagination .current {
+  border-radius: 0;
+  background: white;
+}

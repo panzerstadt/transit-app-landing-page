@@ -5,6 +5,9 @@ import Radium from "radium";
 import FlyInOutTab from "./FlyInOutTab";
 import PlaceTab from "./PlaceTab";
 import ChartTab from "./ChartTab";
+import WalkTab from "./WalkTab";
+import DoTab from "./DoTab";
+import BoardTab from "./BoardTab";
 
 function importAll(r) {
   let images = {};
@@ -28,9 +31,12 @@ let buffer = 400;
 // all variables
 const styles = {
   root: {
-    width: 290,
+    width: "100%",
+    padding: 30,
+
+    fontFamily: "Roboto, sans-serif",
     // only for iphone 5
-    padding: "30px 20px 30px 10px",
+    //padding: "30px 28px 30px 28px",
     "@media (min-width: 340px)": {
       // for the rest of the devices
       width: 300
@@ -40,10 +46,10 @@ const styles = {
     "@media (min-width: 420px)": {
       //boxShadow: "0 0 20px #DCE9F2",
       padding: 30
-    },
-    margin: "50px 0 50px 0",
+    }
+    //margin: "50px 0 50px 0"
     //backgroundColor: "white",
-    color: "#2F4959"
+    //color: "#2F4959"
     //textShadow: "0 0 1px #DBDBDB"
     //border: "1px solid lightgrey"
   },
@@ -285,7 +291,7 @@ class Planner extends Component {
         this.onFocusChange();
       }
 
-      console.log("cutting 3rd tab!");
+      //console.log("cutting 3rd tab!");
     } else if (refOffsetY[1] < sY && sY < refOffsetY[2]) {
       if (this.state.focused !== 2) {
         this.setState({ focused: 2 });
@@ -342,7 +348,17 @@ class Planner extends Component {
         />
 
         <div ref={this.refLocation[1]} />
-        <PlaceTab
+        <WalkTab cIndex="2" />
+
+        <div ref={this.refLocation[2]} />
+        <DoTab cIndex="3" />
+
+        <div ref={this.refLocation[3]} />
+        <BoardTab cIndex="4" />
+
+        <div ref={this.refLocation[4]} />
+
+        {/* <PlaceTab
           style={styles}
           cIndex="2"
           cColor="#6d6d6d"
@@ -351,7 +367,6 @@ class Planner extends Component {
           focused={this.state.focused === 2}
         />
 
-        <div ref={this.refLocation[2]} />
         <PlaceTab
           style={styles}
           cIndex="3"
@@ -359,9 +374,9 @@ class Planner extends Component {
           data={placeData.ana}
           onHoverData={{ map: "map url here" }}
           focused={this.state.focused === 3}
-        />
+        /> */}
 
-        <div ref={this.refLocation[3]} />
+        {/* <div ref={this.refLocation[3]} />
         <ChartTab
           style={styles}
           cIndex="4"
@@ -378,7 +393,7 @@ class Planner extends Component {
           cColor="#E20034"
           data={chartData.boarding}
           focused={this.state.focused === 5}
-        />
+        /> */}
 
         <div ref={this.refLocation[5]} />
         <FlyInOutTab

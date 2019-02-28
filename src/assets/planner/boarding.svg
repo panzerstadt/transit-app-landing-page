@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="306.5" height="181" viewBox="0 0 306.5 181">
+  <defs>
+    <style>
+      .cls-1, .cls-3, .cls-7 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-6, .cls-9 {
+        fill: #f50a46;
+      }
+
+      .cls-3, .cls-6, .cls-7 {
+        font-size: 10px;
+      }
+
+      .cls-3 {
+        font-family: Roboto-Light, Roboto;
+        font-weight: 300;
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-5 {
+        fill: none;
+        stroke: #fff;
+        opacity: 0.6;
+      }
+
+      .cls-6 {
+        font-family: Roboto-Medium, Roboto;
+        font-weight: 500;
+      }
+
+      .cls-7 {
+        font-family: Roboto-Bold, Roboto;
+        font-weight: 700;
+      }
+
+      .cls-8, .cls-9 {
+        stroke: none;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.84" y1="1" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f50945"/>
+      <stop offset="1" stop-color="#011627"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_238" data-name="Group 238" transform="translate(-65 -1504)">
+    <path id="Union_1" data-name="Union 1" class="cls-1" d="M82.752,25H6a6,6,0,0,1-6-6V6A6,6,0,0,1,6,0H85.484a6,6,0,0,1,6,6V32.506Z" transform="translate(70.516 1504)"/>
+    <g id="Union_2" data-name="Union 2" class="cls-2" transform="translate(268 1504)">
+      <path class="cls-8" d="M 90.79990386962891 32.02492523193359 L 83.60065460205078 24.85845375061035 L 83.54213714599609 24.80019569396973 L 83.45956420898438 24.80019569396973 L 6.000303268432617 24.80019569396973 C 2.802009344100952 24.80019569396973 0.1999974697828293 22.19819641113281 0.1999974697828293 18.99990081787109 L 0.1999974697828293 6.000301361083984 C 0.1999974697828293 2.80200719833374 2.802009344100952 0.1999954730272293 6.000303268432617 0.1999954730272293 L 85.00050354003906 0.1999954730272293 C 88.19830322265625 0.1999954730272293 90.79990386962891 2.80200719833374 90.79990386962891 6.000301361083984 L 90.79990386962891 23.06339454650879 L 90.79990386962891 32.02492523193359 Z"/>
+      <path class="cls-9" d="M 90.59990692138672 31.54363059997559 L 90.59990692138672 23.06339454650879 L 90.59990692138672 6.000301361083984 C 90.59990692138672 2.912277936935425 88.08802032470703 0.3999954760074615 85.00050354003906 0.3999954760074615 L 6.000303268432617 0.3999954760074615 C 2.912279844284058 0.3999954760074615 0.3999974727630615 2.912277936935425 0.3999974727630615 6.000301361083984 L 0.3999974727630615 18.99990081787109 C 0.3999974727630615 22.08791351318359 2.912279844284058 24.60019493103027 6.000303268432617 24.60019493103027 L 83.45956420898438 24.60019493103027 L 83.62471771240234 24.60019493103027 L 83.74176025390625 24.71671295166016 L 90.59990692138672 31.54363059997559 M 90.99990081787109 32.50620651245117 L 83.45956420898438 25.00019454956055 L 6.000303268432617 25.00019454956055 C 2.686503410339355 25.00019454956055 -2.532240841901512e-06 22.31370162963867 -2.532240841901512e-06 18.99990081787109 L -2.532240841901512e-06 6.000301361083984 C -2.532240841901512e-06 2.686501264572144 2.686503410339355 -4.533475930657005e-06 6.000303268432617 -4.533475930657005e-06 L 85.00050354003906 -4.533475930657005e-06 C 88.31430053710938 -4.533475930657005e-06 90.99990081787109 2.686501264572144 90.99990081787109 6.000301361083984 L 90.99990081787109 23.06339454650879 L 90.99990081787109 32.50620651245117 Z"/>
+    </g>
+    <text id="_Estimated_best_time_to_queue" data-name="* Estimated best time to queue" class="cls-3" transform="translate(65 1682)"><tspan x="0" y="0">* Estimated best time to queue</tspan></text>
+    <text id="_14:40" data-name="14:40" class="cls-3" transform="translate(94 1658)"><tspan x="-12.134" y="0">14:40</tspan></text>
+    <text id="_15:00" data-name="15:00" class="cls-3" transform="translate(159.893 1658)"><tspan x="-12.134" y="0">15:00</tspan></text>
+    <text id="_15:20" data-name="15:20" class="cls-3" transform="translate(227.684 1658)"><tspan x="-12.134" y="0">15:20</tspan></text>
+    <text id="_15:40" data-name="15:40" class="cls-3" transform="translate(292.247 1658)"><tspan x="-12.134" y="0">15:40</tspan></text>
+    <text id="_16:00" data-name="16:00" class="cls-3" transform="translate(356 1658)"><tspan x="-12.134" y="0">16:00</tspan></text>
+    <path id="Path_41" data-name="Path 41" class="cls-4" d="M2258,730.915s30.439-7.8,56.389-25.2c30.709-20.594,59.83-51.521,87.41-52.634,50.513-2.038,74.2,77.834,74.2,77.834Z" transform="translate(-2120 908.503)"/>
+    <path id="Path_64" data-name="Path 64" class="cls-5" d="M-13.25,0H293" transform="translate(78.5 1639.5)"/>
+    <line id="Line_45" data-name="Line 45" class="cls-5" y2="95" transform="translate(161.841 1544.5)"/>
+    <line id="Line_47" data-name="Line 47" class="cls-5" y2="4.746" transform="translate(94.5 1639.5)"/>
+    <line id="Line_46" data-name="Line 46" class="cls-5" y2="4.746" transform="translate(227.092 1639.5)"/>
+    <line id="Line_90" data-name="Line 90" class="cls-5" y2="4.746" transform="translate(161.841 1639.5)"/>
+    <line id="Line_42" data-name="Line 42" class="cls-5" y2="4.746" transform="translate(292.343 1639.5)"/>
+    <line id="Line_43" data-name="Line 43" class="cls-5" y2="4.746" transform="translate(358.5 1639.5)"/>
+    <line id="Line_44" data-name="Line 44" class="cls-5" y2="95" transform="translate(358.5 1544.5)"/>
+    <text id="Boarding_Opens" data-name="Boarding Opens" class="cls-6" transform="translate(78 1510)"><tspan x="2.312" y="9">Boarding Opens</tspan></text>
+    <text id="Boarding_Closes" data-name="Boarding Closes" class="cls-7" transform="translate(313 1520)"><tspan x="-36.787" y="0">Boarding Closes</tspan></text>
+  </g>
+</svg>

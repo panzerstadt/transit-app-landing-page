@@ -27,16 +27,6 @@ let sY = 0;
 let refOffsetY = [];
 let windowHeight = window.innerHeight;
 
-/**
- *
- *
- * @param {*} v
- * @param {*} vmin
- * @param {*} vmax
- * @param {*} tmin
- * @param {*} tmax
- * @returns
- */
 function normalize(v, vmin, vmax, tmin, tmax) {
   var nv = Math.max(Math.min(v, vmax), vmin);
   var dv = vmax - vmin;
@@ -46,12 +36,6 @@ function normalize(v, vmin, vmax, tmin, tmax) {
   return tv;
 }
 
-/**
- *
- *
- * @param {*} r
- * @returns
- */
 function importAll(r) {
   let images = {};
   r.keys().map((item, index) => {
@@ -62,70 +46,6 @@ function importAll(r) {
   return images;
 }
 
-// functinos
-/**
- *
- *
- * @param {*} fromLocationXY
- * @param {*} toLocationXY
- * @returns
- */
-// const locationIndicator = (fromLocationXY, toLocationXY) => {
-//   // will be based on style
-
-//   //TODO: make this responsive
-//   const indicatorStyleHorizontal = {
-//     transition: "all 300ms ease",
-//     position: "fixed",
-//     top: fromLocationXY[1],
-//     left: fromLocationXY[0],
-//     width: toLocationXY[0],
-//     bottom: toLocationXY[1],
-//     height: 1,
-
-//     borderStyle: "dashed none none none",
-//     borderWidth: 2,
-//     borderColor: "#D8497E",
-
-//     zIndex: -5
-//   };
-
-//   const indicatorStyleVertical = {
-//     transition: "all 300ms ease",
-//     position: "fixed",
-//     top: fromLocationXY[1],
-//     left: toLocationXY[0] + fromLocationXY[0],
-//     width: 1,
-//     bottom: toLocationXY[1],
-
-//     borderStyle: "none dashed none none",
-//     borderWidth: 2,
-//     borderColor: "#D8497E",
-
-//     zIndex: -5
-//   };
-
-//   // both locations are pixels in X and Y
-//   // and we use it to build
-
-//   // build <div> with backgroundcolor
-//   return (
-//     <div>
-//       <div style={indicatorStyleVertical} />
-//       <div style={indicatorStyleHorizontal} />
-//     </div>
-//   );
-// };
-
-/**
- *
- *
- * @param {*} LocationXY
- * @param {*} img_src
- * @param {*} color
- * @param {*} style
- * @returns
- */
 const pinIndicator = (LocationXY, img_src, color, style) => {
   const pinSize = 100;
   if (!style) {
@@ -255,15 +175,15 @@ const p3Style = {
     alignItems: "center",
     flexWrap: "wrap",
     margin: "0 auto",
-    background: "linear-gradient(#FFFFFF,#c4d8eb, #002a4c, #011627 )",
-    color: "#2F4959",
+    background: "linear-gradient(#FFFFFF,#D8EBFF, #004884, #011627 )",
+    //color: "#2F4959",
     zIndex: 10
   },
   button: {
     backgroundColor: "#ffffffcc",
     width: 180,
     marginTop: 70,
-    borderRadius: 6,
+    borderRadius: 8,
     height: 40,
     animation: "x 8s ease infinite",
     animationName: breatheKeyFrames,
@@ -273,6 +193,10 @@ const p3Style = {
     borderColor: "transparent",
     color: "#007AFF",
     fontSize: 16,
+
+    ":focus": {
+      outline: 0
+    },
 
     ":hover": {
       backgroundColor: "#FCFCFC"
@@ -352,7 +276,7 @@ const p3Style = {
   bottomTextDiv: {
     display: "flex",
     flexDirection: "column",
-    "@media (min-width: 600px)": {
+    "@media (min-width: 700px)": {
       flexDirection: "row"
     }
   },
