@@ -3,6 +3,8 @@ import Radium from "radium";
 
 import Typography from "@material-ui/core/Typography";
 
+import InTransitLogo from "../../assets/logo/logo-white.svg";
+
 // const gradientKeyframes = Radium.keyframes({
 //   "0% 100%": {
 //     backgroundPosition: "50% 0%"
@@ -100,7 +102,7 @@ const p2Style_simple = {
     margin: "0 auto",
     paddingTop: 30,
     paddingBottom: 30,
-    backgroundColor: "#FCFEFF",
+    //backgroundColor: "#FCFEFF",
     zIndex: 0,
     "@media (max-width: 500px)": {
       width: "100%"
@@ -111,21 +113,30 @@ const p2Style_simple = {
     fontSize: 50,
     fontWeight: 700,
     titleText: {
-      fontFamily: "'Josefin Slab', serif", //josefin, kameron, spectral, cormorant, fanwood
+      height: 50,
+
+      "@media (min-width: 600px)": {
+        height: 100,
+        paddingBottom: 30
+      }
+      //fontFamily: "'Josefin Slab', serif", //josefin, kameron, spectral, cormorant, fanwood
       //color: "#2F4959",
-      padding: "10px 15px 5px 15px",
-      border: "3px solid #2F4959"
+      //padding: "10px 15px 5px 15px"
+      //border: "5px solid black"
     }
   },
   text: {
-    fontSize: 18,
+    fontSize: 13,
     fontWeight: 300,
-    width: 500,
-    lineHeight: "1.8em",
-    textShadow: "0 0 3px #DBDBDB",
-    "@media (max-width: 500px)": {
-      fontSize: 13,
-      width: 320
+    width: 320,
+    lineHeight: "1.4em",
+    //textShadow: "0 0 2px #DBDBDB",
+    "@media (min-width: 330px)": {
+      fontSize: 14.5
+    },
+    "@media (min-width: 500px)": {
+      fontSize: 18,
+      width: 500
     }
   },
   image: {
@@ -266,13 +277,14 @@ class Page extends Component {
     const old_page_2 = (
       <div style={p2Style_simple.root}>
         <div>
-          <Typography
+          {/* <Typography
             style={p2Style_simple.title}
             variant="headline"
             component="h2"
           >
             <span style={p2Style_simple.title.titleText}>InTransit</span>
-          </Typography>
+          </Typography> */}
+          <img src={InTransitLogo} style={p2Style_simple.title.titleText} />
           <p style={p2Style_simple.text}>
             Transiting at an unfamiliar airport can be stressful. <br />
             InTransit eliminates the unknown by building you a <br />

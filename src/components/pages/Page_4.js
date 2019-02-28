@@ -38,17 +38,19 @@ function readTextFile(file) {
 
 const p4Style = {
   root: {
-    transition: "all 150ms ease 500ms",
+    //transition: "all 150ms ease 500ms",
     // height: 500,
     display: "flex",
     justifyContent: "space-evenly",
     alignItems: "flex-start",
     flexWrap: "wrap",
-    height: "100vh",
+    minHeight: "100vh",
     margin: "0 auto",
-    marginTop: 100,
-    backgroundColor: "#FDFDFD",
-    color: "#1E1B0E",
+    //marginTop: 100,
+    backgroundColor: "#011627",
+    color: "white",
+    //backgroundColor: "#FDFDFD",
+    //color: "#1E1B0E",
     zIndex: 0
   },
   button: {
@@ -71,37 +73,61 @@ const p4Style = {
     }
   },
   text: {
+    marginTop: 11,
     fontSize: 15,
     width: 280,
-    fontWeight: 100,
-    textShadow: "0 2px 3px #EDEEEF"
+    fontWeight: 100
+    //textShadow: "0 2px 3px #EDEEEF"
   },
   title: {
-    fontWeight: 100,
-    textShadow: "0 2px 3px #EDEEEF"
+    fontWeight: 700,
+    fontSize: 30,
+    margin: "40px 0 0 0"
+    //textShadow: "0 2px 3px #EDEEEF"
+  },
+  imageDiv: {
+    height: 200,
+    width: 200,
+    overflow: "hidden",
+    padding: 10,
+    borderRadius: 999,
+    backgroundColor: "white"
   },
   image: {
     height: 200
   },
   avatar_box: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     padding: "15px 0 0 0",
     "@media (min-width: 1100px)": {
       padding: "15px 50px 50px 50px"
     }
   },
   footer: {
+    pointerEvents: "none",
     paddingTop: 30,
-    paddingBottom: 50,
-    color: "grey",
+    paddingBottom: 40,
+    color: "lightgrey",
     width: "100%",
-    fontSize: 12,
-    fontWeight: 100
+    fontSize: 14,
+    fontWeight: 500
+  },
+  tnc: {
+    pointerEvents: "all",
+    textDecoration: "none",
+    color: "lightgrey"
   },
   header: {
+    fontSize: 24,
     width: "100%",
-    fontWeight: 100,
-    textShadow: "0 2px 3px #EDEEEF",
-    paddingBottom: 50
+    fontWeight: 700,
+    //textShadow: "0 2px 3px #EDEEEF",
+    padding: "50px 0",
+    "@media (min-width: 600px)": {
+      fontSize: 30
+    }
   }
 };
 
@@ -109,7 +135,8 @@ const avatar_data = [
   {
     name: "Rahmat Hidayat",
     avatar: images["rahmat.png"],
-    text: readTextFile(en_lorem_ipsum)
+    text:
+      "Rahmat Hidayat has been working in the digital space for over 10 years, won a few International Awards, and has led numerous high-profile projects around the globe in fields such as AI, VR, AR, Web Development, Game Development, Mobile Apps, and Generative Artworks."
   },
   {
     name: "Kyo Hakamata",
@@ -119,12 +146,14 @@ const avatar_data = [
   {
     name: "Piotr Kroujkov",
     avatar: images["piotr.png"],
-    text: readTextFile(en_lorem_ipsum)
+    text:
+      "Passionate about the behaviour changes technology brings, Piotr was working as a data scientist in the airline industry before joining the agency, He now focuses on business and service design."
   },
   {
     name: "Tang Li Qun",
     avatar: images["tang.png"],
-    text: readTextFile(en_lorem_ipsum)
+    text:
+      "Li Qun is constantly experimenting with the latest in web technologies and works in web and app development, graphic design, and UI/UX. Prior to that, he worked in the architecture industry on parametric 3d modelling and design."
   }
 ];
 
@@ -132,7 +161,10 @@ const avatars = data => {
   return data.map((d, i) => {
     return (
       <div key={i} style={p4Style.avatar_box}>
-        <img style={p4Style.image} src={d.avatar} alt={d.name} />
+        <div style={p4Style.imageDiv}>
+          <img style={p4Style.image} src={d.avatar} alt={d.name} />
+        </div>
+
         <h2 style={p4Style.title}>{d.name}</h2>
         <p style={p4Style.text}>{d.text}</p>
       </div>
@@ -205,7 +237,9 @@ class Page extends Component {
         <p style={p4Style.footer}>
           © 2018 InTransit. <br />
           <br />
-          terms and conditions
+          <a style={p4Style.tnc} href="#top">
+            Terms and Conditions
+          </a>
         </p>
       </div>
     );

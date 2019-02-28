@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Radium from "radium";
 
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+//import Typography from "@material-ui/core/Typography";
 
 import play_store_disabled from "../../assets/icons/store-google-disabled.svg";
 import app_store from "../../assets/icons/store-apple.svg";
@@ -17,54 +17,56 @@ function importAll(r) {
   return images;
 }
 // prepare bg images
-let images = importAll(require.context("../../assets", true, /.*\.jpeg$/));
+let images = importAll(require.context("../../assets", true, /.*\.png$/));
 
 const p1Style = {
   root: {
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
     alignItems: "center",
     flexWrap: "wrap",
-    height: window.innerHeight,
+    minHeight: "100vh",
     width: "100%",
     margin: "0 auto",
-    // paddingTop: 30,
-    // paddingBottom: 30,
     boxShadow: "0 0 50px #EAEFF2",
     zIndex: 100,
-    transition: "all 2000ms ease"
+    transition: "height 300ms ease",
+    "@media (min-width: 700px)": {
+      flexDirection: "row"
+    }
   },
   title: {
-    fontSize: 28,
-    fontWeight: 500
+    paddingTop: 60,
+    fontSize: 24,
+    fontWeight: 700,
+    "@media (min-width: 700px)": {
+      fontSize: 30
+    }
   },
   text: {
-    fontSize: 18,
-    fontWeight: 320,
-    lineHeight: "1.6em",
+    fontSize: 15,
+    fontWeight: 300,
+    lineHeight: "1.4em",
+    marginBottom: 30,
     width: "100%",
-    "@media (max-width: 350px)": {
-      fontSize: 14
+    "@media (min-width: 700px)": {
+      fontSize: 18
     }
   },
   image: {
-    transition: "all 2000ms ease",
-    height: "40vh",
-    padding: "0 50px 30px 50px",
-    ":hover": {
-      filter: "drop-shadow(0 0 10px #8A8F9B)"
-    },
-    "@media (min-width: 1100px)": {
-      height: "70vh"
-    }
+    transition: "height 300ms ease",
+    height: 600,
+    marginBottom: 20
   },
   button: {
     width: 120,
     margin: 5,
-    borderRadius: 999,
+    borderRadius: 6,
     ios: {
-      borderColor: "#007AFF",
-      color: "#007AFF"
+      backgroundColor: "#007AFF",
+      borderColor: "rgb(21, 134, 255)",
+      color: "white"
     },
     android: {
       borderColor: "#A4C639",
@@ -79,18 +81,18 @@ const p1Style = {
     "@media (min-width: 1100px)": {
       marginLeft: 100
     },
-    marginLeft: 0,
-    padding: "0 30px 0 30px"
+    marginLeft: 0
+    //padding: "0 30px 0 30px"
   }
 };
 
 const page_1 = (
-  <div style={p1Style.root}>
+  <div id="top" style={p1Style.root}>
     <div>
-      <Typography style={p1Style.title} variant="headline" component="h2">
+      <h2 style={p1Style.title}>
         Time well spent, <br />
         for people well travelled.
-      </Typography>
+      </h2>
       <p style={p1Style.text}>
         Let it take care of your transit planning. <br />
         Know what to expect at the airport. <br />
@@ -101,14 +103,16 @@ const page_1 = (
     <div style={p1Style.divRight}>
       <img
         style={p1Style.image}
-        src={images["phone/phone.jpeg"]}
+        src={images["phone/phone-departure.png"]}
         alt="iphone"
       />
-      <div>
+      <div style={{ marginBottom: 30 }}>
         <Button
           style={{ ...p1Style.button, ...p1Style.button.ios }}
           variant="outlined"
           color="primary"
+          type="a"
+          href="#"
         >
           iOS {"\u00A0"}
           <img style={{ height: 15 }} src={app_store} alt="icon" />

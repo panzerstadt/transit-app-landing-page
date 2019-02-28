@@ -178,6 +178,7 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
 
   return (
     <div
+      key={`pin-${img_src}`}
       className="pin-indicator"
       //key={`pin-at-${LocationXY[0]}-${LocationXY[1]}`}
       style={indicatorStyle.div}
@@ -254,19 +255,19 @@ const p3Style = {
     alignItems: "center",
     flexWrap: "wrap",
     margin: "0 auto",
-    background: "linear-gradient(#FFFFFF,#cdebf2, #B9CBE4, #004D7A )",
+    background: "linear-gradient(#FFFFFF,#c4d8eb, #002a4c, #011627 )",
     color: "#2F4959",
     zIndex: 10
   },
   button: {
     backgroundColor: "#ffffffcc",
     width: 180,
-    margin: 5,
-    borderRadius: 999,
+    marginTop: 70,
+    borderRadius: 6,
     height: 40,
     animation: "x 8s ease infinite",
     animationName: breatheKeyFrames,
-    transition: "all 500ms ease",
+    transition: "background-color 500ms ease",
     zIndex: 999,
 
     borderColor: "transparent",
@@ -282,6 +283,7 @@ const p3Style = {
   },
   airportSilhouette: {
     div: {
+      pointerEvents: "none",
       //transition: "opacity 100ms linear",
       transition: "left 300ms ease, bottom 300ms ease",
       opacity: 0,
@@ -294,6 +296,7 @@ const p3Style = {
       width: "100vw"
     },
     silhouette: {
+      pointerEvents: "none",
       position: "absolute",
       height: airportSilhouetteHeight,
       bottom: 0,
@@ -302,31 +305,40 @@ const p3Style = {
     }
   },
   text: {
-    transition: "all 300ms ease",
-    fontSize: 12,
+    //transition: "opacity 300ms ease",
+    fontSize: 14.5,
     fontWeight: 300,
-    width: textBoxWidth,
-    lineHeight: 1.5
+    width: textBoxWidth - 20,
+    lineHeight: "1.4em"
   },
   title: {
-    fontSize: 30,
-    fontWeight: 300,
+    fontSize: 26,
+    letterSpacing: 0.1,
+    fontWeight: 500,
     width: textBoxWidth,
-    transition: "color 500ms ease, font-size 300ms ease"
+    margin: "30px 0 0 0",
+    //transition: "color 500ms ease, font-size 300ms ease"
+    "@media (min-width: 700px)": {
+      fontSize: 30
+    }
   },
   textBox: {
-    transition: "all 150ms ease 300ms",
+    //transition: "opacity 150ms ease 30ms",
+    pointerEvents: "none",
     zIndex: 2,
     opacity: 1,
     position: "fixed",
     bottom: 20,
     height: 180,
     margin: "0 auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
     // "@media (min-width: 1100px)": {
     //   right: 0,
     //   marginRight: 300
     // },
-    padding: 3
+    //padding: 3
     //backgroundColor: "#ffffffcc"
   },
   textBoxIE11: {
@@ -337,14 +349,25 @@ const p3Style = {
       marginRight: 200
     }
   },
+  bottomTextDiv: {
+    display: "flex",
+    flexDirection: "column",
+    "@media (min-width: 600px)": {
+      flexDirection: "row"
+    }
+  },
   bottomText: {
-    fontSize: 30,
-    fontWeight: 300,
-    letterSpacing: "0.3em",
+    margin: "0 10px",
+    fontSize: 35,
+    fontWeight: 700,
+    letterSpacing: "0.05em",
     color: "#ffffff",
-    width: "100%",
+
     textShadow: "0 0 5px #CEE5F255",
-    paddingBottom: 100
+
+    "@media (min-width: 600px)": {
+      fontSize: 50
+    }
   },
   image: {
     width: 300
@@ -365,7 +388,7 @@ const p3FocusText = [
     textStyle: p3Style.text,
     title: "How Does it Work?",
     text:
-      "From your arrival to your next departure, InTransit guides you step-by-step throughout the transit airport. Be prepared for security checks, save some time to shop for souvenirs and know when to board."
+      "InTransit guides you step-by-step through your transit airport. Breeze through security checks, have plenty of time to shop for souvenirs and know when to board."
   },
   {
     focusItem: 1,
@@ -399,9 +422,9 @@ const p3FocusText = [
     textBoxStyle: p3Style.textBox,
     titleStyle: p3Style.title,
     textStyle: p3Style.text,
-    title: "Know Exactly when \n you Fly",
+    title: "Know Exactly when <br/> you Fly",
     text:
-      "Notifications keep you updated on any changes to your flights, so that you can enjoy all the airport has to offer you with a peace of mind."
+      "Enjoy all the airport has to offer you with a peace of mind. InTransit keeps you notified of any changes to your flight."
   },
   {
     focusItem: 7,
@@ -522,7 +545,7 @@ class Page extends Component {
 
     if (this.state.windowSize.width >= 1800) {
       const minPos = -1000;
-      console.log(Math.min(airportSilhouetteLeftPos, minPos));
+      //console.log(Math.min(airportSilhouetteLeftPos, minPos));
       pos = pos + widthCalc + Math.min(airportSilhouetteLeftPos, minPos);
     } else {
       pos = pos + widthCalc + airportSilhouetteLeftPos;
@@ -550,7 +573,7 @@ class Page extends Component {
         silhouetteVPos: vPos
       });
     } else {
-      console.log("not moving airport silhouette");
+      //console.log("not moving airport silhouette");
     }
   }
 
@@ -624,7 +647,10 @@ class Page extends Component {
         <div
           style={{ ...v.textBoxStyle, opacity: this.state.showText ? 1 : 0 }}
         >
-          <p style={v.titleStyle}>{v.title}</p>
+          <p
+            style={v.titleStyle}
+            dangerouslySetInnerHTML={{ __html: v.title }}
+          />
           <p style={v.textStyle}>{v.text}</p>
         </div>
       );
@@ -654,7 +680,7 @@ class Page extends Component {
         return (
           <img
             style={{ ...p3Style.image, ...p3Style.planner }}
-            src={images["bg/path.jpeg"]}
+            src={images["bg/path.jpg"]}
             alt={"static planner"}
           />
         );
@@ -882,11 +908,10 @@ class Page extends Component {
           bottom: "20vh"
         }}
       >
-        <p style={p3Style.bottomText}>
-          Excited yet?
-          <br />
-          give it a go!
-        </p>
+        <div style={p3Style.bottomTextDiv}>
+          <span style={p3Style.bottomText}>Excited yet?</span>
+          <span style={p3Style.bottomText}>give it a go!</span>
+        </div>
         <button style={p3Style.button}>
           IOS {"\u00A0"}
           <AppStoreLogo height={15} width={15} style={p3Style.button.logo} />
