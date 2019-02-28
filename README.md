@@ -8,7 +8,7 @@ $ firebase login # need to create an account
 $ firebase init # init function
 
 ### Test/Deploy
-$ firebase serve   # Start development server
+$ firebase serve # Start development server
 $ firebase deploy # deploy
 
 
