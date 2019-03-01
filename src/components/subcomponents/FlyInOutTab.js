@@ -141,8 +141,14 @@ class OLDFlyInOut extends Component {
 }
 
 class FlyInOut extends Component {
+  state = {
+    popup: false
+  };
+  handleClick = this.handleClick.bind(this);
+
   handleClick(e) {
-    alert(`you clicked ${e.currentTarget.getAttribute("label")}!`);
+    this.setState({ popup: !this.state.popup });
+    //alert(`you clicked ${e.currentTarget.getAttribute("label")}!`);
   }
 
   render() {
@@ -167,7 +173,7 @@ class FlyInOut extends Component {
     // console.log(onHoverData);
     if (isHovered) {
       //do something
-      console.log("hover state", isHovered, focused);
+      //console.log("hover state", isHovered, focused);
       // change the arrival timing animation together with flight numbers
     }
 
@@ -261,9 +267,18 @@ class FlyInOut extends Component {
       );
     };
 
+    const styles = {
+      root: {
+        "@media (min-width: 320px)": {
+          padding: "0 28px"
+        }
+      }
+    };
+
     return (
       <div
         id={`tab-${cIndex}`}
+        className={styles.root}
         style={{
           margin: "45px 0 90px 0",
           height: 258,
@@ -272,7 +287,13 @@ class FlyInOut extends Component {
           textAlign: "left",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-start"
+          justifyContent: "flex-start",
+
+          // iphone 5 settings
+          padding: "0 20px",
+          "@media (min-width: 330px)": {
+            padding: 0
+          }
         }}
       >
         <h1 style={{ color: "#F50945", margin: 0, fontSize: 40 }}>
@@ -283,7 +304,8 @@ class FlyInOut extends Component {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginTop: 10
+            marginTop: 10,
+            position: "relative"
           }}
         >
           <div>
@@ -310,11 +332,36 @@ class FlyInOut extends Component {
               width: 32,
               backgroundColor: "#F50945",
               outline: "none",
-              border: "none"
+              border: "none",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
             }}
           >
             <img src={AddAlert} alt="n" height={14} style={{ marginTop: 2 }} />
           </button>
+          <div
+            id="btn-bubble"
+            style={{
+              transition: "opacity 300ms ease",
+              display: "block",
+              opacity: this.state.popup ? 1 : 0,
+              position: "absolute",
+              right: 0,
+              top: 0,
+              marginTop: -40,
+              marginRight: 5,
+              textAlign: "right",
+              fontSize: 12,
+              fontWeight: 600
+            }}
+          >
+            <span>
+              be notified of any
+              <br />
+              changes to your flight
+            </span>
+          </div>
         </div>
 
         <div

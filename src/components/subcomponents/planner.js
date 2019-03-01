@@ -3,8 +3,8 @@ import Radium from "radium";
 //import ReactSVG from "react-svg";
 
 import FlyInOutTab from "./FlyInOutTab";
-import PlaceTab from "./PlaceTab";
-import ChartTab from "./ChartTab";
+// import PlaceTab from "./PlaceTab";
+// import ChartTab from "./ChartTab";
 import WalkTab from "./WalkTab";
 import DoTab from "./DoTab";
 import BoardTab from "./BoardTab";
@@ -31,6 +31,7 @@ let buffer = 400;
 // all variables
 const styles = {
   root: {
+    //width: 280,
     width: "100%",
     padding: 30,
 
@@ -41,12 +42,12 @@ const styles = {
       // for the rest of the devices
       width: 300
       //padding: 30
-    },
-    //boxShadow: "0 0 20px white",
-    "@media (min-width: 420px)": {
-      //boxShadow: "0 0 20px #DCE9F2",
-      padding: 30
     }
+    //boxShadow: "0 0 20px white",
+    // "@media (min-width: 420px)": {
+    //   //boxShadow: "0 0 20px #DCE9F2",
+    //   padding: 30
+    // }
     //margin: "50px 0 50px 0"
     //backgroundColor: "white",
     //color: "#2F4959"
@@ -104,100 +105,100 @@ const styles = {
   }
 };
 
-const placeData = {
-  sushi: {
-    type: "food",
-    label: "Ariso Sushi",
-    image: images["sushi.jpg"],
-    price: "2",
-    time: "09:30AM - 10:30AM"
-  },
-  ana: {
-    type: "shop",
-    label: "Ana Festa",
-    image: images["ana.jpg"],
-    price: "1",
-    time: "10:45AM - 11:15AM"
-  }
-};
+// const placeData = {
+//   sushi: {
+//     type: "food",
+//     label: "Ariso Sushi",
+//     image: images["sushi.jpg"],
+//     price: "2",
+//     time: "09:30AM - 10:30AM"
+//   },
+//   ana: {
+//     type: "shop",
+//     label: "Ana Festa",
+//     image: images["ana.jpg"],
+//     price: "1",
+//     time: "10:45AM - 11:15AM"
+//   }
+// };
 
-const chartData = {
-  checkIn: {
-    type: "check-in",
-    label: "Ana Airline",
-    chartData: [
-      {
-        time: 11,
-        amount: 2
-      },
-      {
-        time: 12,
-        amount: 5
-      },
-      {
-        time: 13,
-        amount: 9
-      },
-      {
-        time: 14,
-        amount: 6
-      },
-      {
-        time: 15,
-        amount: 2
-      },
-      {
-        time: 16,
-        amount: 1
-      }
-    ],
-    chartLabel: "Queue times"
-  },
-  boarding: {
-    type: "boarding",
-    tabData: [
-      {
-        header: "Gate Open",
-        body: "12:30PM"
-      },
-      {
-        header: "Terminal",
-        body: "2"
-      },
-      {
-        header: "Gate",
-        body: "40B"
-      }
-    ],
-    chartData: [
-      {
-        time: 11,
-        amount: 9
-      },
-      {
-        time: 12,
-        amount: 7
-      },
-      {
-        time: 13,
-        amount: 5
-      },
-      {
-        time: 14,
-        amount: 3
-      },
-      {
-        time: 15,
-        amount: 7
-      },
-      {
-        time: 16,
-        amount: 4
-      }
-    ],
-    chartLabel: "Queue times"
-  }
-};
+// const chartData = {
+//   checkIn: {
+//     type: "check-in",
+//     label: "Ana Airline",
+//     chartData: [
+//       {
+//         time: 11,
+//         amount: 2
+//       },
+//       {
+//         time: 12,
+//         amount: 5
+//       },
+//       {
+//         time: 13,
+//         amount: 9
+//       },
+//       {
+//         time: 14,
+//         amount: 6
+//       },
+//       {
+//         time: 15,
+//         amount: 2
+//       },
+//       {
+//         time: 16,
+//         amount: 1
+//       }
+//     ],
+//     chartLabel: "Queue times"
+//   },
+//   boarding: {
+//     type: "boarding",
+//     tabData: [
+//       {
+//         header: "Gate Open",
+//         body: "12:30PM"
+//       },
+//       {
+//         header: "Terminal",
+//         body: "2"
+//       },
+//       {
+//         header: "Gate",
+//         body: "40B"
+//       }
+//     ],
+//     chartData: [
+//       {
+//         time: 11,
+//         amount: 9
+//       },
+//       {
+//         time: 12,
+//         amount: 7
+//       },
+//       {
+//         time: 13,
+//         amount: 5
+//       },
+//       {
+//         time: 14,
+//         amount: 3
+//       },
+//       {
+//         time: 15,
+//         amount: 7
+//       },
+//       {
+//         time: 16,
+//         amount: 4
+//       }
+//     ],
+//     chartLabel: "Queue times"
+//   }
+// };
 
 const flightData = {
   flyIn: {
@@ -307,11 +308,6 @@ class Planner extends Component {
 
       //console.log("cutting 1st tab!");
     }
-
-    // // this is the current scroll position
-    // console.log(sY);
-    // // this is the current ref per tab
-    // console.log(refOffsetY);
   };
 
   onFocusChange() {
@@ -325,16 +321,6 @@ class Planner extends Component {
 
   render() {
     const { style } = this.props;
-    //console.log(refOffsetY);
-    // look for focused element here
-
-    /* takes inputs:
-    list of objects indicating whether to use FlyInTab or PlaceTab or CheckInTab
-
-    */
-
-    // todo: given a list of inputs, generate all the appropriate components, and set keys dynamically
-
     return (
       <div style={{ ...styles.root, ...style }} id="whereisit">
         <div ref={this.refLocation[0]} />
@@ -357,43 +343,6 @@ class Planner extends Component {
         <BoardTab cIndex="4" />
 
         <div ref={this.refLocation[4]} />
-
-        {/* <PlaceTab
-          style={styles}
-          cIndex="2"
-          cColor="#6d6d6d"
-          data={placeData.sushi}
-          onHoverData={{ map: "map url here" }}
-          focused={this.state.focused === 2}
-        />
-
-        <PlaceTab
-          style={styles}
-          cIndex="3"
-          cColor="#6d6d6d"
-          data={placeData.ana}
-          onHoverData={{ map: "map url here" }}
-          focused={this.state.focused === 3}
-        /> */}
-
-        {/* <div ref={this.refLocation[3]} />
-        <ChartTab
-          style={styles}
-          cIndex="4"
-          cColor="#ad003e"
-          data={chartData.checkIn}
-          onHoverData={{ map: "map url here" }}
-          focused={this.state.focused === 4}
-        />
-
-        <div ref={this.refLocation[4]} />
-        <ChartTab
-          style={styles}
-          cIndex="5"
-          cColor="#E20034"
-          data={chartData.boarding}
-          focused={this.state.focused === 5}
-        /> */}
 
         <div ref={this.refLocation[5]} />
         <FlyInOutTab

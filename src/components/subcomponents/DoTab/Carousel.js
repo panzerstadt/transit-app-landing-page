@@ -1,11 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TouchCarousel from "react-touch-carousel";
 import NonPassiveTouchTarget from "./NonPassiveTouchTarget";
 import VisibilitySensor from "react-visibility-sensor";
 
 import styles from "./Carousel.module.css";
 
-import icons from "../Icons";
+import iconFashion from "../../../assets/icons/planner/shopping.png";
+import iconSouvenirs from "../../../assets/icons/planner/redeem.png";
+import iconWesternFood from "../../../assets/icons/planner/restaurant-menu.png";
+
+const ICON_SELECTOR = (category = "fashion") => {
+  switch (category) {
+    case "fashion":
+      return iconFashion;
+    case "souvenirs":
+      return iconSouvenirs;
+    default:
+      return iconWesternFood;
+  }
+};
 
 const DATA = [
   {
@@ -156,7 +169,7 @@ const Carousel = ({ onChange, onClick }) => {
                 </h4>
               </div>
 
-              <img src={icons(item.category || "other")} alt="cat" />
+              <img height={20} src={ICON_SELECTOR(item.category)} />
             </div>
 
             <hr style={{ marginTop: 15, marginBottom: 0 }} />
@@ -206,7 +219,7 @@ const Carousel = ({ onChange, onClick }) => {
           cardSize={cardSize}
           renderCard={CarouselCard}
           loop
-          autoplay={active ? 5000 : 0}
+          autoplay={active ? 3000 : 0}
         />
       </div>
     </VisibilitySensor>

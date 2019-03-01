@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+
+import styles from "./BoardTab.module.css";
 
 import Place from "../../assets/icons/planner/place.svg";
 import BoardingChart from "../../assets/planner/boarding.svg";
 
 const WalkTab = ({ cIndex, airport, time, status }) => {
+  const [popup, setPopup] = useState(false);
+
   const handleClick = e => {
-    alert(`you clicked ${e.currentTarget.getAttribute("label")}!`);
+    const pos = e;
+    console.log(pos);
+
+    setPopup(!popup);
+
+    //alert(`you clicked ${e.currentTarget.getAttribute("label")}!`);
   };
   return (
     <div
       id={`tab-${cIndex}`}
+      className={styles.iphonePadding}
       style={{
         margin: "45px 0 90px 0",
         height: 388,
@@ -36,6 +46,7 @@ const WalkTab = ({ cIndex, airport, time, status }) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
+          position: "relative",
           marginTop: 10
         }}
       >
@@ -63,11 +74,35 @@ const WalkTab = ({ cIndex, airport, time, status }) => {
             width: 32,
             backgroundColor: "#F50945",
             outline: "none",
-            border: "none"
+            border: "none",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
           }}
         >
           <img src={Place} alt="n" height={14} style={{ marginTop: 2 }} />
         </button>
+        <div
+          id="btn-bubble"
+          style={{
+            transition: "opacity 300ms ease",
+            display: "block",
+            opacity: popup ? 1 : 0,
+            position: "absolute",
+            right: 0,
+            top: 0,
+            marginTop: -40,
+            marginRight: 5,
+            textAlign: "right",
+            fontSize: 12,
+            fontWeight: 500
+          }}
+        >
+          <span>
+            easily get directions
+            <br /> to your gate
+          </span>
+        </div>
       </div>
 
       <div style={{ marginTop: 30 }}>

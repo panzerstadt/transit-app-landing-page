@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+
+import styles from "./WalkTab.module.css";
 
 import Place from "../../assets/icons/planner/place.svg";
 
 const WalkTab = ({ cIndex, text, distance, mins }) => {
+  const [popup, setPopup] = useState(false);
   const handleClick = e => {
-    alert(`you clicked ${e.currentTarget.getAttribute("label")}!`);
+    setPopup(!popup);
+    //alert(`you clicked ${e.currentTarget.getAttribute("label")}!`);
   };
   return (
     <div
       id={`tab-${cIndex}`}
+      className={styles.iphonePadding}
       style={{
         margin: "45px 0 90px 0",
         height: 113,
@@ -25,7 +30,8 @@ const WalkTab = ({ cIndex, text, distance, mins }) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          marginTop: 10
+          marginTop: 10,
+          position: "relative"
         }}
       >
         <div>
@@ -52,11 +58,36 @@ const WalkTab = ({ cIndex, text, distance, mins }) => {
             width: 32,
             backgroundColor: "#F50945",
             outline: "none",
-            border: "none"
+            border: "none",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
           }}
         >
           <img src={Place} alt="n" height={14} style={{ marginTop: 2 }} />
         </button>
+        <div
+          id="btn-bubble"
+          style={{
+            transition: "opacity 300ms ease",
+            display: "block",
+            opacity: popup ? 1 : 0,
+            position: "absolute",
+            right: 0,
+            top: 0,
+            marginTop: -40,
+            marginRight: 5,
+            textAlign: "right",
+            fontSize: 12,
+            fontWeight: 700
+          }}
+        >
+          <span>
+            know exactly
+            <br />
+            where to to go
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Radium from "radium";
 
 import Button from "@material-ui/core/Button";
-//import Typography from "@material-ui/core/Typography";
 
 import play_store_disabled from "../../assets/icons/store-google-disabled.svg";
 import app_store from "../../assets/icons/store-apple.svg";
+
+import { IOS_APP_URL } from "../../constants";
 
 function importAll(r) {
   let images = {};
@@ -112,7 +113,7 @@ const page_1 = (
           variant="outlined"
           color="primary"
           type="a"
-          href="#"
+          href={IOS_APP_URL}
         >
           iOS {"\u00A0"}
           <img style={{ height: 15 }} src={app_store} alt="icon" />

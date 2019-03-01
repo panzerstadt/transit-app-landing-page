@@ -94,5 +94,5 @@ export default (category = "other") => {
     }
   };
 
-  return require(`../../assets/icons/planner/${ICONS[category].name}.svg`);
+  return ICONS[category].name;
 };

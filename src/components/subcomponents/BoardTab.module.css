@@ -1,0 +1,9 @@
+.iphonePadding {
+  padding: 0 20px;
+}
+
+@media (min-width: 330px) {
+  .iphonePadding {
+    padding: 0;
+  }
+}

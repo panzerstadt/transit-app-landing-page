@@ -70,10 +70,12 @@ const p4Style = {
     }
   },
   text: {
-    marginTop: 11,
+    marginTop: 20,
+    marginBottom: 30,
     fontSize: 15,
     width: 280,
-    fontWeight: 100
+    fontWeight: 100,
+    lineHeight: 1.3
     //textShadow: "0 2px 3px #EDEEEF"
   },
   title: {

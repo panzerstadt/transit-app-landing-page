@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import "leaflet/dist/leaflet.css";
+import styles from "./index.module.css";
 
 import Map from "./Map";
 import Carousel from "./Carousel";
@@ -40,9 +41,19 @@ const DoTab = ({ cIndex, cardData, terminal, time }) => {
         justifyContent: "flex-start"
       }}
     >
-      <h1 style={{ color: "#F50945", margin: 0, fontSize: 40 }}>Do</h1>
+      <h1
+        className={styles.iphonePadding}
+        style={{
+          color: "#F50945",
+          margin: 0,
+          fontSize: 40
+        }}
+      >
+        Do
+      </h1>
 
       <div
+        className={styles.iphonePadding}
         style={{
           display: "flex",
           justifyContent: "flex-start",

@@ -12,6 +12,8 @@ import { ReactComponent as ReactPlacePin } from "../../assets/page-3/pin.svg";
 
 import Planner from "../subcomponents/planner";
 
+import { IOS_APP_URL } from "../../constants";
+
 // original silhouette canvas size
 // viewBox="0 0 5618 883"
 
@@ -58,6 +60,7 @@ const pinIndicator = (LocationXY, img_src, color, style) => {
   // probably using material ui icon
   const indicatorStyle = {
     div: {
+      pointerEvents: "none",
       height: 150,
       width: 150,
       //transition: "bottom 800ms ease, left 300ms ease, opacity 300ms linear",
@@ -836,10 +839,12 @@ class Page extends Component {
           <span style={p3Style.bottomText}>Excited yet?</span>
           <span style={p3Style.bottomText}>give it a go!</span>
         </div>
-        <button style={p3Style.button}>
-          IOS {"\u00A0"}
-          <AppStoreLogo height={15} width={15} style={p3Style.button.logo} />
-        </button>
+        <a href={IOS_APP_URL}>
+          <button style={p3Style.button}>
+            IOS {"\u00A0"}
+            <AppStoreLogo height={15} width={15} style={p3Style.button.logo} />
+          </button>
+        </a>
       </div>
     );
 
@@ -854,7 +859,7 @@ class Page extends Component {
         {airport_div}
         {indicatorAnimation()}
 
-        <div style={{ height: 500 }} />
+        <div style={{ height: 700 }} />
 
         {call_to_action_div}
         {starField(10)}
