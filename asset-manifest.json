@@ -1,10 +1,10 @@
 {
   "main.css": "/transit-app-landing-page/static/css/main.baad565a.chunk.css",
-  "main.js": "/transit-app-landing-page/static/js/main.031433fd.chunk.js",
-  "main.js.map": "/transit-app-landing-page/static/js/main.031433fd.chunk.js.map",
+  "main.js": "/transit-app-landing-page/static/js/main.ec231464.chunk.js",
+  "main.js.map": "/transit-app-landing-page/static/js/main.ec231464.chunk.js.map",
   "static/css/1.c2b8e207.chunk.css": "/transit-app-landing-page/static/css/1.c2b8e207.chunk.css",
-  "static/js/1.f50bad55.chunk.js": "/transit-app-landing-page/static/js/1.f50bad55.chunk.js",
-  "static/js/1.f50bad55.chunk.js.map": "/transit-app-landing-page/static/js/1.f50bad55.chunk.js.map",
+  "static/js/1.65627291.chunk.js": "/transit-app-landing-page/static/js/1.65627291.chunk.js",
+  "static/js/1.65627291.chunk.js.map": "/transit-app-landing-page/static/js/1.65627291.chunk.js.map",
   "runtime~main.js": "/transit-app-landing-page/static/js/runtime~main.8eacf444.js",
   "runtime~main.js.map": "/transit-app-landing-page/static/js/runtime~main.8eacf444.js.map",
   "static/media/food-croissant.svg": "/transit-app-landing-page/static/media/food-croissant.8a28b91e.svg",
@@ -22,7 +22,7 @@
   "static/media/sushi.jpg": "/transit-app-landing-page/static/media/sushi.6717c34b.jpg",
   "static/media/store-google-disabled.svg": "/transit-app-landing-page/static/media/store-google-disabled.85ca4ac4.svg",
   "static/media/store-apple.svg": "/transit-app-landing-page/static/media/store-apple.74e8906b.svg",
-  "static/media/logo-white.svg": "/transit-app-landing-page/static/media/logo-white.07f99d61.svg",
+  "static/media/logo-white.svg": "/transit-app-landing-page/static/media/logo-white.a34ceb6f.svg",
   "static/media/airport-canvas-4.svg": "/transit-app-landing-page/static/media/airport-canvas-4.ac633409.svg",
   "static/media/food-icon.svg": "/transit-app-landing-page/static/media/food-icon.c811d2b7.svg",
   "static/media/boarding-icon.svg": "/transit-app-landing-page/static/media/boarding-icon.73dc8ecd.svg",
@@ -55,6 +55,6 @@
   "static/css/main.baad565a.chunk.css.map": "/transit-app-landing-page/static/css/main.baad565a.chunk.css.map",
   "static/css/1.c2b8e207.chunk.css.map": "/transit-app-landing-page/static/css/1.c2b8e207.chunk.css.map",
   "index.html": "/transit-app-landing-page/index.html",
-  "precache-manifest.ba9dbae3114f8c27fbe447de9ced12a5.js": "/transit-app-landing-page/precache-manifest.ba9dbae3114f8c27fbe447de9ced12a5.js",
+  "precache-manifest.2913780f86248c8b559e70fdee6dd7c5.js": "/transit-app-landing-page/precache-manifest.2913780f86248c8b559e70fdee6dd7c5.js",
   "service-worker.js": "/transit-app-landing-page/service-worker.js"
 }
