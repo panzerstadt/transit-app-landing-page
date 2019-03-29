@@ -1,6 +1,5 @@
 {
   "name": "transit-app-lp",
-  "homepage": "https://panzerstadt.github.io/transit-app-landing-page",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "PUBLIC_URL=https://panzerstadt.github.io/transit-app-landing-page/ npm run build ",
     "deploy": "gh-pages -d build",
     "fserve": "firebase serve",
     "fdeploy": "firebase deploy"
