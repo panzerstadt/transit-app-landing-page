@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "https://panzerstadt.github.io/transit-app-landing-page/static/media/sushi.6717c34b.jpg"
   },
   {
-    "revision": "8b31f5ac8a7104ac7b6c",
+    "revision": "7f26b6dfff3da396f820",
     "url": "https://panzerstadt.github.io/transit-app-landing-page/static/css/main.f2aaee47.chunk.css"
   },
   {
@@ -52,8 +52,8 @@ self.__precacheManifest = [
     "url": "https://panzerstadt.github.io/transit-app-landing-page/static/media/ana.76cc113d.jpg"
   },
   {
-    "revision": "8b31f5ac8a7104ac7b6c",
-    "url": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.8b31f5ac.chunk.js"
+    "revision": "7f26b6dfff3da396f820",
+    "url": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.7f26b6df.chunk.js"
   },
   {
     "revision": "85ca4ac474f45a00678badb94926816a",
@@ -104,7 +104,7 @@ self.__precacheManifest = [
     "url": "https://panzerstadt.github.io/transit-app-landing-page/static/css/1.a7ab9024.chunk.css"
   },
   {
-    "revision": "0778ddb8b81665a796229d639b7a7ce3",
+    "revision": "8c6c1d5e1131ac557dc04438780af109",
     "url": "https://panzerstadt.github.io/transit-app-landing-page/index.html"
   }
 ];
