@@ -147,6 +147,14 @@ class Page extends Component {
   }
 
   componentDidMount() {
+    const path = window.location.hash.slice(1);
+    if (path === "terms-and-conditions" && !this.state.showPage4) {
+      this.setState({ showPage4: true });
+      setTimeout(() => {
+        this.scrollSlowly("down");
+      }, 300);
+    }
+    console.log(path);
     refOffsetY = this.refLocation.map(r => {
       if (r.current) {
         return r.current.offsetTop;
