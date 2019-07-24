@@ -1,7 +1,7 @@
 {
   "main.css": "https://panzerstadt.github.io/transit-app-landing-page/static/css/main.f2aaee47.chunk.css",
-  "main.js": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.12a6e20e.chunk.js",
-  "main.js.map": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.12a6e20e.chunk.js.map",
+  "main.js": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.62925fb3.chunk.js",
+  "main.js.map": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.62925fb3.chunk.js.map",
   "static/css/1.a7ab9024.chunk.css": "https://panzerstadt.github.io/transit-app-landing-page/static/css/1.a7ab9024.chunk.css",
   "static/js/1.19b016e4.chunk.js": "https://panzerstadt.github.io/transit-app-landing-page/static/js/1.19b016e4.chunk.js",
   "static/js/1.19b016e4.chunk.js.map": "https://panzerstadt.github.io/transit-app-landing-page/static/js/1.19b016e4.chunk.js.map",
@@ -31,6 +31,6 @@
   "static/css/main.f2aaee47.chunk.css.map": "https://panzerstadt.github.io/transit-app-landing-page/static/css/main.f2aaee47.chunk.css.map",
   "static/css/1.a7ab9024.chunk.css.map": "https://panzerstadt.github.io/transit-app-landing-page/static/css/1.a7ab9024.chunk.css.map",
   "index.html": "https://panzerstadt.github.io/transit-app-landing-page/index.html",
-  "precache-manifest.8c985146fb49328b29e02eda19ed0ced.js": "https://panzerstadt.github.io/transit-app-landing-page/precache-manifest.8c985146fb49328b29e02eda19ed0ced.js",
+  "precache-manifest.19f531f2bab42f0c1d6269f323a0b7e6.js": "https://panzerstadt.github.io/transit-app-landing-page/precache-manifest.19f531f2bab42f0c1d6269f323a0b7e6.js",
   "service-worker.js": "https://panzerstadt.github.io/transit-app-landing-page/service-worker.js"
 }

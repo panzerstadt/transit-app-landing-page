@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "https://panzerstadt.github.io/transit-app-landing-page/precache-manifest.8c985146fb49328b29e02eda19ed0ced.js"
+  "https://panzerstadt.github.io/transit-app-landing-page/precache-manifest.19f531f2bab42f0c1d6269f323a0b7e6.js"
 );
 
 workbox.clientsClaim();
