@@ -1,10 +1,10 @@
 {
   "main.css": "https://panzerstadt.github.io/transit-app-landing-page/static/css/main.f2aaee47.chunk.css",
-  "main.js": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.7f26b6df.chunk.js",
-  "main.js.map": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.7f26b6df.chunk.js.map",
+  "main.js": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.12a6e20e.chunk.js",
+  "main.js.map": "https://panzerstadt.github.io/transit-app-landing-page/static/js/main.12a6e20e.chunk.js.map",
   "static/css/1.a7ab9024.chunk.css": "https://panzerstadt.github.io/transit-app-landing-page/static/css/1.a7ab9024.chunk.css",
-  "static/js/1.76d9cdff.chunk.js": "https://panzerstadt.github.io/transit-app-landing-page/static/js/1.76d9cdff.chunk.js",
-  "static/js/1.76d9cdff.chunk.js.map": "https://panzerstadt.github.io/transit-app-landing-page/static/js/1.76d9cdff.chunk.js.map",
+  "static/js/1.19b016e4.chunk.js": "https://panzerstadt.github.io/transit-app-landing-page/static/js/1.19b016e4.chunk.js",
+  "static/js/1.19b016e4.chunk.js.map": "https://panzerstadt.github.io/transit-app-landing-page/static/js/1.19b016e4.chunk.js.map",
   "runtime~main.js": "https://panzerstadt.github.io/transit-app-landing-page/static/js/runtime~main.bade5e85.js",
   "runtime~main.js.map": "https://panzerstadt.github.io/transit-app-landing-page/static/js/runtime~main.bade5e85.js.map",
   "static/media/phone-departure.png": "https://panzerstadt.github.io/transit-app-landing-page/static/media/phone-departure.863aa44f.png",
@@ -31,6 +31,6 @@
   "static/css/main.f2aaee47.chunk.css.map": "https://panzerstadt.github.io/transit-app-landing-page/static/css/main.f2aaee47.chunk.css.map",
   "static/css/1.a7ab9024.chunk.css.map": "https://panzerstadt.github.io/transit-app-landing-page/static/css/1.a7ab9024.chunk.css.map",
   "index.html": "https://panzerstadt.github.io/transit-app-landing-page/index.html",
-  "precache-manifest.bddf7138ef5f02e7cc8cf222c719f71a.js": "https://panzerstadt.github.io/transit-app-landing-page/precache-manifest.bddf7138ef5f02e7cc8cf222c719f71a.js",
+  "precache-manifest.8c985146fb49328b29e02eda19ed0ced.js": "https://panzerstadt.github.io/transit-app-landing-page/precache-manifest.8c985146fb49328b29e02eda19ed0ced.js",
   "service-worker.js": "https://panzerstadt.github.io/transit-app-landing-page/service-worker.js"
 }
