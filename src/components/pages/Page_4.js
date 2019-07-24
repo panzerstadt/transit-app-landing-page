@@ -235,7 +235,7 @@ class Page extends Component {
         <h2 style={p4Style.header}>Team Members</h2>
         {avatars(avatar_data)}
         <p style={p4Style.footer}>
-          © 2018 InTransit. <br />
+          © 2018-2019 InTransit. <br />
           <br />
           {/* <a style={p4Style.tnc} href="#top">
             Terms and Conditions

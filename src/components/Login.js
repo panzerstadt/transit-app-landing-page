@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { EROFS } from "constants";
 
 const styles = {
   page: {
@@ -64,8 +65,9 @@ export default class LoginPage extends Component {
   componentDidMount() {
     console.log("loading user database");
     try {
-      const acc = require("../hidden/hidden.json");
-      this.setState({ ACCOUNTS: acc });
+      // const acc = require("../hidden/hidden.json");
+      // this.setState({ ACCOUNTS: acc });
+      throw new Error("no json");
     } catch (err) {
       console.log("ERROR: " + err);
       console.log("setting up default username and passwords");
@@ -77,7 +79,7 @@ export default class LoginPage extends Component {
           },
           {
             username: "DANTOKYO",
-            password: "DanTokyo12345"
+            password: "[Rx9h82rjw3u{c;"
           }
         ]
       };

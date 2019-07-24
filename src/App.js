@@ -6,7 +6,7 @@ import "./App.css";
 
 // import Parallax from "./components/parallax";
 import Scroll from "./components/scroll";
-import firebase from 'firebase';
+import firebase from "firebase";
 var config = {
   apiKey: "AIzaSyBr0sQMjen3zRkUG4slJUh301VH0aDkTRY",
   authDomain: "intransit-54f16.firebaseapp.com",
@@ -24,7 +24,7 @@ const debug = false;
 
 class App extends Component {
   state = {
-    isLoggedIn: true
+    isLoggedIn: false
   };
   handleAuthentication = this.handleAuthentication.bind(this);
 

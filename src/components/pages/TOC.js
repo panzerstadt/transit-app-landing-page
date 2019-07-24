@@ -154,7 +154,7 @@ class Page extends Component {
         this.scrollSlowly("down");
       }, 300);
     }
-    console.log(path);
+
     refOffsetY = this.refLocation.map(r => {
       if (r.current) {
         return r.current.offsetTop;
